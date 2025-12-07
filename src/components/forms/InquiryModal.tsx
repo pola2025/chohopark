@@ -23,6 +23,7 @@ export function InquiryModal() {
   const [closeCount, setCloseCount] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isHiddenToday, setIsHiddenToday] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -33,6 +34,9 @@ export function InquiryModal() {
   });
 
   useEffect(() => {
+    // 이미 오늘 하루 안보기 클릭했으면 실행 안함
+    if (isHiddenToday) return;
+
     // 오늘 하루 안보기 체크
     const hideToday = localStorage.getItem(MODAL_HIDE_TODAY_KEY);
     if (hideToday) {
@@ -44,6 +48,7 @@ export function InquiryModal() {
         hideDate.getMonth() === today.getMonth() &&
         hideDate.getDate() === today.getDate()
       ) {
+        setIsHiddenToday(true);
         return;
       }
       // 다른 날이면 초기화
@@ -68,13 +73,13 @@ export function InquiryModal() {
 
     // 15초 후 또는 40% 스크롤 시 표시
     const timer = setTimeout(() => {
-      setIsOpen(true);
+      if (!isHiddenToday) setIsOpen(true);
     }, 15000);
 
     const handleScroll = () => {
       const scrollPercent =
         (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      if (scrollPercent >= 40) {
+      if (scrollPercent >= 40 && !isHiddenToday) {
         setIsOpen(true);
         window.removeEventListener("scroll", handleScroll);
       }
@@ -86,7 +91,7 @@ export function InquiryModal() {
       clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isHiddenToday]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -104,6 +109,7 @@ export function InquiryModal() {
 
   const handleHideToday = () => {
     setIsOpen(false);
+    setIsHiddenToday(true);
     localStorage.setItem(MODAL_HIDE_TODAY_KEY, new Date().toISOString());
   };
 
