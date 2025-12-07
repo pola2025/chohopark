@@ -123,13 +123,30 @@ export function InquiryModal() {
     setIsSubmitting(true);
 
     try {
-      // Google Apps Script로 데이터 전송 (추후 구현)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          date: formData.date,
+          people: formData.people,
+          source: "모달 문의",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit inquiry");
+      }
 
       setIsSubmitted(true);
       localStorage.setItem(MODAL_SUBMITTED_KEY, new Date().toISOString());
     } catch (error) {
       console.error("Error submitting form:", error);
+      alert("문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
     } finally {
       setIsSubmitting(false);
     }
