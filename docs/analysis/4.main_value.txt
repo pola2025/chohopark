@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>섹션 2 - 핵심 가치</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+            line-height: 1.6 !important;
+            color: #333 !important;
+            background: #ffffff !important;
+            min-height: 100vh !important;
+            font-size: 16px !important;
+        }
+        
+        /* 컨테이너 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+        
+        /* ========== 섹션 2: 핵심 가치 ========== */
+        #s20250820a27de7feeb828 {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        
+        /* 인트로 영역 개선 */
+        .section-intro {
+            text-align: center !important;
+            margin-bottom: 100px;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFEFE5 100%);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-intro::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,53,0.03) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .section-intro > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-text {
+            font-size: 20px !important;
+            color: #666 !important;
+            margin-bottom: 20px !important;
+            line-height: 1.6 !important;
+            font-weight: 400 !important;
+        }
+        
+        .intro-main {
+            font-size: 42px !important;
+            font-weight: 800 !important;
+            color: #1a1a1a !important;
+            margin-bottom: 15px !important;
+            line-height: 1.2 !important;
+        }
+        
+        .intro-sub {
+            font-size: 22px !important;
+            color: #FF6B35 !important;
+            font-weight: 600 !important;
+            position: relative !important;
+            display: inline-block !important;
+            padding: 10px 30px !important;
+            background: rgba(255,107,53,0.08) !important;
+            border-radius: 50px !important;
+            margin-top: 10px !important;
+        }
+        
+        @media (max-width: 768px) {
+            .section-intro {
+                padding: 40px 25px;
+                margin-bottom: 60px;
+            }
+            
+            .intro-text {
+                font-size: 16px !important;
+            }
+            
+            .intro-main {
+                font-size: 28px !important;
+            }
+            
+            .intro-sub {
+                font-size: 18px !important;
+                padding: 8px 20px !important;
+            }
+        }
+        
+        /* 조리 과정 개선 */
+        .cooking-process {
+            margin-bottom: 100px;
+        }
+        
+        .process-title {
+            text-align: center !important;
+            font-size: 36px !important;
+            font-weight: 700 !important;
+            color: #1a1a1a !important;
+            margin-bottom: 20px !important;
+        }
+        
+        .process-subtitle {
+            text-align: center !important;
+            font-size: 18px !important;
+            color: #666 !important;
+            margin-bottom: 60px !important;
+        }
+        
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        @media (max-width: 968px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        .process-step {
+            background: #ffffff;
+            border: 2px solid #f0f0f0;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .process-step:hover {
+            border-color: #FF6B35;
+            box-shadow: 0 10px 40px rgba(255,107,53,0.1);
+            transform: translateY(-5px);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8F65 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px !important;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-title {
+            font-size: 24px !important;
+            font-weight: 700 !important;
+            color: #1a1a1a !important;
+            line-height: 1.3 !important;
+        }
+        
+        .step-description {
+            font-size: 17px !important;
+            line-height: 1.7 !important;
+            color: #555 !important;
+            margin-bottom: 20px !important;
+        }
+        
+        .step-highlight {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFEFE5 100%);
+            border-left: 4px solid #FF6B35;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .step-highlight strong {
+            display: block !important;
+            font-size: 18px !important;
+            color: #FF6B35 !important;
+            margin-bottom: 8px !important;
+        }
+        
+        .step-highlight p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #555 !important;
+            margin: 0 !important;
+        }
+        
+        @media (max-width: 768px) {
+            .process-title {
+                font-size: 28px !important;
+            }
+            
+            .process-step {
+                padding: 30px 25px;
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 20px !important;
+            }
+            
+            .step-title {
+                font-size: 20px !important;
+            }
+            
+            .step-description {
+                font-size: 15px !important;
+            }
+        }
+        
+        /* 메뉴 카드 개선 */
+        .menu-showcase {
+            margin-top: 80px;
+        }
+        
+        .menu-showcase h3 {
+            text-align: center !important;
+            font-size: 36px !important;
+            font-weight: 700 !important;
+            color: #1a1a1a !important;
+            margin-bottom: 60px !important;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .menu-showcase h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B35 0%, #FF8F65 100%);
+            border-radius: 2px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+        
+        @media (max-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+        
+        .menu-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border-color: #FF6B35;
+        }
+        
+        .menu-image {
+            width: 100%;
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+        
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-card:hover .menu-image img {
+            transform: scale(1.1);
+        }
+        
+        .menu-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: #FF6B35;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px !important;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .menu-content {
+            padding: 35px 30px;
+        }
+        
+        .menu-name {
+            font-size: 26px !important;
+            font-weight: 700 !important;
+            color: #1a1a1a !important;
+            margin-bottom: 15px !important;
+            line-height: 1.2 !important;
+        }
+        
+        .menu-description {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #666 !important;
+            margin-bottom: 25px !important;
+        }
+        
+        .menu-features {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
+        .menu-features li {
+            padding: 12px 0 !important;
+            padding-left: 30px !important;
+            color: #444 !important;
+            position: relative !important;
+            font-size: 15px !important;
+            line-height: 1.5 !important;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .menu-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-features li::before {
+            content: '✓' !important;
+            position: absolute !important;
+            left: 0 !important;
+            color: #FF6B35 !important;
+            font-weight: bold !important;
+            font-size: 16px !important;
+            top: 12px !important;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-showcase h3 {
+                font-size: 28px !important;
+                margin-bottom: 40px !important;
+            }
+            
+            .menu-card {
+                margin-bottom: 20px;
+            }
+            
+            .menu-name {
+                font-size: 22px !important;
+            }
+            
+            .menu-description {
+                font-size: 15px !important;
+            }
+            
+            .menu-features li {
+                font-size: 14px !important;
+            }
+        }
+        
+        /* 애니메이션 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 섹션 2: 핵심 가치 전달 -->
+    <section id="s20250820a27de7feeb828" class="value-section">
+        <div class="container">
+            <!-- 인트로 텍스트 -->
+            <div class="section-intro fade-in">
+                <p class="intro-text">워크샵 준비, 복잡한 견적, 식사 준비, 행사 진행...<br>
+                단체 행사 담당자님들의 고민을 잘 알고 있습니다.</p>
+                <h2 class="intro-main">초호쉼터가 해결했습니다.</h2>
+                <p class="intro-sub">"숙박부터 모든 식사까지, 원스톱 올인클루전으로"</p>
+            </div>
+            
+            <!-- 조리 과정 -->
+            <div class="cooking-process">
+                <h3 class="process-title">워크샵 성공의 핵심, 완벽한 식사 준비</h3>
+                <p class="process-subtitle">전문가의 6시간 훈연과 맞춤형 서비스로 모두가 만족하는 워크샵을 만들어드립니다</p>
+                
+                <div class="process-grid">
+                    <div class="process-step fade-in">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <h4 class="step-title">전문가의 6시간 훈연 준비</h4>
+                        </div>
+                        <p class="step-description">
+                            행사 담당자가 고기 굽느라 정작 중요한 팀 빌딩에 참여하지 못하는 일은 없어야 합니다.
+                            초호쉼터는 6시간 참나무 훈연으로 완벽하게 준비한 바베큐를 제공합니다.
+                        </p>
+                        <div class="step-highlight">
+                            <strong>걱정 없는 워크샵</strong>
+                            <p>담당자도 함께 즐기는 진짜 팀 빌딩<br>
+                            전문가가 모든 식사를 책임집니다</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step fade-in">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <h4 class="step-title">행사 일정에 맞춘 완벽한 타이밍</h4>
+                        </div>
+                        <p class="step-description">
+                            워크샵 일정은 분 단위로 중요합니다. 초호쉼터는 귀사의 행사 스케줄에 맞춰 
+                            정확한 시간에 따뜻한 음식을 제공합니다. 조식부터 바베큐 디너까지 모든 식사가 계획대로 진행됩니다.
+                        </p>
+                        <div class="step-highlight">
+                            <strong>맞춤형 식사 스케줄</strong>
+                            <p>워크샵 일정에 맞춘 식사 시간 조정<br>
+                            지연 없는 완벽한 행사 진행 보장</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 메뉴 소개 -->
+            <div class="menu-showcase">
+                <h3>직원 만족도 200% 보장하는 프리미엄 메뉴</h3>
+                
+                <div class="menu-grid">
+                    <div class="menu-card fade-in">
+                        <div class="menu-image">
+                            <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/348bd9d618e42.jpg" alt="6시간 훈연 등갈비">
+                            <span class="menu-badge">인기 1위</span>
+                        </div>
+                        <div class="menu-content">
+                            <h4 class="menu-name">6시간 훈연 등갈비</h4>
+                            <p class="menu-description">
+                                참나무장작훈연 특제 소스의 조화. 직원들이 가장 만족하는 시그니처 메뉴
+                            </p>
+                            <ul class="menu-features">
+                                <li>전 직원이 만족하는 프리미엄 퀄리티</li>
+                                <li>특제 소스로 남녀 모두 선호</li>
+                                <li>무한리필로 부담 없는 제공</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-card fade-in">
+                        <div class="menu-image">
+                            <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/3bef7ea7bcdfe.jpg" alt="두툼한 훈연 삼겹살">
+                            <span class="menu-badge">필수 메뉴</span>
+                        </div>
+                        <div class="menu-content">
+                            <h4 class="menu-name">두툼한 훈연 삼겹살</h4>
+                            <p class="menu-description">
+                                한국인이 가장 사랑하는 삼겹살을 6시간 훈연으로 특별하게. 팀 회식의 완성입니다.
+                            </p>
+                            <ul class="menu-features">
+                                <li>두툼한 두께로 부드러운 식감</li>
+                                <li>훈연향이 더해진 극강의 맛</li>
+                                <li>특별한 참나무바베큐향</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-card fade-in">
+                        <div class="menu-image">
+                            <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/6e4c33b2404b0.jpg" alt="통 오리 훈제구이">
+                            <span class="menu-badge">헬시 초이스</span>
+                        </div>
+                        <div class="menu-content">
+                            <h4 class="menu-name">통 오리 훈제구이</h4>
+                            <p class="menu-description">
+                                건강을 생각하는 직원들을 위한 프리미엄 선택. 담백하고 고소한 맛이 일품입니다.
+                            </p>
+                            <ul class="menu-features">
+                                <li>콜라겐 풍부한 건강 메뉴</li>
+                                <li>여성 직원들에게 특히 인기</li>
+                                <li>와인과도 잘 어울리는 맛</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // 애니메이션 적용할 요소들
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // 페이지 로드 시 intro 섹션 애니메이션
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.section-intro').classList.add('visible');
+            }, 100);
+        });
+    </script>
+</body>
+</html>

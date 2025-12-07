@@ -1,0 +1,897 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-49043QNXM0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-49043QNXM0');
+</script>
+<!-- BORAWARE LOG SCRIPT. -->
+<script type="text/javascript">
+var protect_id = 'e249';
+</script>
+<script async type="text/javascript" src="//script.boraware.kr/protect_script_v2.js"></script>
+<!-- END OF BORAWARE LOG SCRIPT -->
+<!-- 아임웹 설정 > 헤더 HTML에 추가할 코드 -->
+<!-- 아임웹 설정 > 헤더 HTML에 추가할 코드 -->
+<style>
+/* CTA 모달 스타일 */
+.cta-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-modal-overlay.show {
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+    visibility: visible;
+    z-index: 99999;
+}
+
+.cta-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    background: white;
+    border-radius: 20px;
+    padding: 0;
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 100000;
+}
+
+.cta-modal-overlay.show .cta-modal {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 부드러운 진입 애니메이션 */
+@keyframes modalFadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.cta-modal-overlay.show .cta-modal {
+    animation: modalFadeIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 모달 헤더 */
+.cta-modal-header {
+    background: linear-gradient(135deg, #2c7a2c 0%, #4caf50 100%);
+    padding: 25px;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 헤더 반짝임 효과 */
+.cta-modal-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.cta-modal-title {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.cta-modal-subtitle {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 닫기 버튼 */
+.cta-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.cta-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.cta-modal-close::before,
+.cta-modal-close::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: white;
+}
+
+.cta-modal-close::before {
+    transform: rotate(45deg);
+}
+
+.cta-modal-close::after {
+    transform: rotate(-45deg);
+}
+
+/* 모달 바디 */
+.cta-modal-body {
+    padding: 30px;
+    animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 혜택 안내 */
+.cta-benefits {
+    background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid #4caf50;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-benefits::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4caf50, #81c784, #4caf50);
+    background-size: 200% 100%;
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.cta-benefit-item {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    color: #2e7d32;
+    font-size: 14px;
+    opacity: 0;
+    animation: slideInLeft 0.5s ease forwards;
+}
+
+.cta-benefit-item:nth-child(1) { animation-delay: 0.4s; }
+.cta-benefit-item:nth-child(2) { animation-delay: 0.5s; }
+.cta-benefit-item:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.cta-benefit-item::before {
+    content: '✓';
+    margin-right: 8px;
+    font-weight: bold;
+    color: #4caf50;
+    animation: checkBounce 0.6s ease;
+}
+
+@keyframes checkBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* 폼 스타일 */
+.cta-form-group {
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.cta-form-group:nth-child(1) { animation-delay: 0.1s; }
+.cta-form-group:nth-child(2) { animation-delay: 0.2s; }
+.cta-form-group:nth-child(3) { animation-delay: 0.3s; }
+.cta-form-group:nth-child(4) { animation-delay: 0.4s; }
+.cta-form-group:nth-child(5) { animation-delay: 0.5s; }
+
+.cta-form-group label {
+    display: block;
+    color: #2e7d32;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.cta-form-group label .required {
+    color: #f44336;
+}
+
+.cta-form-group input,
+.cta-form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #c8e6c9;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    box-sizing: border-box;
+}
+
+.cta-form-group input:focus,
+.cta-form-group select:focus {
+    border-color: #4caf50;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.15);
+    transform: translateY(-2px);
+}
+
+.cta-form-group input.error {
+    border-color: #f44336;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.cta-error-message {
+    color: #f44336;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.cta-error-message.show {
+    display: block;
+    animation: slideInUp 0.3s ease;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 인원 입력 그룹 */
+.cta-people-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.cta-people-group input {
+    flex: 1;
+}
+
+.cta-people-group span {
+    color: #666;
+    font-size: 14px;
+}
+
+/* 제출 버튼 */
+.cta-submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cta-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
+}
+
+.cta-submit-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.cta-submit-btn:active {
+    transform: translateY(0);
+}
+
+.cta-submit-btn:disabled {
+    background: linear-gradient(135deg, #bdbdbd 0%, #9e9e9e 100%);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 개인정보 동의 */
+.cta-privacy-agree {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+    font-size: 13px;
+    color: #666;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.6s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.cta-privacy-agree input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #4caf50;
+}
+
+.cta-privacy-agree label {
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+/* 성공 메시지 */
+.cta-success-message {
+    display: none;
+    text-align: center;
+    padding: 40px;
+}
+
+.cta-success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    animation: successPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes successPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.cta-success-title {
+    font-size: 24px;
+    color: #2e7d32;
+    margin-bottom: 10px;
+    font-weight: bold;
+    animation: fadeInUp 0.5s ease 0.3s both;
+}
+
+.cta-success-text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    animation: fadeInUp 0.5s ease 0.4s both;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 767px) {
+    .cta-modal {
+        width: 95%;
+        max-width: 100%;
+        margin: 10px;
+    }
+    
+    .cta-modal-title {
+        font-size: 20px;
+    }
+    
+    .cta-modal-body {
+        padding: 20px;
+    }
+    
+    .cta-form-group input,
+    .cta-form-group select {
+        font-size: 16px; /* iOS 줌 방지 */
+    }
+}
+
+/* 펄스 효과 (주목도 향상) */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
+}
+
+.cta-modal-overlay.show .cta-modal {
+    animation: modalFadeIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               pulse 2s infinite 1s;
+}
+</style>
+
+<!-- 모달 HTML -->
+<div id="ctaModalOverlay" class="cta-modal-overlay">
+    <div class="cta-modal">
+        <!-- 헤더 -->
+        <div class="cta-modal-header">
+            <button class="cta-modal-close" onclick="closeCTAModal()"></button>
+            <h2 class="cta-modal-title">🎯 빠른 견적 문의</h2>
+            <p class="cta-modal-subtitle">30초 입력으로 맞춤 견적을 받아보세요!</p>
+        </div>
+        
+        <!-- 바디 -->
+        <div class="cta-modal-body" id="ctaFormSection">
+            <!-- 혜택 안내 -->
+            <div class="cta-benefits">
+                <div class="cta-benefit-item">최소 10명부터 최대 200명까지 가능</div>
+                <div class="cta-benefit-item">1박2일 워크샵 & 당일 야유회 모두 가능</div>
+                <div class="cta-benefit-item">빠른 견적 확인 및 예약금 30% 안내</div>
+            </div>
+            
+            <!-- 폼 -->
+            <form id="ctaQuickForm">
+                <div class="cta-form-group">
+                    <label for="ctaName">담당자 성함 <span class="required">*</span></label>
+                    <input type="text" id="ctaName" placeholder="홍길동" required>
+                    <div class="cta-error-message" id="ctaNameError">담당자 성함을 입력해주세요.</div>
+                </div>
+                
+                <div class="cta-form-group">
+                    <label for="ctaPhone">연락처 <span class="required">*</span></label>
+                    <input type="tel" id="ctaPhone" placeholder="010-1234-5678" required>
+                    <div class="cta-error-message" id="ctaPhoneError">올바른 연락처를 입력해주세요.</div>
+                </div>
+                
+                <div class="cta-form-group">
+                    <label for="ctaEmail">이메일 <span class="required">*</span></label>
+                    <input type="email" id="ctaEmail" placeholder="example@email.com" required>
+                    <div class="cta-error-message" id="ctaEmailError">올바른 이메일을 입력해주세요.</div>
+                </div>
+                
+                <div class="cta-form-group">
+                    <label for="ctaDate">이용 희망일</label>
+                    <input type="date" id="ctaDate">
+                </div>
+                
+                <div class="cta-form-group">
+                    <label for="ctaPeople">예상 인원 <span class="required">*</span></label>
+                    <div class="cta-people-group">
+                        <input type="number" id="ctaPeople" min="10" max="200" placeholder="10" required>
+                        <span>명</span>
+                    </div>
+                    <div class="cta-error-message" id="ctaPeopleError">10명 이상 입력해주세요.</div>
+                </div>
+                
+                <div class="cta-privacy-agree">
+                    <input type="checkbox" id="ctaPrivacy" required>
+                    <label for="ctaPrivacy">
+                        개인정보 수집 및 이용에 동의합니다.<br>
+                        (견적 발송 목적으로만 사용되며 발송 후 즉시 삭제됩니다)
+                    </label>
+                </div>
+                
+                <button type="submit" class="cta-submit-btn" id="ctaSubmitBtn">
+                    📮 빠른 견적 요청하기
+                </button>
+            </form>
+        </div>
+        
+        <!-- 성공 메시지 -->
+        <div class="cta-success-message" id="ctaSuccessSection">
+            <div class="cta-success-icon">✓</div>
+            <div class="cta-success-title">견적 요청 완료!</div>
+            <div class="cta-success-text">
+                빠른 시일 내에 연락드리겠습니다.<br>
+                감사합니다! 🙏
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// CTA 모달 스크립트
+(function() {
+    let modalShown = false;
+    let scrollThreshold = false;
+    let timeoutId = null;
+    let closeCount = 0; // 닫은 횟수 추적
+    let lastCloseTime = null; // 마지막으로 닫은 시간
+    
+    // 모달 표시 함수
+    function showCTAModal() {
+        // 이미 표시 중이면 중복 실행 방지
+        if (modalShown) return;
+        
+        const overlay = document.getElementById('ctaModalOverlay');
+        if (overlay) {
+            modalShown = true; // 먼저 상태 변경
+            
+            // 부드러운 표시를 위한 타임아웃
+            setTimeout(function() {
+                overlay.classList.add('show');
+            }, 100);
+            
+            // 기존 타이머가 있으면 제거
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+                timeoutId = null;
+            }
+        }
+    }
+    
+    // 모달 닫기 함수
+    window.closeCTAModal = function() {
+        const overlay = document.getElementById('ctaModalOverlay');
+        if (overlay) {
+            overlay.classList.remove('show');
+            modalShown = false;
+            closeCount++;
+            lastCloseTime = Date.now();
+            
+            // 기존 타이머가 있으면 제거
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+                timeoutId = null;
+            }
+            
+            // 3번 이상 닫으면 24시간 동안 표시 안함
+            if (closeCount >= 3) {
+                setCookie('cta_modal_closed', 'true', 1);
+                // 스크롤 이벤트 제거
+                window.removeEventListener('scroll', handleScroll);
+            } else {
+                // 15초 후 다시 표시 (최대 3번까지)
+                timeoutId = setTimeout(function() {
+                    // 15초가 지났고, 폼이 제출되지 않았으면 다시 표시
+                    if (!getCookie('cta_modal_submitted') && !modalShown) {
+                        showCTAModal();
+                    }
+                }, 15000);
+            }
+        }
+    }
+    
+    // 스크롤 핸들러
+    function handleScroll() {
+        if (modalShown || scrollThreshold) return;
+        
+        const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        
+        // 페이지의 40% 이상 스크롤 시 모달 표시
+        if (scrollPercentage > 40) {
+            scrollThreshold = true;
+            showCTAModal();
+        }
+    }
+    
+    // 쿠키 설정 함수
+    function setCookie(name, value, days) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+    }
+    
+    // 쿠키 가져오기 함수
+    function getCookie(name) {
+        const nameEQ = name + '=';
+        const ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+    
+    // 폼 검증 함수
+    function validateForm() {
+        let isValid = true;
+        
+        // 이름 검증
+        const name = document.getElementById('ctaName');
+        const nameError = document.getElementById('ctaNameError');
+        if (!name.value.trim()) {
+            name.classList.add('error');
+            nameError.classList.add('show');
+            isValid = false;
+        } else {
+            name.classList.remove('error');
+            nameError.classList.remove('show');
+        }
+        
+        // 전화번호 검증
+        const phone = document.getElementById('ctaPhone');
+        const phoneError = document.getElementById('ctaPhoneError');
+        const phoneRegex = /^[0-9]{2,3}-?[0-9]{3,4}-?[0-9]{4}$/;
+        if (!phoneRegex.test(phone.value.replace(/-/g, ''))) {
+            phone.classList.add('error');
+            phoneError.classList.add('show');
+            isValid = false;
+        } else {
+            phone.classList.remove('error');
+            phoneError.classList.remove('show');
+        }
+        
+        // 이메일 검증
+        const email = document.getElementById('ctaEmail');
+        const emailError = document.getElementById('ctaEmailError');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+            email.classList.add('error');
+            emailError.classList.add('show');
+            isValid = false;
+        } else {
+            email.classList.remove('error');
+            emailError.classList.remove('show');
+        }
+        
+        // 인원 검증
+        const people = document.getElementById('ctaPeople');
+        const peopleError = document.getElementById('ctaPeopleError');
+        if (!people.value || parseInt(people.value) < 10) {
+            people.classList.add('error');
+            peopleError.classList.add('show');
+            isValid = false;
+        } else {
+            people.classList.remove('error');
+            peopleError.classList.remove('show');
+        }
+        
+        // 개인정보 동의 검증
+        const privacy = document.getElementById('ctaPrivacy');
+        if (!privacy.checked) {
+            alert('개인정보 수집 및 이용에 동의해주세요.');
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
+    // 페이지 로드 시 실행
+    document.addEventListener('DOMContentLoaded', function() {
+        // 이미 3번 이상 닫았거나, 제출 완료한 경우 표시하지 않음
+        if (getCookie('cta_modal_closed') === 'true' || getCookie('cta_modal_submitted') === 'true') {
+            return;
+        }
+        
+        // 15초 후 모달 표시
+        timeoutId = setTimeout(function() {
+            if (!modalShown) {
+                showCTAModal();
+            }
+        }, 15000);
+        
+        // 스크롤 이벤트 리스너
+        window.addEventListener('scroll', handleScroll);
+        
+        // 오버레이 클릭 시 닫기
+        document.getElementById('ctaModalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCTAModal();
+            }
+        });
+        
+        // 폼 제출 처리
+        document.getElementById('ctaQuickForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            const submitBtn = document.getElementById('ctaSubmitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '📮 전송 중...';
+            
+            // 데이터 수집
+            const formData = {
+                type: 'quick_inquiry',
+                customerName: document.getElementById('ctaName').value.trim(),
+                customerPhone: document.getElementById('ctaPhone').value.trim(),
+                customerEmail: document.getElementById('ctaEmail').value.trim(),
+                desiredDate: document.getElementById('ctaDate').value || '미정',
+                people: document.getElementById('ctaPeople').value,
+                source: 'CTA Modal',
+                timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+            };
+            
+            // 새로운 Google Apps Script URL
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2CnVRAiaqDCAdCSa7gWO9xEcbpGfgunbc6sTabfZkAc6hgQpFIW1t0wRxpWAnei06oQ/exec';
+            
+            // 데이터 전송
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                // 성공 메시지 표시
+                document.getElementById('ctaFormSection').style.display = 'none';
+                document.getElementById('ctaSuccessSection').style.display = 'block';
+                
+                // 제출 완료 쿠키 설정 (24시간)
+                setCookie('cta_modal_submitted', 'true', 1);
+                
+                // 3초 후 모달 닫기
+                setTimeout(function() {
+                    closeCTAModal();
+                    // 폼 초기화
+                    document.getElementById('ctaQuickForm').reset();
+                    document.getElementById('ctaFormSection').style.display = 'block';
+                    document.getElementById('ctaSuccessSection').style.display = 'none';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '📮 빠른 견적 요청하기';
+                    
+                    // 제출 후에는 다시 표시하지 않음
+                    window.removeEventListener('scroll', handleScroll);
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = '📮 빠른 견적 요청하기';
+            });
+        });
+        
+        // 실시간 입력 검증
+        document.getElementById('ctaName').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('error');
+                document.getElementById('ctaNameError').classList.remove('show');
+            }
+        });
+        
+        document.getElementById('ctaPhone').addEventListener('input', function() {
+            // 자동 하이픈 추가
+            let value = this.value.replace(/[^0-9]/g, '');
+            if (value.length > 3 && value.length <= 7) {
+                value = value.slice(0, 3) + '-' + value.slice(3);
+            } else if (value.length > 7) {
+                value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+            }
+            this.value = value;
+            
+            const phoneRegex = /^[0-9]{2,3}-?[0-9]{3,4}-?[0-9]{4}$/;
+            if (phoneRegex.test(this.value.replace(/-/g, ''))) {
+                this.classList.remove('error');
+                document.getElementById('ctaPhoneError').classList.remove('show');
+            }
+        });
+        
+        document.getElementById('ctaEmail').addEventListener('input', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(this.value)) {
+                this.classList.remove('error');
+                document.getElementById('ctaEmailError').classList.remove('show');
+            }
+        });
+        
+        document.getElementById('ctaPeople').addEventListener('input', function() {
+            if (this.value && parseInt(this.value) >= 10) {
+                this.classList.remove('error');
+                document.getElementById('ctaPeopleError').classList.remove('show');
+            }
+        });
+    });
+})();
+</script>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내부시설 갤러리</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding-top: 75px;
+        }
+        
+        /* 내부시설 갤러리 섹션 */
+        #s20250810823465814c970 {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        
+        #s20250810823465814c970 .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 섹션 헤더 */
+        #s20250810823465814c970 .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        #s20250810823465814c970 .section-badge {
+            display: inline-block;
+            background: #f0f7e9;
+            color: #2d5016;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        #s20250810823465814c970 .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            color: #1a1a1a;
+            font-weight: 200;
+            line-height: 1.3;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        
+        #s20250810823465814c970 .section-title strong {
+            font-weight: 400;
+            color: #2d5016;
+        }
+        
+        #s20250810823465814c970 .section-desc {
+            font-size: 16px;
+            color: #666;
+            font-weight: 300;
+        }
+        
+        /* 스와이프 갤러리 */
+        #s20250810823465814c970 .swipe-gallery {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            background: #f8f8f8;
+        }
+        
+        #s20250810823465814c970 .gallery-wrapper {
+            display: flex;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        #s20250810823465814c970 .gallery-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        #s20250810823465814c970 .gallery-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* 스와이프 컨트롤 */
+        #s20250810823465814c970 .swipe-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+        
+        #s20250810823465814c970 .swipe-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: all;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #s20250810823465814c970 .swipe-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        #s20250810823465814c970 .swipe-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #2d5016;
+            stroke-width: 2;
+        }
+        
+        /* 인디케이터 */
+        #s20250810823465814c970 .gallery-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        
+        #s20250810823465814c970 .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #s20250810823465814c970 .indicator.active {
+            width: 24px;
+            border-radius: 4px;
+            background: white;
+        }
+        
+        /* 썸네일 그리드 */
+        #s20250810823465814c970 .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #s20250810823465814c970 .thumbnail {
+            position: relative;
+            padding-bottom: 75%;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #s20250810823465814c970 .thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        #s20250810823465814c970 .thumbnail.active {
+            box-shadow: 0 0 0 3px #2d5016;
+            transform: scale(1.02);
+        }
+        
+        #s20250810823465814c970 .thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* 모달 */
+        #indoorModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        #indoorModal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #indoorModal .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: scaleIn 0.3s ease;
+        }
+        
+        #indoorModal .modal-image {
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            max-height: 800px;
+            object-fit: contain;
+        }
+        
+        #indoorModal .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #indoorModal .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        #indoorModal .modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+            stroke-width: 2;
+        }
+        
+        #indoorModal .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #indoorModal .modal-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        #indoorModal .modal-nav.prev {
+            left: 20px;
+        }
+        
+        #indoorModal .modal-nav.next {
+            right: 20px;
+        }
+        
+        #indoorModal .modal-nav svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            stroke-width: 2;
+        }
+        
+        /* 애니메이션 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* 반응형 */
+        @media (max-width: 768px) {
+            #s20250810823465814c970 {
+                padding: 60px 0;
+            }
+            
+            #s20250810823465814c970 .section-header {
+                margin-bottom: 35px;
+            }
+            
+            #s20250810823465814c970 .section-title {
+                font-size: 24px;
+            }
+            
+            #s20250810823465814c970 .gallery-slide img {
+                height: 300px;
+            }
+            
+            #s20250810823465814c970 .swipe-btn {
+                width: 36px;
+                height: 36px;
+            }
+            
+            #s20250810823465814c970 .thumbnail-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                max-width: 350px;
+            }
+            
+            #indoorModal .modal-nav {
+                width: 36px;
+                height: 36px;
+            }
+            
+            #indoorModal .modal-nav.prev {
+                left: 10px;
+            }
+            
+            #indoorModal .modal-nav.next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 내부시설 갤러리 섹션 -->
+    <section id="s20250810823465814c970">
+        <div class="gallery-container">
+            <!-- 섹션 헤더 -->
+            <div class="section-header">
+                <div class="section-badge">INDOOR FACILITIES</div>
+                <h2 class="section-title">
+                    쾌적하고 편안한 <strong>내부 시설</strong>
+                </h2>
+                <p class="section-desc">
+                    단체식사 공간 및 세미나룸에서 쾌적한 식사와 행사 진행이 가능합니다
+                </p>
+            </div>
+            
+            <!-- 메인 스와이프 갤러리 -->
+            <div class="swipe-gallery">
+                <div class="gallery-wrapper" id="indoorGalleryWrapper">
+                    <div class="gallery-slide" onclick="openIndoorModal(0, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/fec985677c9db.jpg" alt="내부시설 1">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(1, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/6b7891772832e.jpg" alt="내부시설 2">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(2, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/2e5df73de9268.jpg" alt="내부시설 3">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(3, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/f584f60e82c4b.jpg" alt="내부시설 4">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(4, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/de4dfc53d6aa5.jpg" alt="내부시설 5">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(5, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/53bfd672124f6.jpg" alt="내부시설 6">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(6, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/2608ef5123d01.jpg" alt="내부시설 7">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(7, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/e9c6c5076d49f.jpg" alt="내부시설 8">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(8, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/5d10a4d466c3b.jpg" alt="내부시설 9">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(9, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/75fd9128288ee.jpg" alt="내부시설 10">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(10, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/56ec540f9e612.jpg" alt="내부시설 11">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(11, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/b05a18f84645a.jpg" alt="내부시설 12">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(12, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/71d78b43ef9c2.jpg" alt="내부시설 13">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(13, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/29c30256aa3b7.jpg" alt="내부시설 14">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(14, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/48aa3fd3827e0.jpg" alt="내부시설 15">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(15, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/22776e082decd.jpg" alt="내부시설 16">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(16, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/9e07cb9dd75d5.jpg" alt="내부시설 17">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(17, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/07428d1532fd0.jpg" alt="내부시설 18">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(18, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/e78c33b08be01.jpg" alt="내부시설 19">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(19, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/dd107c2d21db4.jpg" alt="내부시설 20">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(20, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/0cd87d7eef0bc.jpg" alt="내부시설 21">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(21, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/fee82fd506ea7.jpg" alt="내부시설 22">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(22, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/b4c4943b46d6d.jpg" alt="내부시설 23">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(23, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/92a3484b0b050.jpg" alt="내부시설 24">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(24, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/039fc221fd483.jpg" alt="내부시설 25">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(25, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/1172eaec2fdfb.jpg" alt="내부시설 26">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(26, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/9c89d2df817ec.jpg" alt="내부시설 27">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(27, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/4adc4f4860f6d.jpg" alt="내부시설 28">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(28, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/9907284fd1317.jpg" alt="내부시설 29">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(29, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/9bc79cde91995.jpg" alt="내부시설 30">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(30, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/cc4a5c70f95b4.jpg" alt="내부시설 31">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(31, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/911b6b76d2cb3.jpg" alt="내부시설 32">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(32, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/ea2e37eb5851e.jpg" alt="내부시설 33">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(33, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/4458b47538b7e.jpg" alt="내부시설 34">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(34, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/d53e8eac1cf07.jpg" alt="내부시설 35">
+                    </div>
+                    <div class="gallery-slide" onclick="openIndoorModal(35, 'indoor')">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/1af1e3c8216f4.jpg" alt="내부시설 36">
+                    </div>
+                </div>
+                
+                <!-- 스와이프 컨트롤 -->
+                <div class="swipe-controls">
+                    <button class="swipe-btn" onclick="changeIndoorSlide(-1, 'indoor')">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18l-6-6 6-6" stroke="currentColor"/>
+                        </svg>
+                    </button>
+                    <button class="swipe-btn" onclick="changeIndoorSlide(1, 'indoor')">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- 인디케이터 -->
+                <div class="gallery-indicators" id="indoorIndicators">
+                    <button class="indicator active" onclick="goToIndoorSlide(0, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(1, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(2, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(3, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(4, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(5, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(6, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(7, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(8, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(9, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(10, 'indoor')"></button>
+                    <button class="indicator" onclick="goToIndoorSlide(11, 'indoor')"></button>
+                </div>
+            </div>
+            
+            <!-- 썸네일 그리드 -->
+            <div class="thumbnail-grid" id="indoorThumbnails">
+                <div class="thumbnail active" onclick="goToIndoorSlide(0, 'indoor')">
+                    <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/fec985677c9db.jpg" alt="내부시설 썸네일 1">
+                </div>
+                <div class="thumbnail" onclick="goToIndoorSlide(1, 'indoor')">
+                    <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/6b7891772832e.jpg" alt="내부시설 썸네일 2">
+                </div>
+                <div class="thumbnail" onclick="goToIndoorSlide(2, 'indoor')">
+                    <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/2e5df73de9268.jpg" alt="내부시설 썸네일 3">
+                </div>
+                <div class="thumbnail" onclick="goToIndoorSlide(3, 'indoor')">
+                    <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/f584f60e82c4b.jpg" alt="내부시설 썸네일 4">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 모달 -->
+    <div id="indoorModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeIndoorModal()">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor"/>
+                </svg>
+            </button>
+            <img src="" alt="" class="modal-image" id="indoorModalImage">
+            <button class="modal-nav prev" onclick="indoorModalNav(-1)">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18l-6-6 6-6" stroke="currentColor"/>
+                </svg>
+            </button>
+            <button class="modal-nav next" onclick="indoorModalNav(1)">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18l6-6-6-6" stroke="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // 내부시설 갤러리 전용 데이터
+        const indoorGalleries = {
+            indoor: {
+                currentSlide: 0,
+                images: [
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/fec985677c9db.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/6b7891772832e.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/2e5df73de9268.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/f584f60e82c4b.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/de4dfc53d6aa5.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/53bfd672124f6.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/2608ef5123d01.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/e9c6c5076d49f.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/5d10a4d466c3b.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/75fd9128288ee.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/56ec540f9e612.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/b05a18f84645a.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/71d78b43ef9c2.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/29c30256aa3b7.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/48aa3fd3827e0.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/22776e082decd.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/9e07cb9dd75d5.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/07428d1532fd0.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/e78c33b08be01.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/dd107c2d21db4.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/0cd87d7eef0bc.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/fee82fd506ea7.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/b4c4943b46d6d.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/92a3484b0b050.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/039fc221fd483.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/1172eaec2fdfb.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/9c89d2df817ec.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/4adc4f4860f6d.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/9907284fd1317.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/9bc79cde91995.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/cc4a5c70f95b4.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/911b6b76d2cb3.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/ea2e37eb5851e.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/4458b47538b7e.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/d53e8eac1cf07.jpg',
+                    'https://cdn.imweb.me/upload/S202110280a2b6da12f806/1af1e3c8216f4.jpg'
+                ]
+            }
+        };
+        
+        let indoorCurrentGallery = 'indoor';
+        let indoorModalIndex = 0;
+        let indoorAutoPlayInterval;
+        
+        // 내부시설 자동 롤링 시작
+        function startIndoorAutoPlay() {
+            indoorAutoPlayInterval = setInterval(() => {
+                changeIndoorSlide(1, 'indoor');
+            }, 4000); // 4초마다 자동 전환
+        }
+        
+        // 내부시설 자동 롤링 정지
+        function stopIndoorAutoPlay() {
+            if (indoorAutoPlayInterval) {
+                clearInterval(indoorAutoPlayInterval);
+            }
+        }
+        
+        // 내부시설 슬라이드 변경
+        function changeIndoorSlide(direction, galleryType) {
+            stopIndoorAutoPlay();
+            
+            const gallery = indoorGalleries[galleryType];
+            gallery.currentSlide += direction;
+            
+            if (gallery.currentSlide < 0) {
+                gallery.currentSlide = gallery.images.length - 1;
+            } else if (gallery.currentSlide >= gallery.images.length) {
+                gallery.currentSlide = 0;
+            }
+            
+            updateIndoorGallery(galleryType);
+            startIndoorAutoPlay();
+        }
+        
+        // 내부시설 특정 슬라이드로 이동
+        function goToIndoorSlide(index, galleryType) {
+            stopIndoorAutoPlay();
+            indoorGalleries[galleryType].currentSlide = index;
+            updateIndoorGallery(galleryType);
+            startIndoorAutoPlay();
+        }
+        
+        // 내부시설 갤러리 업데이트
+        function updateIndoorGallery(galleryType) {
+            const gallery = indoorGalleries[galleryType];
+            const wrapper = document.getElementById(galleryType + 'GalleryWrapper');
+            const transform = -gallery.currentSlide * 100;
+            wrapper.style.transform = `translateX(${transform}%)`;
+            
+            // 인디케이터 업데이트
+            const indicators = document.querySelectorAll(`#${galleryType}Indicators .indicator`);
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === gallery.currentSlide);
+            });
+            
+            // 썸네일 업데이트
+            const thumbnails = document.querySelectorAll('#s20250810823465814c970 .thumbnail');
+            const currentSlide = gallery.currentSlide;
+            
+            let startIndex = Math.max(0, currentSlide - 1);
+            if (startIndex + 4 > gallery.images.length) {
+                startIndex = Math.max(0, gallery.images.length - 4);
+            }
+            
+            thumbnails.forEach((thumbnail, index) => {
+                const imgElement = thumbnail.querySelector('img');
+                const targetIndex = startIndex + index;
+                
+                if (targetIndex < gallery.images.length) {
+                    imgElement.src = gallery.images[targetIndex];
+                    thumbnail.onclick = () => goToIndoorSlide(targetIndex, galleryType);
+                    thumbnail.classList.toggle('active', targetIndex === currentSlide);
+                }
+            });
+        }
+        
+        // 내부시설 모달 열기
+        function openIndoorModal(index, galleryType) {
+            indoorCurrentGallery = galleryType;
+            indoorModalIndex = index;
+            const modal = document.getElementById('indoorModal');
+            const modalImage = document.getElementById('indoorModalImage');
+            modalImage.src = indoorGalleries[galleryType].images[index];
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 내부시설 모달 닫기
+        function closeIndoorModal() {
+            const modal = document.getElementById('indoorModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // 내부시설 모달 네비게이션
+        function indoorModalNav(direction) {
+            const gallery = indoorGalleries[indoorCurrentGallery];
+            indoorModalIndex += direction;
+            
+            if (indoorModalIndex < 0) {
+                indoorModalIndex = gallery.images.length - 1;
+            } else if (indoorModalIndex >= gallery.images.length) {
+                indoorModalIndex = 0;
+            }
+            
+            const modalImage = document.getElementById('indoorModalImage');
+            modalImage.src = gallery.images[indoorModalIndex];
+        }
+        
+        // ESC 키로 모달 닫기 (내부시설 전용)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('indoorModal').classList.contains('active')) {
+                closeIndoorModal();
+            }
+        });
+        
+        // 모달 배경 클릭으로 닫기
+        document.getElementById('indoorModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeIndoorModal();
+            }
+        });
+        
+        // 페이지 로드시 자동 롤링 시작
+        window.addEventListener('load', () => {
+            startIndoorAutoPlay();
+        });
+        
+        // 페이지 벗어날 때 자동 롤링 정지
+        window.addEventListener('beforeunload', () => {
+            stopIndoorAutoPlay();
+        });
+    </script>
+</body>
+</html>

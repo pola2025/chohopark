@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초호쉼터 단체예약 - 워크샵·야유회·수련회</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 헤더 스타일 */
+        .header {
+            background: linear-gradient(135deg, #0f4c3a 0%, #2d7a5e 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 50%;
+            height: 200%;
+            background: rgba(255,255,255,0.05);
+            transform: rotate(35deg);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .contact-info {
+            margin-top: 15px;
+            font-size: 1.1em;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+        }
+
+        /* 공통 안내 배너 */
+        .common-notice {
+            background: white;
+            border-left: 5px solid #2d7a5e;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .common-notice h3 {
+            color: #0f4c3a;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .common-notice ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .common-notice li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .common-notice li:before {
+            content: "📌";
+            position: absolute;
+            left: 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ff6b6b, #ff3838) !important;
+            border: 3px solid #ff0000 !important;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            color: white !important;
+            position: relative;
+            animation: pulse 2s infinite;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .warning-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255,255,255,0.3), 
+                transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 5px 20px rgba(255, 0, 0, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(255, 0, 0, 0.5);
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 0 5px 20px rgba(255, 0, 0, 0.3);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .warning-box strong {
+            color: white !important;
+            font-size: 1.3em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 5;
+        }
+
+        .warning-box strong::before {
+            content: '⚠️';
+            font-size: 1.4em;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .warning-box .warning-text {
+            font-weight: 600;
+            line-height: 1.8;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 5;
+            color: white !important;
+        }
+
+        /* 아임웹 환경용 추가 스타일 - 인라인 스타일로도 대체 가능 */
+        div.warning-box {
+            background-color: #ff3838 !important;
+            background-image: linear-gradient(135deg, #ff6b6b, #ff3838) !important;
+        }
+        
+        div.warning-box * {
+            color: white !important;
+        }
+
+        /* 탭 스타일 */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 100px;
+            padding: 15px 20px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            background: #f8f9fa;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #0f4c3a 0%, #2d7a5e 100%);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 76, 58, 0.3);
+        }
+
+        /* 탭 콘텐츠 */
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 0 15px 15px 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 가격 카드 */
+        .price-card {
+            background: linear-gradient(135deg, #f0f7f4 0%, #d4e8df 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #c3d9d0;
+        }
+
+        .price-card h3 {
+            color: #0f4c3a;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .price-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #2d7a5e;
+        }
+
+        .price-item strong {
+            color: #0f4c3a;
+        }
+
+        /* 모바일 줄바꿈 제어 */
+        .mobile-break {
+            display: none;
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-break {
+                display: inline;
+            }
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            /* 모바일에서도 1행 4열 유지 */
+            .tabs {
+                gap: 5px;
+                padding: 0 5px;
+                /* 스크롤바 숨김 */
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            
+            .tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-button {
+                font-size: 0.85em;
+                padding: 12px 8px;
+                min-width: 80px;
+                border-radius: 8px 8px 0 0;
+            }
+
+            .tab-content {
+                padding: 20px;
+                border-radius: 15px;
+            }
+        }
+
+        /* 더 작은 화면용 추가 조정 */
+        @media (max-width: 480px) {
+            .tab-button {
+                font-size: 0.75em;
+                padding: 10px 5px;
+                min-width: 70px;
+                font-weight: 500;
+            }
+            
+            /* 긴 텍스트 줄바꿈 처리 */
+            .tab-button {
+                white-space: normal;
+                line-height: 1.2;
+            }
+        }
+
+        /* 일정표 스타일 */
+        .schedule-table {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .schedule-table h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .schedule-item {
+            display: flex;
+            padding: 12px;
+            background: white;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            align-items: center;
+        }
+
+        .schedule-time {
+            font-weight: bold;
+            color: #2d7a5e;
+            min-width: 120px;
+        }
+
+        .schedule-desc {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        /* 식사 메뉴 섹션 */
+        .meal-section {
+            background: #fff;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .meal-section h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meal-list {
+            padding-left: 20px;
+        }
+
+        .meal-list li {
+            padding: 5px 0;
+            list-style-type: none;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .highlight-menu {
+            background: #fff3e0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 5px 0;
+            border-left: 4px solid #ff9800;
+            font-weight: 600;
+            color: #e65100;
+        }
+
+        /* 시설 정보 스타일 */
+        .facility-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .facility-info h4 {
+            color: #0f4c3a;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .facility-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .facility-info li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .facility-info li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2d7a5e;
+            font-weight: bold;
+        }
+
+        /* 아코디언 스타일 */
+        .accordion-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: none;
+            text-align: left;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 20px;
+            background: white;
+            animation: slideDown 0.3s ease;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 환불 정책 테이블 */
+        .refund-table {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .refund-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .refund-item:last-child {
+            border-bottom: none;
+        }
+
+        .refund-period {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .refund-rate {
+            color: #0f4c3a;
+            font-weight: 500;
+        }
+
+        /* 비교표 스타일 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #0f4c3a, #2d7a5e);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .comparison-table .feature {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #f0f7f4;
+        }
+
+        /* 플로팅 버튼 스타일 */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #0f4c3a, #2d7a5e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-icon {
+            font-size: 1.5em;
+        }
+
+        .btn-text {
+            font-size: 0.7em;
+            margin-top: 2px;
+        }
+
+        .float-menu {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 10px;
+            display: none;
+            min-width: 180px;
+        }
+
+        .float-menu.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .float-menu-item {
+            display: block;
+            padding: 12px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+            transition: background 0.3s ease;
+        }
+
+        .float-menu-item:hover {
+            background: #f0f7f4;
+        }
+
+        .float-menu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 상단 이동 버튼 */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #2d7a5e;
+            background: white;
+            color: #2d7a5e;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: none;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            background: #2d7a5e;
+            color: white;
+        }
+
+        .scroll-top.show {
+            display: block;
+        }
+
+        /* 반응형 추가 */
+        @media (max-width: 768px) {
+            .comparison-table {
+                font-size: 0.85em;
+            }
+
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .scroll-top {
+                left: 20px;
+                bottom: 20px;
+            }
+
+            .accordion-header {
+                font-size: 1em;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <div class="header">
+            <h1>초호쉼터 단체예약</h1>
+            <p>워크샵 · 야유회 · 수련회 · 체육대회 전문</p>
+            <div class="contact-info">
+                📞 예약문의: 010-3254-0029
+            </div>
+        </div>
+
+        <!-- 공통 안내사항 -->
+        <div class="common-notice">
+            <h3>예약 필수 안내사항</h3>
+            <ul>
+                <li>예약금 30% 입금 시 예약확정</li>
+                <li>입실 15:00 / 퇴실 11:00</li>
+                <li>시간 미준수 시 시간당/인당 1만원 추가</li>
+            </ul>
+            <div class="warning-box" style="background: linear-gradient(135deg, #ff6b6b, #ff3838) !important; color: white !important;">
+                <strong style="color: white !important;">특별 주의사항</strong>
+                <div class="warning-text" style="color: white !important;">
+                    조기축구/운동동호회는 반드시 사전문의 필수<br>
+                    미고지 시 강제취소 및 예약금 미환불
+                </div>
+            </div>
+        </div>
+
+        <!-- 탭 네비게이션 -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('workshop')">1박2일<br class="mobile-break">워크샵</button>
+            <button class="tab-button" onclick="showTab('picnic')">당일<br class="mobile-break">야유회</button>
+            <button class="tab-button" onclick="showTab('training')">2박3일<br class="mobile-break">수련회</button>
+            <button class="tab-button" onclick="showTab('options')">추가옵션<br class="mobile-break">서비스</button>
+        </div>
+
+        <!-- 탭 콘텐츠 영역 -->
+        <div id="workshop" class="tab-content active">
+            <!-- 1박2일 워크샵 -->
+            <h2 style="color: #0f4c3a; margin-bottom: 25px;">💼 1박2일 기업 워크샵</h2>
+            
+            <!-- 가격 정보 -->
+            <div class="price-card">
+                <h3>💰 가격정보</h3>
+                <div class="price-list">
+                    <div class="price-item">
+                        <span>성인</span>
+                        <strong>99,000원/인 (VAT포함)</strong>
+                    </div>
+                    <div class="price-item">
+                        <span>어린이 (36개월~중학생)</span>
+                        <strong>66,000원/인 (VAT포함)</strong>
+                    </div>
+                    <div class="price-item">
+                        <span>최소인원 / 최대인원</span>
+                        <strong>30명 / 80명</strong>
+                    </div>
+                    <div class="price-item">
+                        <span>세미나룸</span>
+                        <strong>시간당 11만원</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 일정표 -->
+            <div class="schedule-table">
+                <h4>📅 일정표</h4>
+                <div style="margin-bottom: 20px;">
+                    <h5 style="color: #2d7a5e; margin-bottom: 10px;">[1일차]</h5>
+                    <div class="schedule-item">
+                        <span class="schedule-time">15:00</span>
+                        <span class="schedule-desc">입실 (전 시설 이용불가)</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">18:30~21:30</span>
+                        <span class="schedule-desc">저녁식사<br><small style="color: #666;">※ 21:30 이후 야외음주 제한</small></span>
+                    </div>
+                </div>
+                <div>
+                    <h5 style="color: #2d7a5e; margin-bottom: 10px;">[2일차]</h5>
+                    <div class="schedule-item">
+                        <span class="schedule-time">08:30~10:00</span>
+                        <span class="schedule-desc">아침식사</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">11:00</span>
+                        <span class="schedule-desc">퇴실</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 식사 메뉴 -->
+            <div class="meal-section">
+                <h4>🍖 저녁식사 (18:30~21:30) - 무한리필</h4>
+                
+                <!-- 폭립 특별 강조 섹션 -->
+                <div style="background: linear-gradient(135deg, #ff6b6b, #ff4444); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(255,0,0,0.2);">
+                    <h3 style="color: white; text-align: center; margin-bottom: 15px; font-size: 1.4em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        🔥 통나무 6시간 훈연 바베큐 폭립 무한리필 🔥
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/0e2e5ccf6cf72.jpg" 
+                             alt="통나무 훈연 바베큐 폭립" 
+                             style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/788c953dd4e6f.jpg" 
+                             alt="훈연 바베큐 폭립 클로즈업" 
+                             style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                    </div>
+                    <p style="color: white; text-align: center; margin-top: 15px; font-weight: 600; font-size: 1.1em;">
+                        진짜 통나무로 6시간 정성껏 훈연한 프리미엄 돼지 폭립!<br>
+                        부드럽고 촉촉한 육질, 깊은 훈연향이 일품입니다
+                    </p>
+                </div>
+                
+                <ul class="meal-list">
+                    <li>삼겹살/목살</li>
+                    <li>오리훈제 바베큐</li>
+                    <li>새우, 계란찜, 치즈</li>
+                    <li>쌈채소</li>
+                    <li>계절 특별메뉴 (여름: 오이냉국 / 겨울: 오뎅탕)</li>
+                    <li>기본 반찬류</li>
+                    <li>술, 음료 제공</li>
+                </ul>
+            </div>
+
+            <div class="meal-section">
+                <h4>🍲 아침식사 (08:30~10:00)</h4>
+                <ul class="meal-list">
+                    <li>해장국 (소고기무국 등)</li>
+                    <li>기본 반찬류</li>
+                </ul>
+            </div>
+
+            <!-- 시설 정보 -->
+            <div class="facility-info">
+                <h4>🏠 객실 정보</h4>
+                <ul>
+                    <li>15평 복층 구조</li>
+                    <li>치약, 비누, 샴푸 제공</li>
+                    <li>수건 4장 제공</li>
+                    <li>개인용품 지참 (면도기, 칫솔 등)</li>
+                </ul>
+                
+                <h4 style="margin-top: 20px;">⚽ 시설 이용</h4>
+                <ul>
+                    <li>잔디구장: 20인 기준 1시간</li>
+                    <li>족구/축구공 직접 준비</li>
+                    <li style="color: #ff3838; font-weight: bold;">축구화 착용 금지</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="picnic" class="tab-content">
+            <!-- 당일 야유회 -->
+            <h2 style="color: #0f4c3a; margin-bottom: 25px;">🌳 당일 야유회</h2>
+            
+            <!-- 가격 정보 -->
+            <div class="price-card">
+                <h3>💰 가격정보</h3>
+                <div class="price-list">
+                    <div class="price-item">
+                        <span>성인</span>
+                        <strong>66,000원/인 (VAT포함)</strong>
+                    </div>
+                    <div class="price-item">
+                        <span>어린이 (만4세~중학생)</span>
+                        <strong>44,000원/인 (VAT포함)</strong>
+                    </div>
+                    <div class="price-item">
+                        <span>최소인원 / 최대인원</span>
+                        <strong>30명 / 200명</strong>
+                    </div>
+                    <div class="price-item" style="background: #ffe6e6;">
+                        <span>숙박</span>
+                        <strong style="color: #ff3838;">불포함 ❌</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 당일 일정 -->
+            <div class="schedule-table">
+                <h4>⏰ 당일 일정표</h4>
+                <div class="schedule-item">
+                    <span class="schedule-time">10:00</span>
+                    <span class="schedule-desc">시설 이용 시작</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">12:30~13:30</span>
+                    <span class="schedule-desc">점심 BBQ</span>
+                </div>
+                <div class="schedule-item" style="background: #ffe6e6;">
+                    <span class="schedule-time" style="color: #ff3838;">17:00</span>
+                    <span class="schedule-desc"><strong>이용 종료 (시간엄수!)</strong></span>
+                </div>
+            </div>
+
+            <!-- 점심 메뉴 -->
+            <div class="meal-section">
+                <h4>🍖 점심 BBQ 메뉴 (12:30~13:30)</h4>
+                
+                <!-- 폭립 특별 강조 섹션 -->
+                <div style="background: linear-gradient(135deg, #ff6b6b, #ff4444); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(255,0,0,0.2);">
+                    <h3 style="color: white; text-align: center; margin-bottom: 15px; font-size: 1.3em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        🔥 통나무 6시간 훈연 바베큐 폭립 제공 🔥
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/0e2e5ccf6cf72.jpg" 
+                             alt="통나무 훈연 바베큐 폭립" 
+                             style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/788c953dd4e6f.jpg" 
+                             alt="훈연 바베큐 폭립 클로즈업" 
+                             style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                    </div>
+                    <p style="color: white; text-align: center; margin-top: 15px; font-weight: 600;">
+                        진짜 통나무로 6시간 정성껏 훈연한 프리미엄 돼지 폭립!
+                    </p>
+                </div>
+                
+                <ul class="meal-list">
+                    <li>돼지고기 바베큐</li>
+                    <li>오리훈제</li>
+                    <li>김치전</li>
+                    <li>두부김치</li>
+                    <li>소고기무국</li>
+                    <li>술, 음료, 밥 제공</li>
+                    <li>기본 반찬류</li>
+                </ul>
+            </div>
+
+            <!-- 시설 이용 규정 -->
+            <div class="facility-info">
+                <h4>🏃 시설 이용 규정</h4>
+                <ul>
+                    <li>잔디운동장: 30인 기준 1시간</li>
+                    <li>세미나룸: 시간당 11만원</li>
+                    <li>족구/축구공 직접 준비</li>
+                    <li style="color: #ff3838; font-weight: bold;">축구화 착용 금지</li>
+                </ul>
+                <div style="background: #ffe6e6; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                    <strong style="color: #ff3838;">⚠️ 이용시간 17:00 절대 준수</strong><br>
+                    추가시간 사용은 개별문의
+                </div>
+            </div>
+
+            <!-- 우천시 안내 -->
+            <div class="rain-warning" style="background: linear-gradient(135deg, #ffd93d, #ffb73d); padding: 20px; border-radius: 12px; margin-top: 20px; border: 2px solid #ff9800;">
+                <h4 style="color: #fff; margin-bottom: 10px;">🌧️ 우천시 주의사항</h4>
+                <div style="background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px;">
+                    <p style="color: #ff3838; font-weight: bold; margin-bottom: 10px;">⛔ 우천시 운동장 이용 불가</p>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>실내 세미나룸으로 대체</li>
+                        <li>야외 체육활동 진행 불가</li>
+                        <li>우천 예보시 실내프로그램 사전 준비 권장</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="training" class="tab-content">
+            <!-- 2박3일 수련회 -->
+            <h2 style="color: #0f4c3a; margin-bottom: 25px;">🏕️ 2박3일 수련회</h2>
+            
+            <!-- 가격 정보 -->
+            <div class="price-card">
+                <h3>💰 가격정보</h3>
+                <div class="price-list">
+                    <div class="price-item">
+                        <span>1인당</span>
+                        <strong>165,000원 (VAT포함)</strong>
+                    </div>
+                    <div class="price-item">
+                        <span>최소예약금액</span>
+                        <strong>9,900,000원</strong>
+                    </div>
+                    <div class="price-item">
+                        <span>인원</span>
+                        <strong>60명~100명</strong>
+                    </div>
+                    <div class="price-item" style="background: #e6f7f1;">
+                        <span>세미나룸</span>
+                        <strong style="color: #0f4c3a;">사용 포함 ✅</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3일 일정표 -->
+            <div class="schedule-table">
+                <h4>📅 3일 일정표</h4>
+                <div style="margin-bottom: 20px;">
+                    <h5 style="color: #2d7a5e; margin-bottom: 10px;">[1일차]</h5>
+                    <div class="schedule-item">
+                        <span class="schedule-time">15:00</span>
+                        <span class="schedule-desc">입실 (전 시설 이용불가)</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">18:30~21:30</span>
+                        <span class="schedule-desc">저녁식사 (무한리필 or 닭도리탕)</span>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h5 style="color: #2d7a5e; margin-bottom: 10px;">[2일차]</h5>
+                    <div class="schedule-item">
+                        <span class="schedule-time">08:30~10:00</span>
+                        <span class="schedule-desc">아침식사</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">12:00~13:30</span>
+                        <span class="schedule-desc">점심식사</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">18:30~21:30</span>
+                        <span class="schedule-desc">저녁식사 (무한리필 or 닭도리탕)</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 style="color: #2d7a5e; margin-bottom: 10px;">[3일차]</h5>
+                    <div class="schedule-item">
+                        <span class="schedule-time">08:30~10:00</span>
+                        <span class="schedule-desc">아침식사</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">11:00</span>
+                        <span class="schedule-desc">퇴실</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 식사 안내 -->
+            <div class="meal-section" style="background: #f0f7f4;">
+                <h4>🍽️ 식사 안내</h4>
+                <div style="background: #ffeaa7; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <strong>⭐ 저녁 2회 제공 (택1씩)</strong><br>
+                    • 무한리필 1회 + 닭도리탕 1회<br>
+                    • 첫날 무한리필 선택 시 → 둘째날은 닭도리탕
+                </div>
+                
+                <h5 style="color: #2d7a5e; margin: 15px 0 10px 0;">[무한리필 메뉴]</h5>
+                
+                <!-- 폭립 특별 강조 섹션 -->
+                <div style="background: linear-gradient(135deg, #ff6b6b, #ff4444); padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(255,0,0,0.2);">
+                    <h4 style="color: white; text-align: center; margin-bottom: 10px; font-size: 1.1em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        🔥 통나무 6시간 훈연 바베큐 폭립 무한리필 🔥
+                    </h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/0e2e5ccf6cf72.jpg" 
+                             alt="통나무 훈연 바베큐 폭립" 
+                             style="width: 100%; border-radius: 6px; box-shadow: 0 3px 8px rgba(0,0,0,0.3);">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/788c953dd4e6f.jpg" 
+                             alt="훈연 바베큐 폭립 클로즈업" 
+                             style="width: 100%; border-radius: 6px; box-shadow: 0 3px 8px rgba(0,0,0,0.3);">
+                    </div>
+                </div>
+                
+                <ul class="meal-list">
+                    <li>삼겹살/목살</li>
+                    <li>오리훈제 바베큐</li>
+                    <li>새우, 계란찜, 치즈</li>
+                    <li>쌈채소</li>
+                    <li>기본 반찬류</li>
+                </ul>
+                
+                <h5 style="color: #2d7a5e; margin: 15px 0 10px 0;">[닭도리탕 메뉴]</h5>
+                <ul class="meal-list">
+                    <li>닭도리탕 + 기본 반찬류</li>
+                </ul>
+                
+                <h5 style="color: #2d7a5e; margin: 15px 0 10px 0;">[아침 메뉴]</h5>
+                <ul class="meal-list">
+                    <li>백반스타일 아침식사</li>
+                    <li>따뜻한 국 + 기본 반찬</li>
+                </ul>
+            </div>
+
+            <!-- 객실 정보 -->
+            <div class="facility-info">
+                <h4>🏠 객실 정보</h4>
+                <ul>
+                    <li>15평 복층 구조</li>
+                    <li>최대 10명/객실</li>
+                    <li>치약, 비누, 샴푸 제공</li>
+                    <li>수건 4장 제공</li>
+                    <li>개인용품 지참 (면도기, 칫솔 등)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="options" class="tab-content">
+            <!-- 추가옵션 서비스 -->
+            <h2 style="color: #0f4c3a; margin-bottom: 25px;">🎯 추가옵션 서비스</h2>
+            
+            <!-- 명랑운동회 섹션 -->
+            <div class="option-section" style="background: linear-gradient(135deg, #fff5f0, #ffe8e0); padding: 30px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #ff9800;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="color: #d84315; font-size: 1.6em; margin: 0;">🏃 명랑운동회 - 체육대회 전문 진행</h3>
+                    <div style="background: #ff5722; color: white; padding: 10px 20px; border-radius: 25px; font-weight: bold;">
+                        📞 010-6437-1863
+                    </div>
+                </div>
+                
+                <!-- 가격 정보 -->
+                <div class="price-card" style="background: white; margin-bottom: 25px;">
+                    <h4 style="color: #d84315;">💰 가격 안내</h4>
+                    <div class="price-list">
+                        <div class="price-item">
+                            <span>50~59인</span>
+                            <strong style="color: #d84315;">66만원 (2시간/VAT포함)</strong>
+                        </div>
+                        <div class="price-item">
+                            <span>100인</span>
+                            <strong style="color: #d84315;">110만원 (2시간/VAT포함)</strong>
+                        </div>
+                        <div class="price-item">
+                            <span>최소인원</span>
+                            <strong>50명</strong>
+                        </div>
+                        <div class="price-item" style="background: #e8f5e9;">
+                            <span>특전</span>
+                            <strong style="color: #2e7d32;">행사현수막 무료제작 포함</strong>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.95em;">
+                        ※ 인원추가 및 시간추가, 진행종목 선택은 개별상담 후 안내
+                    </p>
+                </div>
+
+                <!-- 프로그램 구성 -->
+                <div class="program-schedule" style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 25px;">
+                    <h4 style="color: #d84315; margin-bottom: 20px;">📋 프로그램 구성 (2시간)</h4>
+                    
+                    <!-- 오프닝 -->
+                    <div class="program-section" style="margin-bottom: 20px;">
+                        <h5 style="background: #ffebee; padding: 10px; border-left: 4px solid #d84315; margin-bottom: 10px;">
+                            [오프닝] 준비운동 - 10분
+                        </h5>
+                        <p style="padding-left: 20px; color: #666;">시작 전 몸 풀이 운동</p>
+                    </div>
+
+                    <!-- 메인 종목 -->
+                    <div class="program-section" style="margin-bottom: 20px;">
+                        <h5 style="background: #ffebee; padding: 10px; border-left: 4px solid #d84315; margin-bottom: 15px;">
+                            [메인 종목] 운동회 - 변경 가능
+                        </h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; padding: 0 20px;">
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">특급열차</strong> (10분)<br>
+                                <small>단체 줄넘기, 굴렁쇠 활용</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">지네발</strong> (10분)<br>
+                                <small>팀원 발 고정 릴레이</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">오리발달리기</strong> (10분)<br>
+                                <small>오리발 신고 릴레이</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">낙하산달리기</strong> (10분)<br>
+                                <small>낙하산 메고 달리기</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">신발양궁</strong> (15분)<br>
+                                <small>신발로 과녁 맞추기</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">판뒤집기</strong> (20분)<br>
+                                <small>팀별 판 뒤집기 게임</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">공굴리기</strong> (10분)<br>
+                                <small>큰 공 굴려 릴레이</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">협동제기차기</strong> (10분)<br>
+                                <small>8명이 줄 잡고 제기차기</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">에어봉릴레이</strong> (10분)<br>
+                                <small>대형봉 다리 끼고 달리기</small>
+                            </div>
+                            <div class="game-item" style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d84315;">계주</strong> (10분)<br>
+                                <small>직급별 릴레이 경기</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 클로징 -->
+                    <div class="program-section">
+                        <h5 style="background: #ffebee; padding: 10px; border-left: 4px solid #d84315; margin-bottom: 10px;">
+                            [클로징] 시상식 - 10분
+                        </h5>
+                        <ul style="padding-left: 40px; color: #666;">
+                            <li>종합 1, 2위 시상</li>
+                            <li>MVP 2명 시상</li>
+                            <li>개인 시상</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 포함사항 -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h4 style="color: #d84315; margin-bottom: 15px;">✅ 포함사항</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>전문 진행자</strong>
+                        </div>
+                        <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>음향장비(앰프)</strong>
+                        </div>
+                        <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>게임용품 일체</strong>
+                        </div>
+                        <div style="background: #fff3e0; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>우천시 실내 레크레이션 대체</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 주의사항 -->
+                <div style="background: #fff3e0; padding: 20px; border-radius: 12px; border: 2px solid #ff9800;">
+                    <h4 style="color: #e65100; margin-bottom: 10px;">⚠️ 명랑운동회 주의사항</h4>
+                    <ul style="color: #666;">
+                        <li>행사 진행 시 부상위험이 있으므로 안전에 유의</li>
+                        <li>외부업체 이벤트 진행 시 사전 협의 필수</li>
+                        <li>협의 없이 진행 시 운동회/체육대회 진행 불가</li>
+                        <li style="color: #d84315; font-weight: bold;">반드시 전화문의 후 예약 (010-6437-1863)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 기타 추가 서비스 -->
+            <div class="other-services" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                <h3 style="color: #0f4c3a; margin-bottom: 25px;">🎪 기타 추가 서비스</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <!-- 서바이벌 게임 -->
+                    <div class="service-card" style="background: linear-gradient(135deg, #f0f4f7, #d9e2e9); padding: 25px; border-radius: 12px; border-left: 5px solid #546e7a;">
+                        <h4 style="color: #37474f; margin-bottom: 15px;">🎯 단체 출장 서바이벌게임</h4>
+                        <p style="color: #666; margin-bottom: 10px;">팀워크 강화를 위한 서바이벌 게임</p>
+                        <ul style="color: #666; padding-left: 20px; margin-bottom: 15px;">
+                            <li>전문 장비 제공</li>
+                            <li>안전 교육 포함</li>
+                            <li>팀별 대항전 가능</li>
+                        </ul>
+                        <div style="background: #37474f; color: white; padding: 10px; border-radius: 8px; text-align: center;">
+                            📞 문의: 010-6437-1863
+                        </div>
+                    </div>
+
+                    <!-- 파주스피드파크 -->
+                    <div class="service-card" style="background: linear-gradient(135deg, #fff8e1, #ffe0b2); padding: 25px; border-radius: 12px; border-left: 5px solid #f57c00;">
+                        <h4 style="color: #e65100; margin-bottom: 15px;">🏁 파주스피드파크</h4>
+                        <p style="color: #666; margin-bottom: 10px;">짜릿한 레이싱 체험</p>
+                        <ul style="color: #666; padding-left: 20px; margin-bottom: 15px;">
+                            <li>카트 레이싱</li>
+                            <li>단체 예약 가능</li>
+                            <li>초보자 교육 제공</li>
+                        </ul>
+                        <div style="background: #f57c00; color: white; padding: 10px; border-radius: 8px; text-align: center;">
+                            📞 문의: 010-6437-1863
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #e8f5e9; padding: 20px; border-radius: 12px; margin-top: 25px; text-align: center;">
+                    <p style="color: #2e7d32; font-size: 1.1em; margin: 0;">
+                        <strong>💡 TIP:</strong> 추가 서비스는 메인 상품과 함께 예약 시 더욱 알찬 행사가 가능합니다!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 하단 공통 정보 섹션 -->
+        <div class="bottom-info-section" style="margin-top: 40px;">
+            <!-- 취소/환불 정책 -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('refund')">
+                    💳 취소/환불 정책
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div id="refund" class="accordion-content">
+                    <div class="refund-table">
+                        <div class="refund-item">
+                            <span class="refund-period">1개월 ~ 15일 전</span>
+                            <span class="refund-rate">예약금의 90% 환불</span>
+                        </div>
+                        <div class="refund-item">
+                            <span class="refund-period">14일 ~ 8일 전</span>
+                            <span class="refund-rate">예약금의 50% 환불</span>
+                        </div>
+                        <div class="refund-item" style="background: #ffe6e6;">
+                            <span class="refund-period">7일 전 ~ 당일</span>
+                            <span class="refund-rate" style="color: #ff3838; font-weight: bold;">환불 불가</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.95em;">
+                        ※ 단체상품 특성상 식자재와 일정이 미리 준비되기 때문에 환불 규정이 엄격하게 적용됩니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 이용 주의사항 -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('caution')">
+                    ⚠️ 이용 주의사항
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div id="caution" class="accordion-content">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div>
+                            <h5 style="color: #0f4c3a; margin-bottom: 10px;">🔊 소음 관련</h5>
+                            <ul style="color: #666;">
+                                <li>심한 고성방가 자제</li>
+                                <li>21:30 이후 야외음주 제한</li>
+                                <li>개별앰프 사용 불가</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #0f4c3a; margin-bottom: 10px;">🏃 안전 수칙</h5>
+                            <ul style="color: #666;">
+                                <li>연못 주변 음주 후 접근 자제</li>
+                                <li>자녀 동반 시 보호자 감독 필수</li>
+                                <li>체육행사 시 부상 주의</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: #0f4c3a; margin-bottom: 10px;">⚽ 시설 이용</h5>
+                            <ul style="color: #666;">
+                                <li style="color: #ff3838; font-weight: bold;">잔디운동장 축구화 착용 절대 금지</li>
+                                <li>족구/축구공 직접 준비</li>
+                                <li>시설 관리자 승인 없이 무단 사용 불가</li>
+                                <li>개인 펜션 공간 무단 점유 금지</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <strong style="color: #ff6b00;">📢 중요:</strong> 이용시간 미준수 시 별도과금 및 공간대여가 중단될 수 있습니다.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 오시는 길 -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion('location')">
+                    📍 오시는 길
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div id="location" class="accordion-content">
+                    <p style="color: #666; margin-bottom: 15px;">
+                        경기도 파주시 초호쉼터<br>
+                        (상세 주소는 예약 확정 시 안내드립니다)
+                    </p>
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                        <strong>🚗 자가용 이용시:</strong> 네비게이션에 '초호쉼터' 검색<br>
+                        <strong>🚌 대중교통:</strong> 별도 문의
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 상품 비교표 -->
+        <div class="comparison-section" style="margin-top: 40px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+            <h3 style="color: #0f4c3a; margin-bottom: 25px; text-align: center;">📊 상품 한눈에 비교하기</h3>
+            <div style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>당일 야유회</th>
+                            <th>1박2일 워크샵</th>
+                            <th>2박3일 수련회</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature">가격(1인)</td>
+                            <td>66,000원</td>
+                            <td>99,000원</td>
+                            <td>165,000원</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">인원</td>
+                            <td>30~200명</td>
+                            <td>30~80명</td>
+                            <td>60~100명</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">이용시간</td>
+                            <td>10:00~17:00</td>
+                            <td>15:00~익일 11:00</td>
+                            <td>15:00~3일차 11:00</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">숙박</td>
+                            <td><span style="color: #ff3838;">❌</span></td>
+                            <td><span style="color: #2d7a5e;">✅</span></td>
+                            <td><span style="color: #2d7a5e;">✅</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature">식사</td>
+                            <td>점심 1회</td>
+                            <td>저녁 1회 + 아침 1회</td>
+                            <td>저녁 2회 + 점심 1회 + 아침 2회</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">세미나룸</td>
+                            <td>시간당 11만원</td>
+                            <td>시간당 11만원</td>
+                            <td><span style="color: #2d7a5e; font-weight: bold;">포함 ✅</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature">추천 용도</td>
+                            <td>팀빌딩, 야외행사</td>
+                            <td>기업 워크샵, MT</td>
+                            <td>대규모 연수, 교육</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 플로팅 버튼 -->
+    <div class="floating-buttons">
+        <button class="float-btn main-btn" onclick="toggleFloatMenu()">
+            <span class="btn-icon">📞</span>
+            <span class="btn-text">예약문의</span>
+        </button>
+        <div class="float-menu" id="floatMenu">
+            <a href="tel:010-3254-0029" class="float-menu-item">
+                <span>🏠</span> 숙박/메인<br>010-3254-0029
+            </a>
+            <a href="tel:010-6437-1863" class="float-menu-item">
+                <span>🏃</span> 명랑운동회<br>010-6437-1863
+            </a>
+        </div>
+    </div>
+
+    <!-- 상단 이동 버튼 -->
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTopBtn">
+        ↑
+    </button>
+
+    <script>
+        function showTab(tabName) {
+            // 모든 탭 콘텐츠 숨기기
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 모든 탭 버튼 비활성화
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // 선택된 탭 콘텐츠 표시
+            document.getElementById(tabName).classList.add('active');
+
+            // 선택된 탭 버튼 활성화
+            const activeButton = Array.from(buttons).find(button => {
+                const tabMap = {
+                    '1박2일워크샵': 'workshop',
+                    '당일야유회': 'picnic',
+                    '2박3일수련회': 'training',
+                    '추가옵션서비스': 'options'
+                };
+                const buttonText = button.textContent.replace(/\s/g, '');
+                return tabMap[buttonText] === tabName;
+            });
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+
+        // 아코디언 토글
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const allContents = document.querySelectorAll('.accordion-content');
+            const allIcons = document.querySelectorAll('.accordion-icon');
+            
+            // 다른 아코디언 닫기
+            allContents.forEach(item => {
+                if (item.id !== id) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // 아이콘 리셋
+            allIcons.forEach(icon => {
+                icon.style.transform = 'rotate(0deg)';
+            });
+            
+            // 선택된 아코디언 토글
+            content.classList.toggle('active');
+            
+            // 아이콘 회전
+            const currentIcon = content.previousElementSibling.querySelector('.accordion-icon');
+            if (content.classList.contains('active')) {
+                currentIcon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // 플로팅 메뉴 토글
+        function toggleFloatMenu() {
+            const menu = document.getElementById('floatMenu');
+            menu.classList.toggle('active');
+        }
+
+        // 외부 클릭시 플로팅 메뉴 닫기
+        document.addEventListener('click', function(e) {
+            const floatBtn = document.querySelector('.float-btn');
+            const floatMenu = document.getElementById('floatMenu');
+            
+            if (!floatBtn.contains(e.target) && !floatMenu.contains(e.target)) {
+                floatMenu.classList.remove('active');
+            }
+        });
+
+        // 상단으로 스크롤
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // 스크롤 시 상단 이동 버튼 표시/숨김
+        window.addEventListener('scroll', function() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        // 페이지 로드 시 첫 번째 탭 활성화
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('workshop');
+        });
+    </script>
+</body>
+</html>

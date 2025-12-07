@@ -1,0 +1,11 @@
+export { Hero } from "./Hero";
+export { ValueProposition } from "./ValueProposition";
+export { BrandStatement } from "./BrandStatement";
+export { MealService } from "./MealService";
+export { MenuCards } from "./MenuCards";
+export { PackageFeatures } from "./PackageFeatures";
+export { ClientsAndPackages } from "./ClientsAndPackages";
+export { Rules } from "./Rules";
+export { Facilities } from "./Facilities";
+export { Calculator } from "./Calculator";
+export { RefundPolicy } from "./RefundPolicy";

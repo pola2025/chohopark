@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>섹션 3 - 혜택 & CTA</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* 컨테이너 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+        
+        /* ========== 섹션 3: 혜택 & CTA ========== */
+        #s202508201da5172f34d30 {
+            padding: 60px 0 !important;  /* 100px → 60px */
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%) !important;
+            color: white !important;
+        }
+        
+        /* 아임웹 스타일 오버라이드 */
+        #s202508201da5172f34d30 * {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+        }
+        
+        #s202508201da5172f34d30 h2,
+        #s202508201da5172f34d30 h3,
+        #s202508201da5172f34d30 h4,
+        #s202508201da5172f34d30 p,
+        #s202508201da5172f34d30 strong {
+            margin: initial !important;
+            padding: initial !important;
+            line-height: inherit !important;
+            color: inherit !important;
+        }
+        
+        #s202508201da5172f34d30 .benefit-title {
+            text-align: center !important;
+            font-size: 38px !important;  /* 45px → 38px */
+            font-weight: 700 !important;
+            margin-bottom: 40px !important;  /* 60px → 40px */
+            color: white !important;
+        }
+        
+        @media (max-width: 768px) {
+            #s202508201da5172f34d30 .benefit-title {
+                font-size: 28px !important;  /* 32px → 28px */
+                margin-bottom: 30px !important;  /* 40px → 30px */
+            }
+        }
+        
+        #s202508201da5172f34d30 .all-inclusive {
+            background: rgba(255,255,255,0.1) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 20px !important;
+            padding: 35px !important;  /* 50px → 35px */
+            margin-bottom: 50px !important;  /* 80px → 50px */
+            border: 1px solid rgba(255,255,255,0.2) !important;
+        }
+        
+        #s202508201da5172f34d30 .all-inclusive h3 {
+            font-size: 26px !important;  /* 29px → 26px */
+            margin-bottom: 25px !important;  /* 30px → 25px */
+            color: #FFD700 !important;
+            text-align: center !important;
+        }
+        
+        #s202508201da5172f34d30 .inclusive-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;  /* 30px → 20px */
+            margin-top: 30px !important;  /* 40px → 30px */
+        }
+        
+        @media (max-width: 768px) {
+            #s202508201da5172f34d30 .inclusive-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;  /* 20px → 15px */
+            }
+            
+            #s202508201da5172f34d30 .all-inclusive {
+                padding: 25px 20px !important;  /* 30px → 25px */
+            }
+            
+            #s202508201da5172f34d30 .all-inclusive h3 {
+                font-size: 22px !important;  /* 24px → 22px */
+            }
+        }
+        
+        #s202508201da5172f34d30 .inclusive-item {
+            display: flex !important;
+            align-items: center !important;
+            padding: 12px !important;  /* 15px → 12px */
+            background: rgba(255,255,255,0.05) !important;
+            border-radius: 12px !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        #s202508201da5172f34d30 .inclusive-item:hover {
+            background: rgba(255,255,255,0.1) !important;
+            transform: translateX(5px) !important;
+        }
+        
+        #s202508201da5172f34d30 .inclusive-icon {
+            width: 50px !important;
+            height: 50px !important;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-right: 20px !important;
+            font-size: 24px !important;
+            flex-shrink: 0 !important;
+        }
+        
+        #s202508201da5172f34d30 .inclusive-text {
+            flex: 1 !important;
+        }
+        
+        #s202508201da5172f34d30 .inclusive-text strong {
+            display: block !important;
+            font-size: 19px !important;
+            margin-bottom: 5px !important;
+            color: #FFD700 !important;  /* 골드 색상 */
+            font-weight: 600 !important;
+        }
+        
+        #s202508201da5172f34d30 .inclusive-text {
+            font-size: 16px !important;
+            color: rgba(255,255,255,0.85) !important;  /* 흰색 (약간 투명) */
+            line-height: 1.5 !important;
+        }
+        
+        @media (max-width: 768px) {
+            #s202508201da5172f34d30 .inclusive-text strong {
+                font-size: 17px !important;
+            }
+            
+            #s202508201da5172f34d30 .inclusive-icon {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 20px !important;
+            }
+        }
+        
+        /* 타겟 고객 - 아임웹 최적화 */
+        #s202508201da5172f34d30 .target-customers {
+            margin-bottom: 50px !important;  /* 80px → 50px */
+        }
+        
+        #s202508201da5172f34d30 .target-customers h3 {
+            text-align: center !important;
+            font-size: 26px !important;  /* 29px → 26px */
+            margin-bottom: 25px !important;  /* 30px → 25px */
+            color: white !important;
+            font-weight: 600 !important;
+        }
+        
+        #s202508201da5172f34d30 .target-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 25px !important;  /* 30px → 25px */
+            margin-top: 35px !important;  /* 50px → 35px */
+        }
+        
+        @media (max-width: 968px) {
+            #s202508201da5172f34d30 .target-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+        }
+        
+        #s202508201da5172f34d30 .target-card {
+            background: rgba(255,255,255,0.05) !important;
+            border: 2px solid rgba(255,255,255,0.1) !important;
+            border-radius: 15px !important;
+            padding: 25px !important;  /* 30px → 25px */
+            text-align: center !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        #s202508201da5172f34d30 .target-card:hover {
+            background: rgba(255,255,255,0.1) !important;
+            border-color: #FF6B35 !important;
+            transform: translateY(-5px) !important;
+        }
+        
+        #s202508201da5172f34d30 .target-emoji {
+            font-size: 40px !important;  /* 48px → 40px */
+            margin-bottom: 15px !important;  /* 20px → 15px */
+            display: block !important;
+        }
+        
+        #s202508201da5172f34d30 .target-title {
+            font-size: 19px !important;  /* 21px → 19px */
+            font-weight: 600 !important;
+            color: #FFD700 !important;
+            margin-bottom: 12px !important;  /* 15px → 12px */
+            display: block !important;
+        }
+        
+        #s202508201da5172f34d30 .target-desc {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: rgba(255,255,255,0.8) !important;
+        }
+        
+        #s202508201da5172f34d30 .target-desc strong {
+            color: rgba(255,255,255,0.95) !important;
+            font-weight: 600 !important;
+        }
+        
+        @media (max-width: 768px) {
+            #s202508201da5172f34d30 .target-customers h3 {
+                font-size: 24px !important;
+            }
+            
+            #s202508201da5172f34d30 .target-title {
+                font-size: 19px !important;
+            }
+            
+            #s202508201da5172f34d30 .target-desc {
+                font-size: 15px !important;
+            }
+        }
+        
+        /* CTA 영역 - 아임웹 최적화 */
+        #s202508201da5172f34d30 .cta-area {
+            text-align: center !important;
+            padding: 45px !important;  /* 60px → 45px */
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%) !important;
+            border-radius: 30px !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+        
+        #s202508201da5172f34d30 .cta-area::before {
+            content: '' !important;
+            position: absolute !important;
+            top: -50% !important;
+            right: -50% !important;
+            width: 200% !important;
+            height: 200% !important;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%) !important;
+            animation: rotate 20s linear infinite !important;
+        }
+        
+        #s202508201da5172f34d30 .cta-content {
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        
+        #s202508201da5172f34d30 .cta-title {
+            font-size: 36px !important;  /* 40px → 36px */
+            font-weight: 700 !important;
+            margin-bottom: 15px !important;  /* 20px → 15px */
+            color: white !important;
+            display: block !important;
+        }
+        
+        #s202508201da5172f34d30 .cta-subtitle {
+            font-size: 18px !important;  /* 19px → 18px */
+            margin-bottom: 30px !important;  /* 40px → 30px */
+            opacity: 0.95 !important;
+            color: white !important;
+            display: block !important;
+        }
+        
+        #s202508201da5172f34d30 .cta-button {
+            display: inline-block !important;
+            background: white !important;
+            color: #FF6B35 !important;
+            padding: 18px 45px !important;  /* 20px 50px → 18px 45px */
+            font-size: 20px !important;  /* 21px → 20px */
+            font-weight: 700 !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+            cursor: pointer !important;
+        }
+        
+        #s202508201da5172f34d30 .cta-button:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3) !important;
+            background: #FFF8F0 !important;
+        }
+        
+        @media (max-width: 768px) {
+            #s202508201da5172f34d30 .cta-area {
+                padding: 35px 20px !important;  /* 40px → 35px */
+            }
+            
+            #s202508201da5172f34d30 .cta-title {
+                font-size: 26px !important;  /* 28px → 26px */
+            }
+            
+            #s202508201da5172f34d30 .cta-subtitle {
+                font-size: 15px !important;  /* 16px → 15px */
+                margin-bottom: 25px !important;
+            }
+            
+            #s202508201da5172f34d30 .cta-button {
+                font-size: 17px !important;  /* 18px → 17px */
+                padding: 14px 32px !important;  /* 15px 35px → 14px 32px */
+            }
+        }
+        
+        /* 애니메이션 */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* 플로팅 버튼 */
+        .floating-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+        
+        .floating-cta:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .floating-cta::after {
+            content: '상담';
+            position: absolute;
+            right: 80px;
+            background: #2c2c2c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .floating-cta:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- 섹션 3: 혜택 & CTA -->
+    <section id="s202508201da5172f34d30" class="benefit-section">
+        <div class="container">
+            <h2 class="benefit-title">기업 워크샵의 모든 것을 한 번에 해결</h2>
+            
+            <!-- 올인클루전 혜택 -->
+            <div class="all-inclusive">
+                <h3 style="font-size: 1.8rem; margin-bottom: 30px; color: #FFD700;">
+                    ✨ 완벽한 올인클루전 패키지
+                </h3>
+                <div class="inclusive-grid">
+                    <div class="inclusive-item">
+                        <div class="inclusive-icon">🏠</div>
+                        <div class="inclusive-text">
+                            <strong>단체 전용 숙박 시설</strong>
+                            10~100명 수용 가능한 쾌적한 객실
+                        </div>
+                    </div>
+                    <div class="inclusive-item">
+                        <div class="inclusive-icon">☀️</div>
+                        <div class="inclusive-text">
+                            <strong>든든한 조식 제공</strong>
+                            해장할 수 있는 국이 포함된 백반메뉴
+                        </div>
+                    </div>
+                    <div class="inclusive-item">
+                        <div class="inclusive-icon">🥩</div>
+                        <div class="inclusive-text">
+                            <strong>3가지 훈연 바베큐 무한리필</strong>
+                            등갈비, 삼겹살, 오리구이 무제한
+                        </div>
+                    </div>
+                    <div class="inclusive-item">
+                        <div class="inclusive-icon">🍺</div>
+                        <div class="inclusive-text">
+                            <strong>주류 & 음료 무한리필</strong>
+                            소주, 맥주, 음료 걱정 없이
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 타겟 고객 -->
+            <div class="target-customers">
+                <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 30px;">
+                    이미 많은 기업이 선택한 워크샵 명소
+                </h3>
+                <div class="target-grid">
+                    <div class="target-card">
+                        <div class="target-emoji">🏢</div>
+                        <h4 class="target-title">대기업 / 중견기업</h4>
+                        <p class="target-desc">
+                            팀 빌딩, 전략 회의, 연례 워크샵<br>
+                            <strong>10~100명 대규모 행사 전문</strong>
+                        </p>
+                    </div>
+                    <div class="target-card">
+                        <div class="target-emoji">🚀</div>
+                        <h4 class="target-title">스타트업 / IT기업</h4>
+                        <p class="target-desc">
+                            개발자 워크샵, 전사 미팅<br>
+                            <strong>10~50명 중규모 행사 최적</strong>
+                        </p>
+                    </div>
+                    <div class="target-card">
+                        <div class="target-emoji">🎯</div>
+                        <h4 class="target-title">영업팀 / 부서 단위</h4>
+                        <p class="target-desc">
+                            성과 보상 여행, 팀 단합 행사<br>
+                            <strong>10~40명 소규모 맞춤 진행</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA 영역 -->
+            <div class="cta-area">
+                <div class="cta-content">
+                    <h2 class="cta-title">워크샵 준비, 더 이상 고민하지 마세요</h2>
+                    <p class="cta-subtitle">견적부터 일정 조율까지 전문 담당자가 맞춤 상담해드립니다</p>
+                    <a href="#s20250809a50592d3a462e" class="cta-button">
+                        워크샵 상담 신청
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 플로팅 CTA 버튼 -->
+    <div class="floating-cta" onclick="location.href='#s20250809a50592d3a462e';">
+        📞
+    </div>
+</body>
+</html>

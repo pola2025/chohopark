@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초호쉼터 푸터</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        /* 푸터 섹션 */
+        #s20250809695c84cec8e87 {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            padding: 50px 20px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 푸터 컨테이너 */
+        #s20250809695c84cec8e87 .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 푸터 상단 영역 */
+        #s20250809695c84cec8e87 .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        /* 메인 정보 섹션 */
+        #s20250809695c84cec8e87 .footer-main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        #s20250809695c84cec8e87 .footer-logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #4a8b2e;
+            margin-bottom: 10px;
+        }
+        
+        #s20250809695c84cec8e87 .footer-address {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        #s20250809695c84cec8e87 .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        #s20250809695c84cec8e87 .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        #s20250809695c84cec8e87 .contact-item strong {
+            color: #4a8b2e;
+            font-weight: 600;
+        }
+        
+        /* 계좌 정보 */
+        #s20250809695c84cec8e87 .footer-account {
+            background: rgba(74, 139, 46, 0.1);
+            border: 1px solid rgba(74, 139, 46, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        #s20250809695c84cec8e87 .account-title {
+            font-size: 13px;
+            color: #4a8b2e;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        #s20250809695c84cec8e87 .account-info {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        
+        /* 사업자 정보 컬럼 */
+        #s20250809695c84cec8e87 .footer-business {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        #s20250809695c84cec8e87 .business-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4a8b2e;
+        }
+        
+        #s20250809695c84cec8e87 .business-item {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        #s20250809695c84cec8e87 .business-item span {
+            display: block;
+            margin: 2px 0;
+        }
+        
+        /* 푸터 하단 영역 */
+        #s20250809695c84cec8e87 .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+        }
+        
+        #s20250809695c84cec8e87 .copyright {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        #s20250809695c84cec8e87 .footer-credit {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        #s20250809695c84cec8e87 .footer-credit a {
+            color: #4a8b2e;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        #s20250809695c84cec8e87 .footer-credit a:hover {
+            color: #6bb33f;
+        }
+        
+        /* 태블릿 반응형 */
+        @media (max-width: 1024px) {
+            #s20250809695c84cec8e87 .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            #s20250809695c84cec8e87 .footer-main {
+                grid-column: 1 / -1;
+            }
+        }
+        
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            #s20250809695c84cec8e87 {
+                padding: 40px 15px 25px;
+            }
+            
+            #s20250809695c84cec8e87 .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-bottom: 25px;
+                margin-bottom: 25px;
+            }
+            
+            #s20250809695c84cec8e87 .footer-logo {
+                font-size: 24px;
+                text-align: center;
+            }
+            
+            #s20250809695c84cec8e87 .footer-address {
+                text-align: center;
+                font-size: 14px;
+            }
+            
+            #s20250809695c84cec8e87 .footer-contact {
+                align-items: center;
+            }
+            
+            #s20250809695c84cec8e87 .business-title {
+                font-size: 15px;
+                text-align: center;
+            }
+            
+            #s20250809695c84cec8e87 .business-item {
+                text-align: center;
+            }
+            
+            #s20250809695c84cec8e87 .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            #s20250809695c84cec8e87 .copyright {
+                font-size: 12px;
+            }
+        }
+        
+        /* 작은 모바일 */
+        @media (max-width: 480px) {
+            #s20250809695c84cec8e87 {
+                padding: 35px 10px 20px;
+            }
+            
+            #s20250809695c84cec8e87 .footer-logo {
+                font-size: 22px;
+            }
+            
+            #s20250809695c84cec8e87 .footer-address {
+                font-size: 13px;
+            }
+            
+            #s20250809695c84cec8e87 .contact-item {
+                font-size: 13px;
+            }
+            
+            #s20250809695c84cec8e87 .business-item {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 푸터 섹션 -->
+    <footer id="s20250809695c84cec8e87">
+        <div class="footer-container">
+            <!-- 푸터 상단 영역 -->
+            <div class="footer-top">
+                <!-- 메인 정보 -->
+                <div class="footer-main">
+                    <div class="footer-logo">초호쉼터</div>
+                    <div class="footer-address">
+                        경기도 파주시 법원읍 초리골길 134
+                    </div>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <strong>📞 Tel</strong> 010-3254-0029
+                        </div>
+                    </div>
+                    <div class="footer-account">
+                        <div class="account-title">💳 입금계좌</div>
+                        <div class="account-info">
+                            농협은행 215099-52-225181<br>
+                            예금주: 우능제
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 초호 사업자 정보 -->
+                <div class="footer-business">
+                    <h3 class="business-title">초호</h3>
+                    <div class="business-item">
+                        <span>사업자번호: 190-17-01483</span>
+                        <span>대표자: 우능제</span>
+                        <span>통신판매업: 제2021-경기파주-2783호</span>
+                    </div>
+                </div>
+                
+                <!-- 초호가든 사업자 정보 -->
+                <div class="footer-business">
+                    <h3 class="business-title">초호가든</h3>
+                    <div class="business-item">
+                        <span>사업자번호: 128-06-97668</span>
+                        <span>대표자: 우능제</span>
+                        <span>통신판매업: 제2021-경기파주-2783호</span>
+                    </div>
+                </div>
+                
+                <!-- 초호쉼터 사업자 정보 -->
+                <div class="footer-business">
+                    <h3 class="business-title">초호쉼터</h3>
+                    <div class="business-item">
+                        <span>사업자번호: 308-13-20744</span>
+                        <span>대표자: 우상엽</span>
+                        <span>통신판매업: 제2021-경기파주-1565호</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 푸터 하단 영역 -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 초호쉼터. All rights reserved.
+                </div>
+                <div class="footer-credit">
+                    Made by <a href="https://polarad.co.kr" target="_blank">Polarad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

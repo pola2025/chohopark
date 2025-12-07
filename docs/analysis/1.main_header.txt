@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초호쉼터 헤더</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        /* 헤더 섹션 */
+        #s20250809b3919da4fe6da {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        #s20250809b3919da4fe6da .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 75px;
+        }
+        
+        /* 로고 영역 */
+        #s20250809b3919da4fe6da .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        #s20250809b3919da4fe6da .logo-area:hover {
+            opacity: 0.8;
+        }
+        
+        #s20250809b3919da4fe6da .logo-image {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+        
+        #s20250809b3919da4fe6da .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #s20250809b3919da4fe6da .logo-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1a1a1a;
+            letter-spacing: -0.3px;
+        }
+        
+        #s20250809b3919da4fe6da .logo-subtitle {
+            font-size: 12px;
+            color: #888;
+            margin-top: 3px;
+        }
+        
+        /* PC 네비게이션 */
+        #s20250809b3919da4fe6da .nav-menu {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            height: 100%;
+        }
+        
+        #s20250809b3919da4fe6da .nav-item {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        #s20250809b3919da4fe6da .nav-link {
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        #s20250809b3919da4fe6da .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 24px;
+            right: 24px;
+            height: 2px;
+            background: #2d5016;
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        #s20250809b3919da4fe6da .nav-link:hover {
+            color: #2d5016;
+        }
+        
+        #s20250809b3919da4fe6da .nav-link:hover:after {
+            transform: scaleX(1);
+        }
+        
+        #s20250809b3919da4fe6da .nav-link.active {
+            color: #2d5016;
+            font-weight: 600;
+        }
+        
+        #s20250809b3919da4fe6da .nav-link.active:after {
+            transform: scaleX(1);
+        }
+        
+        /* 예약 버튼 - PC */
+        #s20250809b3919da4fe6da .nav-item.highlight {
+            background: transparent;
+        }
+        
+        #s20250809b3919da4fe6da .nav-item.highlight .nav-link {
+            background: #2d5016;
+            color: white;
+            border-radius: 22px;
+            margin: 0 0 0 20px;
+            padding: 0 28px;
+            height: 40px;
+            box-shadow: none;
+            transition: all 0.3s ease;
+        }
+        
+        #s20250809b3919da4fe6da .nav-item.highlight .nav-link:hover {
+            background: #3a6b1e;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(45, 80, 22, 0.2);
+        }
+        
+        #s20250809b3919da4fe6da .nav-item.highlight .nav-link:after {
+            display: none;
+        }
+        
+        /* 모바일 네비게이션 - 기본 숨김 */
+        #s20250809b3919da4fe6da .mobile-nav {
+            display: none;
+        }
+        
+        /* 반응형 - 모바일 */
+        @media (max-width: 768px) {
+            #s20250809b3919da4fe6da .header-container {
+                height: auto;
+                padding: 10px 8px 8px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            /* PC 네비게이션 숨김 */
+            #s20250809b3919da4fe6da .nav-menu {
+                display: none;
+            }
+            
+            /* 모바일 로고 영역 */
+            #s20250809b3919da4fe6da .logo-area {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+                padding-bottom: 8px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+            }
+            
+            #s20250809b3919da4fe6da .logo-image {
+                width: 35px;
+                height: 35px;
+            }
+            
+            #s20250809b3919da4fe6da .logo-title {
+                font-size: 18px;
+                font-weight: 700;
+                color: #2d5016;
+            }
+            
+            #s20250809b3919da4fe6da .logo-subtitle {
+                display: none;
+            }
+            
+            /* 모바일 네비게이션 표시 - 4개 박스 균등 배분 */
+            #s20250809b3919da4fe6da .mobile-nav {
+                display: flex;
+                gap: 4px;
+                align-items: center;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            /* 모바일 버튼 스타일 - 박스 형태 */
+            #s20250809b3919da4fe6da .mobile-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                height: 40px;
+                padding: 0 8px;
+                background: white;
+                border: 1.5px solid #e0e0e0;
+                border-radius: 8px;
+                text-decoration: none;
+                color: #666;
+                font-size: 12px;
+                font-weight: 500;
+                transition: all 0.2s ease;
+                white-space: nowrap;
+                min-width: 0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            }
+            
+            #s20250809b3919da4fe6da .mobile-btn:active {
+                transform: scale(0.97);
+                box-shadow: 0 0 2px rgba(0,0,0,0.1);
+            }
+            
+            /* 활성화된 메뉴 스타일 */
+            #s20250809b3919da4fe6da .mobile-btn.active {
+                background: #2d5016;
+                border-color: #2d5016;
+                color: white;
+                font-weight: 700;
+                box-shadow: 0 2px 6px rgba(45, 80, 22, 0.25);
+            }
+            
+            #s20250809b3919da4fe6da .mobile-btn.active:active {
+                background: #3a6b1e;
+                border-color: #3a6b1e;
+            }
+            
+            /* 전화문의 버튼 - 특별 스타일 */
+            #s20250809b3919da4fe6da .mobile-btn.phone {
+                background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+                color: white;
+                border: none;
+                font-weight: 600;
+                box-shadow: 0 2px 6px rgba(76, 175, 80, 0.25);
+            }
+            
+            #s20250809b3919da4fe6da .mobile-btn.phone:active {
+                background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+                box-shadow: 0 1px 3px rgba(76, 175, 80, 0.25);
+            }
+            
+            /* 화면 크기별 반응형 */
+            @media (max-width: 380px) {
+                #s20250809b3919da4fe6da .header-container {
+                    padding: 8px 6px 6px;
+                    gap: 8px;
+                }
+                
+                #s20250809b3919da4fe6da .logo-area {
+                    padding-bottom: 6px;
+                }
+                
+                #s20250809b3919da4fe6da .logo-image {
+                    width: 32px;
+                    height: 32px;
+                }
+                
+                #s20250809b3919da4fe6da .logo-title {
+                    font-size: 16px;
+                }
+                
+                #s20250809b3919da4fe6da .mobile-nav {
+                    gap: 3px;
+                }
+                
+                #s20250809b3919da4fe6da .mobile-btn {
+                    font-size: 11px;
+                    height: 38px;
+                    padding: 0 6px;
+                }
+            }
+            
+            @media (max-width: 340px) {
+                /* 매우 작은 화면 */
+                #s20250809b3919da4fe6da .logo-image {
+                    width: 30px;
+                    height: 30px;
+                }
+                
+                #s20250809b3919da4fe6da .logo-title {
+                    font-size: 15px;
+                }
+                
+                #s20250809b3919da4fe6da .mobile-nav {
+                    gap: 2px;
+                }
+                
+                #s20250809b3919da4fe6da .mobile-btn {
+                    font-size: 10px;
+                    height: 36px;
+                    padding: 0 4px;
+                    border-radius: 6px;
+                }
+            }
+        }
+        
+        /* 스크롤 시 헤더 그림자 */
+        #s20250809b3919da4fe6da.scrolled {
+            box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <div id="s20250809b3919da4fe6da">
+        <div class="header-container">
+            <!-- 로고 영역 (홈 링크) -->
+            <a href="/main" class="logo-area">
+                <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/3f08b678b3f7a.png" alt="초호쉼터 로고" class="logo-image">
+                <div class="logo-text">
+                    <div class="logo-title">초호쉼터</div>
+                    <div class="logo-subtitle">단체 전문 펜션 & 워크숍</div>
+                </div>
+            </a>
+            
+            <!-- PC 네비게이션 메뉴 -->
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <a href="/main" class="nav-link active">초호쉼터</a>
+                </div>
+                <div class="nav-item">
+                    <a href="/facility" class="nav-link">시설안내</a>
+                </div>
+                <div class="nav-item highlight">
+                    <a href="/reservation" class="nav-link">단체예약</a>
+                </div>
+            </nav>
+            
+            <!-- 모바일 네비게이션 버튼들 -->
+            <nav class="mobile-nav">
+                <a href="/main" class="mobile-btn home active">
+                    <span>초호쉼터</span>
+                </a>
+                <a href="/facility" class="mobile-btn facility">
+                    <span>시설안내</span>
+                </a>
+                <a href="/reservation" class="mobile-btn reservation">
+                    <span>단체예약</span>
+                </a>
+                <a href="tel:031-958-0029" class="mobile-btn phone">
+                    <span>전화문의</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+    
+    <script>
+        // 스크롤 시 헤더 그림자 효과
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('s20250809b3919da4fe6da');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // 현재 페이지에 따른 active 클래스 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // PC 메뉴
+            const navLinks = document.querySelectorAll('#s20250809b3919da4fe6da .nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // 모바일 메뉴
+            const mobileLinks = document.querySelectorAll('#s20250809b3919da4fe6da .mobile-btn');
+            mobileLinks.forEach(link => {
+                // 전화문의 버튼은 제외
+                if (!link.classList.contains('phone')) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

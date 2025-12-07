@@ -1,0 +1,1345 @@
+<style>
+    #s20250809a50592d3a462e {
+        font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        background: transparent !important;
+        width: 100% !important;
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+    
+    #s20250809a50592d3a462e .quote-container {
+        width: 100% !important;
+        margin: 20px 0 !important;
+        padding: 30px !important;
+        background: linear-gradient(135deg, #2c7a2c 0%, #4caf50 100%) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    }
+    
+    #s20250809a50592d3a462e .quote-header {
+        text-align: center !important;
+        margin-bottom: 25px !important;
+        color: white !important;
+    }
+    
+    #s20250809a50592d3a462e .business-title {
+        font-size: 20px !important;
+        margin-bottom: 10px !important;
+        opacity: 0.95 !important;
+        font-weight: 600 !important;
+    }
+    
+    #s20250809a50592d3a462e .quote-header h2 {
+        font-size: 32px !important;
+        margin-bottom: 10px !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+        color: white !important;
+    }
+    
+    /* 탭 스타일 */
+    #s20250809a50592d3a462e .tab-container {
+        display: flex !important;
+        gap: 10px !important;
+        margin-bottom: 20px !important;
+        background: rgba(255,255,255,0.1) !important;
+        padding: 5px !important;
+        border-radius: 12px !important;
+    }
+    
+    #s20250809a50592d3a462e .tab-button {
+        flex: 1 !important;
+        padding: 12px !important;
+        background: rgba(255,255,255,0.2) !important;
+        color: white !important;
+        border: 2px solid transparent !important;
+        border-radius: 8px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    #s20250809a50592d3a462e .tab-button:hover {
+        background: rgba(255,255,255,0.3) !important;
+    }
+    
+    #s20250809a50592d3a462e .tab-button.active {
+        background: white !important;
+        color: #2c7a2c !important;
+        border-color: white !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    #s20250809a50592d3a462e .tab-info {
+        background: rgba(255,255,255,0.2) !important;
+        padding: 10px 15px !important;
+        border-radius: 8px !important;
+        color: white !important;
+        text-align: center !important;
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    #s20250809a50592d3a462e .quote-body {
+        background: white !important;
+        padding: 25px !important;
+        border-radius: 15px !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* PC 2열 레이아웃 */
+    @media (min-width: 1200px) {
+        #s20250809a50592d3a462e {
+            width: 1200px !important;
+            padding: 0 !important;
+        }
+        
+        #s20250809a50592d3a462e .main-content {
+            display: grid !important;
+            grid-template-columns: 1.3fr 1fr !important;
+            gap: 30px !important;
+        }
+        
+        #s20250809a50592d3a462e .left-section {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        #s20250809a50592d3a462e .right-section {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        #s20250809a50592d3a462e .customer-info {
+            position: sticky !important;
+            top: 20px !important;
+            height: fit-content !important;
+        }
+    }
+    
+    /* 태블릿 레이아웃 */
+    @media (min-width: 768px) and (max-width: 1199px) {
+        #s20250809a50592d3a462e {
+            padding: 0 20px !important;
+        }
+        
+        #s20250809a50592d3a462e .main-content {
+            display: grid !important;
+            grid-template-columns: 1.2fr 1fr !important;
+            gap: 20px !important;
+        }
+        
+        #s20250809a50592d3a462e .left-section {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        #s20250809a50592d3a462e .right-section {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+    }
+    
+    /* 모바일 레이아웃 */
+    @media (max-width: 767px) {
+        #s20250809a50592d3a462e {
+            padding: 0 10px !important;
+        }
+        
+        #s20250809a50592d3a462e .quote-container {
+            margin: 10px auto !important;
+            padding: 20px !important;
+        }
+        
+        #s20250809a50592d3a462e .main-content {
+            display: block !important;
+        }
+        
+        #s20250809a50592d3a462e .quote-body {
+            padding: 15px !important;
+        }
+        
+        #s20250809a50592d3a462e .item-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+    
+    #s20250809a50592d3a462e .included-items {
+        background: #f1f8e9 !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+        margin-bottom: 25px !important;
+        border: 2px solid #81c784 !important;
+    }
+    
+    #s20250809a50592d3a462e .included-items h3 {
+        color: #2e7d32 !important;
+        margin-bottom: 15px !important;
+        font-size: 18px !important;
+        border-bottom: 2px solid #66bb6a !important;
+        padding-bottom: 8px !important;
+    }
+    
+    #s20250809a50592d3a462e .item-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+        gap: 10px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    #s20250809a50592d3a462e .item-category {
+        background: white !important;
+        padding: 10px !important;
+        border-radius: 8px !important;
+        border-left: 3px solid #4caf50 !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+    }
+    
+    #s20250809a50592d3a462e .item-category strong {
+        color: #2e7d32 !important;
+        display: block !important;
+        margin-bottom: 5px !important;
+        font-size: 14px !important;
+    }
+    
+    #s20250809a50592d3a462e .item-category span {
+        color: #666 !important;
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+    }
+    
+    #s20250809a50592d3a462e .price-info {
+        background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%) !important;
+        color: white !important;
+        padding: 15px !important;
+        border-radius: 10px !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+        font-size: 20px !important;
+        font-weight: bold !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2) !important;
+    }
+    
+    #s20250809a50592d3a462e .input-group {
+        margin-bottom: 20px !important;
+    }
+    
+    #s20250809a50592d3a462e .input-group label {
+        display: block !important;
+        margin-bottom: 8px !important;
+        color: #2e7d32 !important;
+        font-weight: 600 !important;
+        font-size: 15px !important;
+    }
+    
+    #s20250809a50592d3a462e .people-input-wrapper {
+        display: flex !important;
+        gap: 10px !important;
+        align-items: center !important;
+        background: #f1f8e9 !important;
+        padding: 15px !important;
+        border-radius: 10px !important;
+        border: 2px solid #81c784 !important;
+    }
+    
+    #s20250809a50592d3a462e .people-input-wrapper input {
+        width: 120px !important;
+        padding: 12px !important;
+        border: 2px solid #c8e6c9 !important;
+        border-radius: 8px !important;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        text-align: center !important;
+        color: #2e7d32 !important;
+        transition: all 0.3s ease !important;
+        background: white !important;
+    }
+    
+    #s20250809a50592d3a462e .people-input-wrapper input:focus {
+        border-color: #4caf50 !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1) !important;
+    }
+    
+    #s20250809a50592d3a462e .people-input-wrapper input.error {
+        border-color: #f44336 !important;
+    }
+    
+    #s20250809a50592d3a462e .people-input-wrapper .unit {
+        font-size: 16px !important;
+        color: #666 !important;
+        font-weight: 600 !important;
+    }
+    
+    #s20250809a50592d3a462e .people-range-info {
+        font-size: 13px !important;
+        color: #666 !important;
+        margin-left: auto !important;
+        background: white !important;
+        padding: 8px 12px !important;
+        border-radius: 6px !important;
+    }
+    
+    #s20250809a50592d3a462e .people-error {
+        color: #f44336 !important;
+        font-size: 13px !important;
+        margin-top: 5px !important;
+        display: none !important;
+    }
+    
+    #s20250809a50592d3a462e .people-error.show {
+        display: block !important;
+    }
+    
+    #s20250809a50592d3a462e .checkbox-group {
+        background: #f1f8e9 !important;
+        padding: 15px !important;
+        border-radius: 8px !important;
+        margin-bottom: 20px !important;
+        border: 1px solid #a5d6a7 !important;
+    }
+    
+    #s20250809a50592d3a462e .checkbox-group label {
+        display: flex !important;
+        align-items: center !important;
+        cursor: pointer !important;
+        color: #333 !important;
+        font-size: 15px !important;
+    }
+    
+    #s20250809a50592d3a462e .checkbox-group input[type="checkbox"] {
+        width: 20px !important;
+        height: 20px !important;
+        margin-right: 10px !important;
+        cursor: pointer !important;
+        accent-color: #4caf50 !important;
+    }
+    
+    #s20250809a50592d3a462e .checkbox-group .price-tag {
+        margin-left: auto !important;
+        color: #2e7d32 !important;
+        font-weight: 600 !important;
+    }
+    
+    #s20250809a50592d3a462e .input-wrapper {
+        display: flex !important;
+        gap: 10px !important;
+        align-items: center !important;
+    }
+    
+    #s20250809a50592d3a462e .input-wrapper input {
+        flex: 1 !important;
+        padding: 12px !important;
+        border: 2px solid #c8e6c9 !important;
+        border-radius: 8px !important;
+        font-size: 16px !important;
+        transition: all 0.3s ease !important;
+        background: white !important;
+    }
+    
+    #s20250809a50592d3a462e .input-wrapper input:focus {
+        border-color: #4caf50 !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1) !important;
+    }
+    
+    #s20250809a50592d3a462e .input-wrapper span {
+        color: #666 !important;
+        font-size: 15px !important;
+    }
+    
+    #s20250809a50592d3a462e .result-box {
+        background: linear-gradient(135deg, #388e3c 0%, #66bb6a 100%) !important;
+        padding: 25px !important;
+        border-radius: 12px !important;
+        margin-top: 25px !important;
+        color: white !important;
+    }
+    
+    #s20250809a50592d3a462e .result-box h3 {
+        margin-bottom: 20px !important;
+        font-size: 22px !important;
+        text-align: center !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2) !important;
+        color: white !important;
+    }
+    
+    #s20250809a50592d3a462e .result-item {
+        display: flex !important;
+        justify-content: space-between !important;
+        padding: 10px 0 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+        font-size: 16px !important;
+        color: white !important;
+    }
+    
+    #s20250809a50592d3a462e .result-item:last-child {
+        border-bottom: none !important;
+    }
+    
+    #s20250809a50592d3a462e .result-total {
+        margin-top: 15px !important;
+        padding-top: 15px !important;
+        border-top: 2px solid rgba(255,255,255,0.4) !important;
+        font-size: 24px !important;
+        font-weight: bold !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        color: white !important;
+    }
+    
+    #s20250809a50592d3a462e .result-total .amount {
+        background: rgba(255,255,255,0.2) !important;
+        padding: 8px 16px !important;
+        border-radius: 8px !important;
+    }
+    
+    /* 예약금 섹션 스타일 추가 */
+    #s20250809a50592d3a462e .deposit-section {
+        background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%) !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+        margin-top: 15px !important;
+        color: white !important;
+    }
+    
+    #s20250809a50592d3a462e .deposit-title {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        margin-bottom: 12px !important;
+        padding-bottom: 10px !important;
+        border-bottom: 2px solid rgba(255,255,255,0.3) !important;
+    }
+    
+    #s20250809a50592d3a462e .deposit-title span:first-child {
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+    
+    #s20250809a50592d3a462e .deposit-badge {
+        background: rgba(255,255,255,0.25) !important;
+        padding: 4px 10px !important;
+        border-radius: 15px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+    }
+    
+    #s20250809a50592d3a462e .deposit-amount {
+        font-size: 28px !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        padding: 15px 0 !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2) !important;
+    }
+    
+    #s20250809a50592d3a462e .deposit-info {
+        font-size: 13px !important;
+        text-align: center !important;
+        opacity: 0.95 !important;
+        line-height: 1.5 !important;
+        margin-top: 10px !important;
+        background: rgba(255,255,255,0.1) !important;
+        padding: 8px !important;
+        border-radius: 6px !important;
+    }
+    
+    #s20250809a50592d3a462e .customer-info {
+        background: #f1f8e9 !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+        border: 2px solid #81c784 !important;
+    }
+    
+    #s20250809a50592d3a462e .customer-info h4 {
+        color: #2e7d32 !important;
+        margin-bottom: 15px !important;
+        font-size: 16px !important;
+        border-bottom: 2px solid #66bb6a !important;
+        padding-bottom: 8px !important;
+    }
+    
+    #s20250809a50592d3a462e .form-group {
+        margin-bottom: 15px !important;
+    }
+    
+    #s20250809a50592d3a462e .form-group label {
+        display: block !important;
+        color: #2e7d32 !important;
+        font-weight: 600 !important;
+        margin-bottom: 5px !important;
+        font-size: 14px !important;
+    }
+    
+    #s20250809a50592d3a462e .form-group label .required {
+        color: #f44336 !important;
+    }
+    
+    #s20250809a50592d3a462e .form-group input {
+        width: 100% !important;
+        padding: 10px !important;
+        border: 2px solid #c8e6c9 !important;
+        border-radius: 6px !important;
+        font-size: 14px !important;
+        transition: all 0.3s ease !important;
+        background: white !important;
+    }
+    
+    #s20250809a50592d3a462e .form-group input:focus {
+        border-color: #4caf50 !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1) !important;
+    }
+    
+    #s20250809a50592d3a462e .form-group input.error {
+        border-color: #f44336 !important;
+    }
+    
+    #s20250809a50592d3a462e .error-message {
+        color: #f44336 !important;
+        font-size: 12px !important;
+        margin-top: 5px !important;
+        display: none !important;
+    }
+    
+    #s20250809a50592d3a462e .error-message.show {
+        display: block !important;
+    }
+    
+    #s20250809a50592d3a462e .send-button {
+        width: 100% !important;
+        padding: 15px !important;
+        background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 10px !important;
+        font-size: 16px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        margin-top: 20px !important;
+        transition: all 0.3s ease !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2) !important;
+    }
+    
+    #s20250809a50592d3a462e .send-button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+    }
+    
+    #s20250809a50592d3a462e .send-button:active {
+        transform: translateY(0) !important;
+    }
+    
+    #s20250809a50592d3a462e .send-button:disabled {
+        background: linear-gradient(135deg, #bdbdbd 0%, #9e9e9e 100%) !important;
+        cursor: not-allowed !important;
+        transform: none !important;
+    }
+    
+    #s20250809a50592d3a462e .send-message {
+        text-align: center !important;
+        margin-top: 10px !important;
+        font-weight: 500 !important;
+        display: none !important;
+    }
+    
+    #s20250809a50592d3a462e .send-message.success {
+        color: #4caf50 !important;
+    }
+    
+    #s20250809a50592d3a462e .send-message.error {
+        color: #f44336 !important;
+    }
+    
+    #s20250809a50592d3a462e .privacy-notice {
+        background: #fff3e0 !important;
+        padding: 10px !important;
+        border-radius: 6px !important;
+        margin-top: 15px !important;
+        font-size: 12px !important;
+        color: #666 !important;
+        line-height: 1.5 !important;
+    }
+    
+    #s20250809a50592d3a462e .privacy-notice strong {
+        color: #e65100 !important;
+    }
+    
+    #s20250809a50592d3a462e .business-info {
+        background: #e8f5e9 !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+        border: 1px solid #a5d6a7 !important;
+    }
+    
+    #s20250809a50592d3a462e .business-info h4 {
+        color: #2e7d32 !important;
+        margin-bottom: 15px !important;
+        font-size: 16px !important;
+        border-bottom: 2px solid #66bb6a !important;
+        padding-bottom: 8px !important;
+    }
+    
+    #s20250809a50592d3a462e .business-detail {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+        gap: 10px !important;
+        font-size: 14px !important;
+    }
+    
+    #s20250809a50592d3a462e .business-detail-item {
+        display: flex !important;
+        align-items: flex-start !important;
+    }
+    
+    #s20250809a50592d3a462e .business-detail-item strong {
+        color: #2e7d32 !important;
+        margin-right: 8px !important;
+        min-width: 80px !important;
+        font-weight: 600 !important;
+    }
+    
+    #s20250809a50592d3a462e .business-detail-item span {
+        color: #555 !important;
+        flex: 1 !important;
+    }
+    
+    #s20250809a50592d3a462e .account-info {
+        background: #fff3e0 !important;
+        padding: 12px !important;
+        border-radius: 8px !important;
+        margin-top: 10px !important;
+        border: 1px solid #ffcc80 !important;
+    }
+    
+    #s20250809a50592d3a462e .account-info strong {
+        color: #e65100 !important;
+    }
+    
+    @media (max-width: 767px) {
+        #s20250809a50592d3a462e .people-input-wrapper {
+            flex-wrap: wrap !important;
+        }
+        
+        #s20250809a50592d3a462e .people-range-info {
+            margin-left: 0 !important;
+            margin-top: 10px !important;
+            width: 100% !important;
+            text-align: center !important;
+        }
+        
+        #s20250809a50592d3a462e .business-detail {
+            grid-template-columns: 1fr !important;
+        }
+        
+        #s20250809a50592d3a462e .business-title {
+            font-size: 18px !important;
+        }
+        
+        #s20250809a50592d3a462e .quote-header h2 {
+            font-size: 24px !important;
+        }
+        
+        #s20250809a50592d3a462e .deposit-amount {
+            font-size: 24px !important;
+        }
+        
+        #s20250809a50592d3a462e .deposit-title span:first-child {
+            font-size: 16px !important;
+        }
+    }
+</style>
+</head> <body> <div id="s20250809a50592d3a462e"> <div class="quote-container"> <div class="quote-header"> <div class="business-title">🌿 초호쉼터</div> <h2>워크샵/야유회 견적 계산기</h2> </div>
+php-template
+
+        <!-- 탭 버튼 -->
+        <div class="tab-container">
+            <button class="tab-button active" onclick="window.chohoQuote.selectProduct('workshop', this)">🏕️ 1박2일 워크샵</button>
+            <button class="tab-button" onclick="window.chohoQuote.selectProduct('picnic', this)">🌳 당일 야유회</button>
+        </div>
+        
+        <!-- 상품 정보 표시 -->
+        <div class="tab-info" id="productInfo">
+            📍 최소 10명 ~ 최대 80명 | 입실 15시 ~ 퇴실 익일 11시
+        </div>
+        
+        <div class="quote-body">
+            <!-- 메인 컨텐츠 2열 구조 -->
+            <div class="main-content">
+                <!-- 왼쪽: 견적 계산 영역 -->
+                <div class="left-section">
+                    <div class="included-items">
+                        <h3>📋 포함 항목</h3>
+                        <div class="item-grid" id="itemGrid">
+                            <!-- 동적으로 생성됨 -->
+                        </div>
+                    </div>
+                    
+                    <div class="price-info" id="priceInfo">
+                        💰 1인당 99,000원 (VAT 포함)
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="people">👥 참가 인원</label>
+                        <div class="people-input-wrapper">
+                            <input type="number" id="people" min="10" max="80" value="10">
+                            <span class="unit">명</span>
+                            <span class="people-range-info" id="rangeInfo">최소 10명 ~ 최대 80명</span>
+                        </div>
+                        <div class="people-error" id="peopleError">
+                            ⚠️ 인원은 10명 이상, 80명 이하로 입력해주세요.
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group" id="seminarOption">
+                        <label for="seminar">
+                            <input type="checkbox" id="seminar">
+                            <span>세미나실 대관</span>
+                            <span class="price-tag">110,000원/시간</span>
+                        </label>
+                    </div>
+                    
+                    <div class="input-group" id="seminarHours" style="display: none;">
+                        <label for="hours">세미나실 이용 시간</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="hours" min="1" value="1" placeholder="시간 입력">
+                            <span>시간</span>
+                        </div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <h3>📊 견적서</h3>
+                        <div id="breakdown">
+                            <!-- 동적으로 생성됨 -->
+                        </div>
+                        <div class="result-total">
+                            <span>총 합계</span>
+                            <span class="amount" id="totalAmount">990,000원</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 예약금 섹션 추가 -->
+                    <div class="deposit-section">
+                        <div class="deposit-title">
+                            <span>💳 예약금</span>
+                            <span class="deposit-badge">총액의 30%</span>
+                        </div>
+                        <div class="deposit-amount" id="depositAmount">
+                            297,000원
+                        </div>
+                        <div class="deposit-info">
+                            예약금 입금 후 예약이 확정됩니다.<br>
+                            잔금은 이용 당일 현장에서 결제해주세요.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 오른쪽: 고객 정보 입력 영역 -->
+                <div class="right-section">
+                    <div class="customer-info">
+                        <h4>📧 견적서 이메일 발송</h4>
+                        <div class="form-group">
+                            <label for="customerName">담당자 성함 <span class="required">*</span></label>
+                            <input type="text" id="customerName" placeholder="홍길동">
+                            <div class="error-message" id="nameError">담당자 성함을 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">연락처 <span class="required">*</span></label>
+                            <input type="tel" id="customerPhone" placeholder="010-1234-5678">
+                            <div class="error-message" id="phoneError">연락처를 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">이메일 주소 <span class="required">*</span></label>
+                            <input type="email" id="customerEmail" placeholder="example@email.com">
+                            <div class="error-message" id="emailError">올바른 이메일 주소를 입력해주세요.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerCompany">회사/단체명 (선택)</label>
+                            <input type="text" id="customerCompany" placeholder="회사명 또는 단체명">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerMemo">요청사항 (선택)</label>
+                            <input type="text" id="customerMemo" placeholder="추가 요청사항이 있으시면 입력해주세요">
+                        </div>
+                        <button class="send-button" onclick="window.chohoQuote.sendQuoteEmail()" id="sendBtn">
+                            📮 견적서 이메일 발송
+                        </button>
+                        <div class="send-message" id="sendMessage"></div>
+                        <div class="privacy-notice">
+                            <strong>📌 개인정보 수집 안내</strong><br>
+                            입력하신 정보는 견적서 발송 목적으로만 사용되며, 발송 후 즉시 삭제됩니다.
+                        </div>
+                    </div>
+                    
+                    <!-- 사업자 정보를 오른쪽 섹션 아래로 이동 -->
+                    <div class="business-info" style="margin-top: 20px !important;">
+                        <h4>🏢 사업자 정보</h4>
+                        <div class="business-detail">
+                            <div class="business-detail-item">
+                                <strong>상호</strong>
+                                <span>초호가든</span>
+                            </div>
+                            <div class="business-detail-item">
+                                <strong>대표자</strong>
+                                <span>우능제</span>
+                            </div>
+                            <div class="business-detail-item">
+                                <strong>사업자번호</strong>
+                                <span>128-06-97668</span>
+                            </div>
+                            <div class="business-detail-item">
+                                <strong>전화번호</strong>
+                                <span>031-958-0029</span>
+                            </div>
+                            <div class="business-detail-item" style="grid-column: 1 / -1;">
+                                <strong>사업장</strong>
+                                <span>경기도 파주시 법원읍 법원리 168번지</span>
+                            </div>
+                        </div>
+                        <div class="account-info">
+                            <strong>💳 입금계좌</strong>
+                            <span> 농협은행 215099-52-225181 (예금주: 우능제)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 전역 네임스페이스 생성 (아임웹 충돌 방지)
+    window.chohoQuote = window.chohoQuote || {};
+    
+    (function() {
+        // 내부 변수
+        let currentPeople = 10;
+        let currentProduct = 'workshop';
+        let minPeople = 10;
+        let maxPeople = 80;
+        let pricePerPerson = 99000;
+        
+        // 상품 설정
+        const products = {
+            workshop: {
+                name: '1박2일 워크샵',
+                price: 99000,
+                min: 10,
+                max: 80,
+                info: '📍 최소 10명 ~ 최대 80명 | 입실 15시 ~ 퇴실 익일 11시',
+                items: [
+                    { icon: '🍖', title: '저녁식사', desc: '삼겹살, 오리훈제, 대하' },
+                    { icon: '🍳', title: '조식', desc: '소고기무국, 반찬 6가지' },
+                    { icon: '🍺', title: '주류', desc: '소주, 맥주' },
+                    { icon: '⚽', title: '운동장', desc: '축구, 족구, 배구' },
+                    { icon: '🏨', title: '숙박', desc: '1박 숙박시설' },
+                    { icon: '🥤', title: '음료수', desc: '3종류 음료' },
+                    { icon: '⏰', title: '이용시간', desc: '입실 15시 ~ 퇴실 익일 11시' }
+                ],
+                hasSeminar: true
+            },
+            picnic: {
+                name: '당일 야유회',
+                price: 66000,
+                min: 30,
+                max: 200,
+                info: '📍 최소 30명 ~ 최대 200명 | 오전 10시 ~ 오후 5시',
+                items: [
+                    { icon: '🍖', title: '점심식사', desc: '삼겹살, 오리훈제, 대하' },
+                    { icon: '🍺', title: '주류', desc: '소주, 맥주' },
+                    { icon: '⚽', title: '운동장', desc: '축구, 족구, 배구' },
+                    { icon: '🥤', title: '음료수', desc: '3종류 음료' },
+                    { icon: '⏰', title: '이용시간', desc: '오전 10시 ~ 오후 5시' }
+                ],
+                hasSeminar: true
+            }
+        };
+        
+        // 섹션 내 요소 가져오기 헬퍼 함수
+        function getEl(id) {
+            return document.querySelector('#s20250809a50592d3a462e #' + id);
+        }
+        
+        function getEls(selector) {
+            return document.querySelectorAll('#s20250809a50592d3a462e ' + selector);
+        }
+        
+        // 숫자 포맷팅 함수
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        // 총액 계산 함수
+        function calculateTotal() {
+            const people = currentPeople;
+            const seminarChecked = getEl('seminar').checked;
+            const hours = parseInt(getEl('hours').value) || 0;
+            const seminarPrice = 110000;
+            let total = 0;
+            
+            if (people >= minPeople) {
+                total += people * pricePerPerson;
+            }
+            
+            if (seminarChecked && hours > 0) {
+                total += hours * seminarPrice;
+            }
+            
+            return total;
+        }
+        
+        // 예약금 계산 함수 (총액의 30%)
+        function calculateDeposit(total) {
+            return Math.round(total * 0.3);
+        }
+        
+        // 견적 상세 생성 함수
+        function generateQuoteDetails() {
+            const people = currentPeople;
+            const product = products[currentProduct];
+            const seminarChecked = getEl('seminar').checked;
+            const hours = parseInt(getEl('hours').value) || 0;
+            const seminarPrice = 110000;
+            let total = 0;
+            
+            let quoteDetails = `[초호가든 ${product.name} 견적서]\n\n`;
+            
+            if (currentProduct === 'workshop') {
+                quoteDetails += `● 이용 시간: 입실 오후 3시 ~ 퇴실 익일 오전 11시\n`;
+            } else {
+                quoteDetails += `● 이용 시간: 오전 10시 ~ 오후 5시\n`;
+            }
+            
+            quoteDetails += `\n● 포함 항목\n`;
+            product.items.forEach(item => {
+                quoteDetails += `- ${item.title}: ${item.desc}\n`;
+            });
+            
+            quoteDetails += `\n● 견적 내역\n`;
+            
+            if (people >= minPeople) {
+                const packageTotal = people * pricePerPerson;
+                quoteDetails += `- ${product.name}: ${people}명 × ${formatNumber(pricePerPerson)}원 = ${formatNumber(packageTotal)}원\n`;
+                total += packageTotal;
+            }
+            
+            if (seminarChecked && hours > 0) {
+                const seminarTotal = hours * seminarPrice;
+                quoteDetails += `- 세미나실 대관: ${hours}시간 × ${formatNumber(seminarPrice)}원 = ${formatNumber(seminarTotal)}원\n`;
+                total += seminarTotal;
+            }
+            
+            const deposit = calculateDeposit(total);
+            const balance = total - deposit;
+            
+            quoteDetails += `\n━━━━━━━━━━━━━━━━━━\n`;
+            quoteDetails += `총 합계: ${formatNumber(total)}원 (VAT 포함)\n`;
+            quoteDetails += `━━━━━━━━━━━━━━━━━━\n\n`;
+            quoteDetails += `● 결제 안내\n`;
+            quoteDetails += `- 예약금 (30%): ${formatNumber(deposit)}원\n`;
+            quoteDetails += `- 잔금 (70%): ${formatNumber(balance)}원\n`;
+            quoteDetails += `\n※ 예약금 입금 후 예약이 확정됩니다.\n`;
+            quoteDetails += `※ 잔금은 이용 당일 현장에서 결제해주세요.\n`;
+            
+            return quoteDetails;
+        }
+        
+        // 상품 선택 함수
+        window.chohoQuote.selectProduct = function(productType, buttonElement) {
+            currentProduct = productType;
+            const product = products[productType];
+            
+            // 탭 버튼 활성화 상태 변경
+            getEls('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            buttonElement.classList.add('active');
+            
+            // 상품 정보 업데이트
+            getEl('productInfo').textContent = product.info;
+            
+            // 가격 정보 업데이트
+            pricePerPerson = product.price;
+            getEl('priceInfo').innerHTML = 
+                `💰 1인당 ${formatNumber(pricePerPerson)}원 (VAT 포함)`;
+            
+            // 포함 항목 업데이트
+            let itemsHtml = '';
+            product.items.forEach(item => {
+                itemsHtml += `
+                    <div class="item-category">
+                        <strong>${item.icon} ${item.title}</strong>
+                        <span>${item.desc}</span>
+                    </div>
+                `;
+            });
+            getEl('itemGrid').innerHTML = itemsHtml;
+            
+            // 세미나실 옵션 표시/숨김
+            getEl('seminarOption').style.display = 
+                product.hasSeminar ? 'block' : 'none';
+            
+            if (!product.hasSeminar) {
+                getEl('seminar').checked = false;
+                getEl('seminarHours').style.display = 'none';
+            }
+            
+            // 인원 제한 업데이트
+            minPeople = product.min;
+            maxPeople = product.max;
+            
+            // 인원 입력 범위 업데이트
+            const peopleInput = getEl('people');
+            peopleInput.min = minPeople;
+            peopleInput.max = maxPeople;
+            getEl('rangeInfo').textContent = 
+                `최소 ${minPeople}명 ~ 최대 ${maxPeople}명`;
+            
+            // 현재 인원이 범위를 벗어나면 조정
+            if (currentPeople < minPeople) {
+                currentPeople = minPeople;
+                peopleInput.value = minPeople;
+            } else if (currentPeople > maxPeople) {
+                currentPeople = maxPeople;
+                peopleInput.value = maxPeople;
+            }
+            
+            // 에러 메시지 업데이트
+            getEl('peopleError').textContent = 
+                `⚠️ 인원은 ${minPeople}명 이상, ${maxPeople}명 이하로 입력해주세요.`;
+            
+            validateAndCalculate();
+        };
+        
+        // 인원수 검증 및 계산
+        function validateAndCalculate() {
+            const peopleInput = getEl('people');
+            const peopleError = getEl('peopleError');
+            const people = parseInt(peopleInput.value) || 0;
+            
+            if (people < minPeople || people > maxPeople) {
+                peopleInput.classList.add('error');
+                peopleError.classList.add('show');
+                
+                // 범위를 벗어나면 경고만 표시하고 자동 조정은 하지 않음
+                // 사용자가 직접 수정할 수 있도록 함
+                if (people !== 0) {
+                    currentPeople = people; // 일단 값은 저장
+                }
+            } else {
+                peopleInput.classList.remove('error');
+                peopleError.classList.remove('show');
+                currentPeople = people;
+            }
+            
+            calculateQuote();
+        }
+        
+        // 인원수 포커스 아웃 시 범위 체크
+        function checkPeopleRange() {
+            const peopleInput = getEl('people');
+            const people = parseInt(peopleInput.value) || 0;
+            
+            // 포커스를 잃을 때만 범위 조정
+            if (people < minPeople && people > 0) {
+                peopleInput.value = minPeople;
+                currentPeople = minPeople;
+            } else if (people > maxPeople) {
+                peopleInput.value = maxPeople;
+                currentPeople = maxPeople;
+            } else if (people === 0 || isNaN(people)) {
+                peopleInput.value = minPeople;
+                currentPeople = minPeople;
+            } else {
+                currentPeople = people;
+            }
+            
+            validateAndCalculate();
+        }
+        
+        // 견적 계산 함수
+        function calculateQuote() {
+            const people = currentPeople;
+            const seminarChecked = getEl('seminar').checked;
+            const hours = parseInt(getEl('hours').value) || 0;
+            
+            const seminarPrice = 110000;
+            
+            let breakdown = '';
+            let total = 0;
+            
+            // 기본 패키지 계산
+            if (people >= minPeople) {
+                const packageTotal = people * pricePerPerson;
+                const productName = products[currentProduct].name;
+                breakdown += `
+                    <div class="result-item">
+                        <span>${productName}</span>
+                        <span>${people}명 × ${formatNumber(pricePerPerson)}원</span>
+                    </div>
+                    <div class="result-item" style="text-align: right !important; padding-top: 5px !important; border-bottom: 1px solid rgba(255,255,255,0.3) !important;">
+                        <span></span>
+                        <span style="font-weight: bold !important;">${formatNumber(packageTotal)}원</span>
+                    </div>
+                `;
+                total += packageTotal;
+            }
+            
+            // 세미나실 계산 (워크샵과 야유회 모두)
+            if (seminarChecked && hours > 0) {
+                const seminarTotal = hours * seminarPrice;
+                breakdown += `
+                    <div class="result-item" style="margin-top: 10px !important;">
+                        <span>세미나실 대관</span>
+                        <span>${hours}시간 × ${formatNumber(seminarPrice)}원</span>
+                    </div>
+                    <div class="result-item" style="text-align: right !important; padding-top: 5px !important; border-bottom: 1px solid rgba(255,255,255,0.3) !important;">
+                        <span></span>
+                        <span style="font-weight: bold !important;">${formatNumber(seminarTotal)}원</span>
+                    </div>
+                `;
+                total += seminarTotal;
+            }
+            
+            // 예약금 계산 및 업데이트
+            const deposit = calculateDeposit(total);
+            
+            // 결과 업데이트
+            getEl('breakdown').innerHTML = breakdown;
+            getEl('totalAmount').textContent = formatNumber(total) + '원';
+            getEl('depositAmount').textContent = formatNumber(deposit) + '원';
+        }
+        
+        // 입력 검증 함수
+        function validateForm() {
+            let isValid = true;
+            
+            // 이름 검증
+            const name = getEl('customerName').value.trim();
+            const nameError = getEl('nameError');
+            const nameInput = getEl('customerName');
+            
+            if (!name) {
+                nameInput.classList.add('error');
+                nameError.classList.add('show');
+                isValid = false;
+            } else {
+                nameInput.classList.remove('error');
+                nameError.classList.remove('show');
+            }
+            
+            // 전화번호 검증
+            const phone = getEl('customerPhone').value.trim();
+            const phoneError = getEl('phoneError');
+            const phoneInput = getEl('customerPhone');
+            const phoneRegex = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+            
+            if (!phone || !phoneRegex.test(phone)) {
+                phoneInput.classList.add('error');
+                phoneError.textContent = '올바른 전화번호 형식(예: 010-1234-5678)으로 입력해주세요.';
+                phoneError.classList.add('show');
+                isValid = false;
+            } else {
+                phoneInput.classList.remove('error');
+                phoneError.classList.remove('show');
+            }
+            
+            // 이메일 검증
+            const email = getEl('customerEmail').value.trim();
+            const emailError = getEl('emailError');
+            const emailInput = getEl('customerEmail');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!email || !emailRegex.test(email)) {
+                emailInput.classList.add('error');
+                emailError.classList.add('show');
+                isValid = false;
+            } else {
+                emailInput.classList.remove('error');
+                emailError.classList.remove('show');
+            }
+            
+            return isValid;
+        }
+        
+        // 폼 초기화 함수
+        function clearForm() {
+            getEl('customerName').value = '';
+            getEl('customerPhone').value = '';
+            getEl('customerEmail').value = '';
+            getEl('customerCompany').value = '';
+            getEl('customerMemo').value = '';
+        }
+        
+        // 이메일 발송 함수
+        window.chohoQuote.sendQuoteEmail = function() {
+            if (!validateForm()) {
+                return;
+            }
+            
+            const sendBtn = getEl('sendBtn');
+            const sendMessage = getEl('sendMessage');
+            
+            sendBtn.disabled = true;
+            sendBtn.textContent = '📮 발송 중...';
+            
+            const total = calculateTotal();
+            const deposit = calculateDeposit(total);
+            
+            // 데이터 준비
+            const requestData = {
+                customerName: getEl('customerName').value.trim(),
+                customerPhone: getEl('customerPhone').value.trim(),
+                customerEmail: getEl('customerEmail').value.trim(),
+                customerCompany: getEl('customerCompany').value.trim(),
+                customerMemo: getEl('customerMemo').value.trim(),
+                productName: products[currentProduct].name,
+                people: currentPeople,
+                seminarHours: getEl('seminar').checked ? (getEl('hours').value || 0) : 0,
+                totalAmount: formatNumber(total) + '원',
+                depositAmount: formatNumber(deposit) + '원',
+                balanceAmount: formatNumber(total - deposit) + '원',
+                quoteDetails: generateQuoteDetails()
+            };
+            
+            // Google Apps Script 웹앱 URL
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9IHrNwy7z41CQGxy8er_cfihCbG2pEyMfW60Gf6k3E2ZyeAK7JRiWL41JPb3tWOx4/exec';
+            
+            // 실제 발송 코드
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // CORS 정책 우회
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(() => {
+                // no-cors 모드에서는 응답을 읽을 수 없으므로 성공으로 간주
+                sendBtn.disabled = false;
+                sendBtn.textContent = '📮 견적서 이메일 발송';
+                sendMessage.textContent = '✓ 견적서가 이메일로 발송되었습니다!';
+                sendMessage.className = 'send-message success';
+                sendMessage.style.display = 'block';
+                
+                clearForm();
+                
+                // 초기 계산 재실행
+                validateAndCalculate();
+                
+                setTimeout(() => {
+                    sendMessage.style.display = 'none';
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                sendBtn.disabled = false;
+                sendBtn.textContent = '📮 견적서 이메일 발송';
+                sendMessage.textContent = '❌ 발송 중 오류가 발생했습니다. 다시 시도해주세요.';
+                sendMessage.className = 'send-message error';
+                sendMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    sendMessage.style.display = 'none';
+                }, 5000);
+            });
+        };
+        
+        // DOM이 로드된 후 이벤트 리스너 등록
+        document.addEventListener('DOMContentLoaded', function() {
+            // 초기 상품 설정
+            const product = products[currentProduct];
+            let itemsHtml = '';
+            product.items.forEach(item => {
+                itemsHtml += `
+                    <div class="item-category">
+                        <strong>${item.icon} ${item.title}</strong>
+                        <span>${item.desc}</span>
+                    </div>
+                `;
+            });
+            getEl('itemGrid').innerHTML = itemsHtml;
+            
+            // 세미나실 체크박스 이벤트
+            getEl('seminar').addEventListener('change', function() {
+                const seminarHours = getEl('seminarHours');
+                if (this.checked) {
+                    seminarHours.style.display = 'block';
+                } else {
+                    seminarHours.style.display = 'none';
+                }
+                calculateQuote();
+            });
+            
+            // 세미나실 시간 입력 이벤트
+            getEl('hours').addEventListener('input', calculateQuote);
+            
+            // 인원수 입력 이벤트
+            getEl('people').addEventListener('input', function() {
+                // 입력 중에는 실시간으로 계산만 업데이트
+                validateAndCalculate();
+            });
+            
+            // 인원수 포커스 아웃 이벤트 (입력 완료 시)
+            getEl('people').addEventListener('blur', function() {
+                // 포커스를 잃을 때 범위 체크 및 조정
+                checkPeopleRange();
+            });
+            
+            // 엔터키 입력 시 포커스 해제
+            getEl('people').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    this.blur();
+                }
+            });
+            
+            // 입력 필드 실시간 검증
+            getEl('customerName').addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('error');
+                    getEl('nameError').classList.remove('show');
+                }
+            });
+            
+            getEl('customerPhone').addEventListener('input', function() {
+                // 숫자만 추출
+                let value = this.value.replace(/[^0-9]/g, '');
+
+                // 자동 하이픈 추가
+                if (value.length <= 3) {
+                    this.value = value;
+                } else if (value.length <= 7) {
+                    this.value = value.slice(0, 3) + '-' + value.slice(3);
+                } else if (value.length <= 11) {
+                    this.value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7);
+                } else {
+                    this.value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+                }
+
+                // 유효성 검사
+                const phoneRegex = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+                if (phoneRegex.test(this.value.trim())) {
+                    this.classList.remove('error');
+                    getEl('phoneError').classList.remove('show');
+                }
+            });
+            
+            getEl('customerEmail').addEventListener('input', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailRegex.test(this.value.trim())) {
+                    this.classList.remove('error');
+                    getEl('emailError').classList.remove('show');
+                }
+            });
+            
+            // 초기 계산 실행
+            validateAndCalculate();
+        });
+    })();
+</script>
+</body> </html>

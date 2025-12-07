@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초호쉼터 패키지 상품</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fafafa;
+        }
+        
+        /* 패키지 섹션 */
+        #s2025080994091b86a6914 {
+            background: #fafafa;
+            padding: 80px 0;
+        }
+        
+        #s2025080994091b86a6914 .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 섹션 헤더 */
+        #s2025080994091b86a6914 .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        #s2025080994091b86a6914 .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        
+        #s2025080994091b86a6914 .section-subtitle {
+            font-size: 16px;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        /* 패키지 그리드 */
+        #s2025080994091b86a6914 .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        /* 패키지 카드 */
+        #s2025080994091b86a6914 .package-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        #s2025080994091b86a6914 .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        #s2025080994091b86a6914 .package-card.featured {
+            border: 2px solid #2d5016;
+        }
+        
+        #s2025080994091b86a6914 .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #2d5016, #3a6b1e);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            z-index: 10;
+        }
+        
+        /* 패키지 이미지 */
+        #s2025080994091b86a6914 .package-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #s2025080994091b86a6914 .package-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        #s2025080994091b86a6914 .package-card:hover .package-image img {
+            transform: scale(1.05);
+        }
+        
+        #s2025080994091b86a6914 .package-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        #s2025080994091b86a6914 .package-card:hover .package-image-overlay {
+            opacity: 1;
+        }
+        
+        /* 카드 헤더 */
+        #s2025080994091b86a6914 .card-header {
+            padding: 30px 25px 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        #s2025080994091b86a6914 .package-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        #s2025080994091b86a6914 .package-duration {
+            font-size: 14px;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* 가격 영역 */
+        #s2025080994091b86a6914 .price-area {
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f8f8, #ffffff);
+        }
+        
+        #s2025080994091b86a6914 .price-label {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        
+        #s2025080994091b86a6914 .price {
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+        }
+        
+        #s2025080994091b86a6914 .price-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d5016;
+            letter-spacing: -1px;
+        }
+        
+        #s2025080994091b86a6914 .price-unit {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        #s2025080994091b86a6914 .price-vat {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        /* 인원 정보 추가 */
+        #s2025080994091b86a6914 .capacity-info {
+            padding: 20px 25px;
+            background: #f9f9f9;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #s2025080994091b86a6914 .capacity-item {
+            flex: 1;
+            text-align: center;
+        }
+        
+        #s2025080994091b86a6914 .capacity-item:first-child {
+            border-right: 1px solid #e0e0e0;
+        }
+        
+        #s2025080994091b86a6914 .capacity-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        #s2025080994091b86a6914 .capacity-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2d5016;
+        }
+        
+        #s2025080994091b86a6914 .capacity-value span {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+        }
+        
+        /* 시간 정보 */
+        #s2025080994091b86a6914 .time-info {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        #s2025080994091b86a6914 .time-item {
+            flex: 1;
+            text-align: center;
+        }
+        
+        #s2025080994091b86a6914 .time-item:first-child {
+            border-right: 1px solid #f0f0f0;
+        }
+        
+        #s2025080994091b86a6914 .time-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        #s2025080994091b86a6914 .time-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* 예약 버튼 */
+        #s2025080994091b86a6914 .book-button {
+            display: block;
+            width: calc(100% - 50px);
+            margin: 0 25px 25px;
+            padding: 14px;
+            background: #2d5016;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+        
+        #s2025080994091b86a6914 .book-button:hover {
+            background: #3a6b1e;
+            transform: translateY(-1px);
+        }
+        
+        /* 안내사항 섹션 */
+        #s2025080994091b86a6914 .notice-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 40px;
+            border: 2px solid #f0e68c;
+            background: linear-gradient(135deg, #fffef9, #ffffff);
+        }
+        
+        #s2025080994091b86a6914 .notice-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #s2025080994091b86a6914 .notice-icon {
+            width: 28px;
+            height: 28px;
+            background: #ffd700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        #s2025080994091b86a6914 .notice-list {
+            list-style: none;
+        }
+        
+        #s2025080994091b86a6914 .notice-item {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        #s2025080994091b86a6914 .notice-item:before {
+            content: '▶';
+            position: absolute;
+            left: 10px;
+            color: #2d5016;
+            font-size: 12px;
+        }
+        
+        #s2025080994091b86a6914 .notice-item strong {
+            color: #2d5016;
+            font-weight: 600;
+        }
+        
+        #s2025080994091b86a6914 .notice-item.warning {
+            color: #c62828;
+            font-weight: 500;
+            font-size: 16px;
+            background: #fff3e0;
+            padding: 12px 12px 12px 36px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+        
+        #s2025080994091b86a6914 .notice-item.warning:before {
+            content: '⚠';
+            color: #ff5722;
+            left: 12px;
+            font-size: 16px;
+        }
+        
+        /* 반응형 */
+        @media (max-width: 1024px) {
+            #s2025080994091b86a6914 .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #s2025080994091b86a6914 {
+                padding: 25px 0 40px;
+            }
+            
+            #s2025080994091b86a6914 .section-header {
+                margin-bottom: 35px;
+            }
+            
+            #s2025080994091b86a6914 .section-title {
+                font-size: 26px;
+                text-align: center !important;
+                margin-bottom: 18px;
+            }
+            
+            #s2025080994091b86a6914 .section-subtitle {
+                font-size: 14px;
+                text-align: center !important;
+            }
+            
+            #s2025080994091b86a6914 .packages-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* 모바일 이미지 높이 줄이기 */
+            #s2025080994091b86a6914 .package-image {
+                height: 140px !important;
+            }
+            
+            /* 모바일 카드 전체 */
+            #s2025080994091b86a6914 .package-card {
+                text-align: center !important;
+            }
+            
+            /* 모바일 카드 헤더 가운데 정렬 - 패딩 축소 */
+            #s2025080994091b86a6914 .card-header {
+                text-align: center !important;
+                padding: 18px 15px 15px;
+            }
+            
+            #s2025080994091b86a6914 .package-name {
+                font-size: 20px;
+                text-align: center !important;
+                margin-bottom: 6px;
+            }
+            
+            #s2025080994091b86a6914 .package-duration {
+                justify-content: center !important;
+                font-size: 13px;
+                text-align: center !important;
+            }
+            
+            /* 모바일 가격 영역 가운데 정렬 - 패딩 축소 */
+            #s2025080994091b86a6914 .price-area {
+                text-align: center !important;
+                padding: 15px;
+            }
+            
+            #s2025080994091b86a6914 .price-label {
+                font-size: 12px;
+                text-align: center !important;
+                margin-bottom: 6px;
+            }
+            
+            #s2025080994091b86a6914 .price {
+                justify-content: center !important;
+                margin-bottom: 3px;
+                text-align: center !important;
+            }
+            
+            #s2025080994091b86a6914 .price-number {
+                font-size: 28px;
+            }
+            
+            #s2025080994091b86a6914 .price-unit {
+                font-size: 14px;
+            }
+            
+            #s2025080994091b86a6914 .price-vat {
+                text-align: center !important;
+                font-size: 11px;
+                margin-top: 3px;
+            }
+            
+            /* 모바일 인원 정보 - 패딩 축소 */
+            #s2025080994091b86a6914 .capacity-info {
+                padding: 12px 15px;
+                text-align: center !important;
+                background: #f9f9f9;
+            }
+            
+            #s2025080994091b86a6914 .capacity-item {
+                text-align: center !important;
+            }
+            
+            #s2025080994091b86a6914 .capacity-label {
+                font-size: 11px;
+                text-align: center !important;
+                margin-bottom: 4px;
+            }
+            
+            #s2025080994091b86a6914 .capacity-value {
+                font-size: 18px;
+                font-weight: 700;
+                text-align: center !important;
+                color: #2d5016;
+            }
+            
+            #s2025080994091b86a6914 .capacity-value span {
+                font-size: 13px;
+                font-weight: 400;
+                color: #666;
+            }
+            
+            /* 모바일 시간 정보 - 패딩 축소 */
+            #s2025080994091b86a6914 .time-info {
+                padding: 12px 15px;
+                text-align: center !important;
+            }
+            
+            #s2025080994091b86a6914 .time-item {
+                text-align: center !important;
+            }
+            
+            #s2025080994091b86a6914 .time-label {
+                font-size: 11px;
+                text-align: center !important;
+                margin-bottom: 4px;
+            }
+            
+            #s2025080994091b86a6914 .time-value {
+                font-size: 14px;
+                font-weight: 600;
+                text-align: center !important;
+            }
+            
+            /* 모바일 예약 버튼 - 패딩 축소 */
+            #s2025080994091b86a6914 .book-button {
+                width: calc(100% - 30px);
+                margin: 0 15px 15px;
+                padding: 12px;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: 10px;
+                text-align: center !important;
+            }
+            
+            /* 모바일 안내사항 - 패딩 축소 */
+            #s2025080994091b86a6914 .notice-section {
+                padding: 20px 15px;
+                margin-top: 25px;
+            }
+            
+            #s2025080994091b86a6914 .notice-title {
+                font-size: 17px;
+                justify-content: center !important;
+                text-align: center !important;
+                margin-bottom: 18px;
+            }
+            
+            #s2025080994091b86a6914 .notice-item {
+                font-size: 13px;
+                padding-left: 25px;
+                text-align: left;
+                margin-bottom: 12px;
+                line-height: 1.6;
+            }
+            
+            #s2025080994091b86a6914 .notice-item.warning {
+                font-size: 14px;
+                text-align: left;
+                padding: 10px 10px 10px 30px;
+                margin-bottom: 14px;
+            }
+            
+            #s2025080994091b86a6914 .notice-item.warning:before {
+                left: 10px;
+                font-size: 14px;
+            }
+        }
+        
+        /* 작은 모바일 */
+        @media (max-width: 480px) {
+            #s2025080994091b86a6914 {
+                padding: 20px 0 35px;
+            }
+            
+            #s2025080994091b86a6914 .section-title {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+            
+            #s2025080994091b86a6914 .package-image {
+                height: 120px !important;
+            }
+            
+            #s2025080994091b86a6914 .price-number {
+                font-size: 26px;
+            }
+            
+            #s2025080994091b86a6914 .capacity-value {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 패키지 섹션 -->
+    <div id="s2025080994091b86a6914">
+        <div class="section-container">
+            <!-- 섹션 헤더 -->
+            <div class="section-header">
+                <h2 class="section-title">단체 패키지 안내</h2>
+                <p class="section-subtitle">목적과 일정에 맞는 최적의 패키지를 선택하세요</p>
+            </div>
+            
+            <!-- 패키지 그리드 -->
+            <div class="packages-grid">
+                <!-- 1박2일 워크샵 -->
+                <div class="package-card featured">
+                    <span class="badge">BEST</span>
+                    <div class="package-image">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/927f6a842d1df.jpg" alt="1박2일 워크샵">
+                        <div class="package-image-overlay"></div>
+                    </div>
+                    <div class="card-header">
+                        <h3 class="package-name">1박 2일 워크샵</h3>
+                        <div class="package-duration">
+                            <span>🌙</span>
+                            <span>1박 2일 프로그램</span>
+                        </div>
+                    </div>
+                    
+                    <div class="price-area">
+                        <div class="price-label">1인당 요금</div>
+                        <div class="price">
+                            <span class="price-number">99,000</span>
+                            <span class="price-unit">원</span>
+                        </div>
+                        <div class="price-vat">VAT 포함</div>
+                    </div>
+                    
+                    <div class="capacity-info">
+                        <div class="capacity-item">
+                            <div class="capacity-label">최소 인원</div>
+                            <div class="capacity-value">10<span>명</span></div>
+                        </div>
+                        <div class="capacity-item">
+                            <div class="capacity-label">최대 인원</div>
+                            <div class="capacity-value">80<span>명</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="time-info">
+                        <div class="time-item">
+                            <div class="time-label">입실</div>
+                            <div class="time-value">오후 3시</div>
+                        </div>
+                        <div class="time-item">
+                            <div class="time-label">퇴실</div>
+                            <div class="time-value">오전 11시</div>
+                        </div>
+                    </div>
+                    
+                    <a href="/reservation" class="book-button">예약 문의하기</a>
+                </div>
+                
+                <!-- 당일 수련회/야유회 -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/94dd19cb91540.jpg" alt="당일 야유회">
+                        <div class="package-image-overlay"></div>
+                    </div>
+                    <div class="card-header">
+                        <h3 class="package-name">당일 수련회/야유회</h3>
+                        <div class="package-duration">
+                            <span>☀️</span>
+                            <span>당일 프로그램</span>
+                        </div>
+                    </div>
+                    
+                    <div class="price-area">
+                        <div class="price-label">1인당 요금</div>
+                        <div class="price">
+                            <span class="price-number">66,000</span>
+                            <span class="price-unit">원</span>
+                        </div>
+                        <div class="price-vat">VAT 포함</div>
+                    </div>
+                    
+                    <div class="capacity-info">
+                        <div class="capacity-item">
+                            <div class="capacity-label">최소 인원</div>
+                            <div class="capacity-value">30<span>명</span></div>
+                        </div>
+                        <div class="capacity-item">
+                            <div class="capacity-label">최대 인원</div>
+                            <div class="capacity-value">200<span>명</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="time-info">
+                        <div class="time-item">
+                            <div class="time-label">시작</div>
+                            <div class="time-value">오전 10시</div>
+                        </div>
+                        <div class="time-item">
+                            <div class="time-label">종료</div>
+                            <div class="time-value">오후 5시</div>
+                        </div>
+                    </div>
+                    
+                    <a href="/reservation" class="book-button">예약하기</a>
+                </div>
+                
+                <!-- 2박3일 수련회 -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="https://cdn.imweb.me/upload/S202110280a2b6da12f806/be4c71d0b3193.jpg" alt="2박3일 수련회">
+                        <div class="package-image-overlay"></div>
+                    </div>
+                    <div class="card-header">
+                        <h3 class="package-name">2박 3일 수련회</h3>
+                        <div class="package-duration">
+                            <span>🌟</span>
+                            <span>2박 3일 프로그램</span>
+                        </div>
+                    </div>
+                    
+                    <div class="price-area">
+                        <div class="price-label">1인당 요금</div>
+                        <div class="price">
+                            <span class="price-number">165,000</span>
+                            <span class="price-unit">원</span>
+                        </div>
+                        <div class="price-vat">VAT 포함</div>
+                    </div>
+                    
+                    <div class="capacity-info">
+                        <div class="capacity-item">
+                            <div class="capacity-label">최소 인원</div>
+                            <div class="capacity-value">30<span>명</span></div>
+                        </div>
+                        <div class="capacity-item">
+                            <div class="capacity-label">최대 인원</div>
+                            <div class="capacity-value">200<span>명</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="time-info">
+                        <div class="time-item">
+                            <div class="time-label">입실</div>
+                            <div class="time-value">오후 3시</div>
+                        </div>
+                        <div class="time-item">
+                            <div class="time-label">퇴실</div>
+                            <div class="time-value">오전 11시</div>
+                        </div>
+                    </div>
+                    
+                    <a href="/reservation" class="book-button">예약하기</a>
+                </div>
+            </div>
+            
+            <!-- 공통 안내사항 -->
+            <div class="notice-section">
+                <h4 class="notice-title">
+                    <span class="notice-icon">!</span>
+                    예약 전 필수 확인사항
+                </h4>
+                <ul class="notice-list">
+                    <li class="notice-item">
+                        이용시간보다 먼저 도착하거나 종료시간보다 늦게 퇴실할 경우 <strong>1인당 1시간에 1만원</strong>의 추가요금이 부과됩니다.
+                    </li>
+                    <li class="notice-item warning">
+                        조기축구 및 운동동호회 예약은 불가능합니다.
+                    </li>
+                    <li class="notice-item warning">
+                        시설 무단 이용 시 당일 퇴실 처리됩니다.<br>
+                        <span style="font-size: 12px; color: #666; font-weight: 400;">(주의사항 미준수 및 관리자 승인 없는 시설 개별이용 등 / 예약금 미환불)</span>
+                    </li>
+                    <li class="notice-item">
+                        모든 패키지에는 바비큐, 주류, 음료 무한리필이 포함되어 있습니다.
+                    </li>
+                    <li class="notice-item">
+                        단체 예약은 반드시 펜션 측의 예약 확정을 받아야 이용 가능합니다.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

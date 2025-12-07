@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초호쉼터 - 예약 및 환불규정</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f9f9f9;
+        }
+        
+        /* 환불규정 섹션 */
+        #refund-section {
+            position: relative;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        /* 배경 장식 요소 */
+        #refund-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(74, 139, 46, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        #refund-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(45, 80, 22, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        /* 섹션 컨테이너 */
+        .refund-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* 섹션 타이틀 */
+        .section-title {
+            font-size: 48px;
+            color: #1a1a1a;
+            font-weight: 900;
+            margin-bottom: 50px;
+            line-height: 1.2;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #2d5016, #4a8b2e);
+            border-radius: 2px;
+        }
+        
+        /* 규정 카드 그리드 - PC에서 3열 유지 */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* 규정 카드 */
+        .policy-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2d5016, #4a8b2e);
+        }
+        
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* 카드 아이콘 */
+        .card-icon {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #2d5016, #4a8b2e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .policy-card:hover .card-icon {
+            transform: scale(1.1);
+        }
+        
+        /* 카드 제목 */
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        
+        /* 카드 내용 */
+        .card-content {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .content-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .content-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #4a8b2e;
+            font-weight: bold;
+        }
+        
+        .content-item strong {
+            color: #dc143c;
+            font-weight: 700;
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .highlight {
+            background: #fff3e0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #e65100;
+            font-weight: 600;
+        }
+        
+        /* 구분선이 있는 항목 */
+        .divider-item {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* 환불 테이블 */
+        .refund-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .refund-table th,
+        .refund-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .refund-table th {
+            background: #f8f8f8;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .refund-table td {
+            font-size: 14px;
+            color: #555;
+            background: white;
+        }
+        
+        .refund-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: #dc143c;
+        }
+        
+        .refund-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .refund-table tr:hover td {
+            background: #fafafa;
+        }
+        
+        /* 특별 강조 박스 */
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        .warning-box .warning-title {
+            font-weight: 700;
+            color: #e65100;
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .warning-box .warning-text {
+            font-size: 14px;
+            color: #f57c00;
+            line-height: 1.6;
+        }
+        
+        /* 사업자 배상 카드 - 전체 너비 */
+        .full-width-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #fafafa, #ffffff);
+            border: 2px solid #e0e0e0;
+        }
+        
+        .full-width-card::before {
+            background: linear-gradient(90deg, #ff9800, #ffc107);
+        }
+        
+        .full-width-card .card-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .full-width-card .refund-table th {
+            background: #fff5e6;
+            color: #e65100;
+        }
+        
+        .full-width-card .refund-table td:last-child {
+            color: #e65100;
+            font-weight: 600;
+        }
+        
+        .source-text {
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        /* PC 사이즈 변화에 따른 조정 (3열 유지) */
+        @media (max-width: 1400px) {
+            .section-title {
+                font-size: 44px;
+            }
+            
+            .policy-card {
+                padding: 28px 22px;
+            }
+            
+            .card-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 24px;
+            }
+            
+            .card-title {
+                font-size: 19px;
+            }
+            
+            .card-content {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            #refund-section {
+                padding: 70px 20px;
+            }
+            
+            .section-title {
+                font-size: 40px;
+                margin-bottom: 45px;
+            }
+            
+            .policy-grid {
+                gap: 25px;
+            }
+            
+            .policy-card {
+                padding: 25px 20px;
+            }
+            
+            .card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 23px;
+            }
+            
+            .card-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .card-content {
+                font-size: 13px;
+            }
+            
+            .refund-table th,
+            .refund-table td {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            #refund-section {
+                padding: 60px 15px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+            
+            .policy-grid {
+                gap: 20px;
+            }
+            
+            .policy-card {
+                padding: 22px 18px;
+            }
+            
+            .card-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+            
+            .card-title {
+                font-size: 17px;
+                margin-bottom: 14px;
+            }
+            
+            .card-content {
+                font-size: 12px;
+            }
+            
+            .content-item {
+                margin-bottom: 12px;
+            }
+            
+            .refund-table th,
+            .refund-table td {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+            
+            .warning-box {
+                padding: 12px 15px;
+            }
+            
+            .warning-box .warning-title {
+                font-size: 13px;
+            }
+            
+            .warning-box .warning-text {
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .policy-card {
+                padding: 20px 15px;
+            }
+            
+            .card-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+            
+            .card-title {
+                font-size: 16px;
+            }
+            
+            .card-content {
+                font-size: 11px;
+                line-height: 1.6;
+            }
+            
+            .refund-table th,
+            .refund-table td {
+                padding: 8px;
+                font-size: 11px;
+            }
+        }
+        
+        /* 모바일 - 1열 3행 구조 */
+        @media (max-width: 768px) {
+            #refund-section {
+                padding: 50px 15px;
+            }
+            
+            .refund-container {
+                width: 100%;
+                padding: 0;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 35px;
+            }
+            
+            /* 모바일에서 1열로 변경 */
+            .policy-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .policy-card {
+                padding: 25px 20px;
+            }
+            
+            .card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+            
+            .card-title {
+                font-size: 18px;
+                margin-bottom: 16px;
+            }
+            
+            .card-content {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+            
+            .content-item {
+                margin-bottom: 15px;
+            }
+            
+            .refund-table {
+                font-size: 13px;
+            }
+            
+            .refund-table th,
+            .refund-table td {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            
+            .warning-box {
+                padding: 15px;
+            }
+            
+            .warning-box .warning-title {
+                font-size: 14px;
+            }
+            
+            .warning-box .warning-text {
+                font-size: 13px;
+            }
+            
+            /* 모바일에서 전체 너비 카드도 1열로 */
+            .full-width-card {
+                grid-column: 1;
+            }
+        }
+        
+        /* 작은 모바일 */
+        @media (max-width: 480px) {
+            #refund-section {
+                padding: 40px 10px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .policy-grid {
+                gap: 15px;
+            }
+            
+            .policy-card {
+                padding: 20px 15px;
+            }
+            
+            .card-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+            
+            .card-title {
+                font-size: 17px;
+            }
+            
+            .card-content {
+                font-size: 13px;
+            }
+            
+            .refund-table th,
+            .refund-table td {
+                padding: 8px;
+                font-size: 11px;
+            }
+            
+            .warning-box .warning-text {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 환불규정 섹션 -->
+    <section id="refund-section">
+        <div class="refund-container">
+            <!-- 섹션 타이틀 -->
+            <h2 class="section-title">예약 및 환불규정</h2>
+            
+            <!-- 규정 카드 그리드 -->
+            <div class="policy-grid">
+                <!-- 예약확정 카드 -->
+                <div class="policy-card">
+                    <div class="card-icon">💳</div>
+                    <h3 class="card-title">예약확정</h3>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <span class="highlight">30% 예약금</span> 입금 후 예약 확정
+                        </div>
+                        <div class="content-item">
+                            예약금 입금 전까지는 예약 미확정 상태
+                        </div>
+                        <div class="content-item">
+                            입금 확인 후 예약확정 문자 발송
+                        </div>
+                        <div class="content-item divider-item">
+                            계약금 입금은 초호쉼터의 이용규정에<br>동의한 것으로 간주합니다.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 이용인원변경 카드 -->
+                <div class="policy-card">
+                    <div class="card-icon">👥</div>
+                    <h3 class="card-title">이용인원 변경</h3>
+                    <div class="card-content">
+                        <div class="content-item">
+                            이용일 7일 전까지는 변경 가능
+                        </div>
+                        <div class="warning-box">
+                            <div class="warning-title">⚠️ 주의사항</div>
+                            <div class="warning-text">
+                                이용일 7일 이내 변경 절대 불가<br>
+                                예) 20인 예약 후 당일 17인 이용 시에도 20인 요금 결제
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 환불규정 카드 -->
+                <div class="policy-card">
+                    <div class="card-icon">💰</div>
+                    <h3 class="card-title">환불규정</h3>
+                    <div class="card-content">
+                        <p style="margin-bottom: 15px; color: #666;">
+                            단체예약 특성상 예약 후 취소 시<br>
+                            예약취소 수수료가 발생되니 신중한 예약 바랍니다.
+                        </p>
+                        <table class="refund-table">
+                            <thead>
+                                <tr>
+                                    <th>취소 시점</th>
+                                    <th>환불 금액</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1개월 ~ 15일 전</td>
+                                    <td>예약금의 90%</td>
+                                </tr>
+                                <tr>
+                                    <td>14일 ~ 8일 전</td>
+                                    <td>예약금의 50%</td>
+                                </tr>
+                                <tr>
+                                    <td>7일 전 ~ 당일</td>
+                                    <td>환불 불가</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 사업자 배상 기준 카드 -->
+                <div class="policy-card full-width-card">
+                    <div class="card-icon">🏢</div>
+                    <h3 class="card-title">사업자 사정으로 취소 시 배상 기준</h3>
+                    <p class="source-text">한국소비자원 '소비자분쟁해결기준' 권고사항 근거</p>
+                    <div class="card-content">
+                        <table class="refund-table">
+                            <thead>
+                                <tr>
+                                    <th>취소 시점</th>
+                                    <th>배상 내용</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>사용 예정일 2일 전까지</td>
+                                    <td>계약금 환급</td>
+                                </tr>
+                                <tr>
+                                    <td>사용 예정일 1일 전까지</td>
+                                    <td>계약금 환급 + 총요금 20% 배상</td>
+                                </tr>
+                                <tr>
+                                    <td>사용 예정일 당일</td>
+                                    <td>계약금 환급 + 총요금 30% 배상</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
