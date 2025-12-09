@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: "초호쉼터",
   description: "기업 워크샵, 야유회, 단체행사 전문 펜션. 5,000평 천연잔디구장과 함께하는 특별한 단체행사",
-  url: "https://chohopark.com",
+  url: "https://chorigol.net",
   phone: "010-3254-0029",
   address: "경기도 파주시 법원읍 초리골길 134",
   email: "chohopark@naver.com",
@@ -201,7 +201,9 @@ export const TARGET_CUSTOMERS = [
 
 export const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2CnVRAiaqDCAdCSa7gWO9xEcbpGfgunbc6sTabfZkAc6hgQpFIW1t0wRxpWAnei06oQ/exec";
 
-export const GA_MEASUREMENT_ID = "G-49043QNXM0";
+export const GOOGLE_APPS_SCRIPT_QUOTE_URL = "https://script.google.com/macros/s/AKfycbx9IHrNwy7z41CQGxy8er_cfihCbG2pEyMfW60Gf6k3E2ZyeAK7JRiWL41JPb3tWOx4/exec";
+
+export const GA_MEASUREMENT_ID = "G-P63CJMK6LB";
 
 export const TELEGRAM_CHAT_ID = "-1003394139746";
 
