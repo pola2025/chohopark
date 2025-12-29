@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# 보안 문서
+docs/analytics-setup-guide.html
