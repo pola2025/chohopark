@@ -9,6 +9,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 
 const NAV_LINKS = [
   { name: "초호쉼터", href: "/" },
+  { name: "초호역사", href: "/about" },
   { name: "시설안내", href: "/facilities" },
   { name: "단체예약", href: "/booking", highlight: true },
 ];
@@ -111,12 +112,12 @@ export function Header() {
             </span>
           </Link>
 
-          {/* 모바일 네비게이션 - 4개 박스 균등 배분 */}
+          {/* 모바일 네비게이션 - 5개 박스 균등 배분 */}
           <nav className="flex gap-1 w-full">
             <Link
               href="/"
               className={cn(
-                "flex-1 h-10 flex items-center justify-center rounded-lg text-[12px] font-medium transition-all",
+                "flex-1 h-10 flex items-center justify-center rounded-lg text-[11px] font-medium transition-all",
                 "border border-[#e0e0e0] shadow-[0_1px_3px_rgba(0,0,0,0.05)]",
                 "active:scale-[0.97] active:shadow-[0_0_2px_rgba(0,0,0,0.1)]",
                 isActive("/") && pathname === "/"
@@ -127,9 +128,22 @@ export function Header() {
               초호쉼터
             </Link>
             <Link
+              href="/about"
+              className={cn(
+                "flex-1 h-10 flex items-center justify-center rounded-lg text-[11px] font-medium transition-all",
+                "border border-[#e0e0e0] shadow-[0_1px_3px_rgba(0,0,0,0.05)]",
+                "active:scale-[0.97] active:shadow-[0_0_2px_rgba(0,0,0,0.1)]",
+                isActive("/about")
+                  ? "bg-[#2d5016] border-[#2d5016] text-white font-bold shadow-[0_2px_6px_rgba(45,80,22,0.25)]"
+                  : "bg-white text-[#666]"
+              )}
+            >
+              초호역사
+            </Link>
+            <Link
               href="/facilities"
               className={cn(
-                "flex-1 h-10 flex items-center justify-center rounded-lg text-[12px] font-medium transition-all",
+                "flex-1 h-10 flex items-center justify-center rounded-lg text-[11px] font-medium transition-all",
                 "border border-[#e0e0e0] shadow-[0_1px_3px_rgba(0,0,0,0.05)]",
                 "active:scale-[0.97] active:shadow-[0_0_2px_rgba(0,0,0,0.1)]",
                 isActive("/facilities")
@@ -142,7 +156,7 @@ export function Header() {
             <Link
               href="/booking"
               className={cn(
-                "flex-1 h-10 flex items-center justify-center rounded-lg text-[12px] font-medium transition-all",
+                "flex-1 h-10 flex items-center justify-center rounded-lg text-[11px] font-medium transition-all",
                 "border border-[#e0e0e0] shadow-[0_1px_3px_rgba(0,0,0,0.05)]",
                 "active:scale-[0.97] active:shadow-[0_0_2px_rgba(0,0,0,0.1)]",
                 isActive("/booking")
@@ -154,7 +168,7 @@ export function Header() {
             </Link>
             <a
               href={`tel:${SITE_CONFIG.phone}`}
-              className="flex-1 h-10 flex items-center justify-center rounded-lg text-[12px] font-semibold transition-all bg-gradient-to-br from-[#4caf50] to-[#66bb6a] text-white border-none shadow-[0_2px_6px_rgba(76,175,80,0.25)] active:from-[#388e3c] active:to-[#4caf50] active:shadow-[0_1px_3px_rgba(76,175,80,0.25)]"
+              className="flex-1 h-10 flex items-center justify-center rounded-lg text-[11px] font-semibold transition-all bg-gradient-to-br from-[#4caf50] to-[#66bb6a] text-white border-none shadow-[0_2px_6px_rgba(76,175,80,0.25)] active:from-[#388e3c] active:to-[#4caf50] active:shadow-[0_1px_3px_rgba(76,175,80,0.25)]"
             >
               전화문의
             </a>
