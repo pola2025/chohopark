@@ -205,7 +205,7 @@ export const GOOGLE_APPS_SCRIPT_QUOTE_URL = "https://script.google.com/macros/s/
 
 export const GA_MEASUREMENT_ID = "G-P63CJMK6LB";
 
-export const TELEGRAM_CHAT_ID = "-1003394139746";
+export const TELEGRAM_CHAT_ID = "-1002863320782";
 
 export const NAV_ITEMS = [
   { name: "초호쉼터", href: "/about" },

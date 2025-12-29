@@ -23,7 +23,12 @@
       "Bash(npx vercel:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "mcp__playwright__playwright_console_logs",
+      "mcp__playwright__playwright_fill",
+      "WebFetch(domain:docs.google.com)",
+      "WebFetch(domain:invoicehome.com)",
+      "WebFetch(domain:templatelab.com)"
     ],
     "deny": [],
     "ask": []

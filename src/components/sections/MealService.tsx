@@ -28,21 +28,25 @@ export function MealService() {
         {/* 인트로 */}
         <div className="text-center mb-8 p-8 md:p-12 bg-gradient-to-br from-orange-50 to-amber-50 rounded-3xl max-w-4xl mx-auto">
           <p className="text-gray-600 text-lg mb-4">
-            워크샵 준비, 복잡한 견적, 식사 준비, 행사 진행...
+            워크샵 준비, 복잡한 견적, 식사준비,
             <br />
-            단체 행사 담당자님들의 고민을 잘 알고 있습니다.
+            행사 진행 단체 행사 담당자님들의
+            <br />
+            고민을 잘 알고 있습니다.
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 whitespace-nowrap">
             초호쉼터가 해결했습니다.
           </h2>
-          <span className="inline-block px-6 py-3 bg-orange-100 text-orange-600 rounded-full text-lg font-semibold">
-            "숙박부터 모든 식사까지, 원스톱 올인클루전으로"
+          <span className="inline-block px-6 py-3 bg-orange-100 text-orange-600 rounded-full text-lg font-semibold text-center">
+            숙박부터 모든 식사까지
+            <br />
+            원스톱 올인클루전으로
           </span>
         </div>
 
         {/* 헤더 */}
         <div className="text-center mb-16">
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-[2rem] font-bold text-gray-900 mb-4 whitespace-nowrap">
             워크샵 성공의 핵심, 완벽한 식사 준비
           </h3>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">

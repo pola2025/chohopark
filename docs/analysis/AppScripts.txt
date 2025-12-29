@@ -1,0 +1,366 @@
+// Google Apps Script - 초호쉼터 CTA 빠른 문의 시스템
+// 새 Google Apps Script 프로젝트를 만들고 이 코드를 붙여넣으세요
+
+// ===== 설정값 =====
+const CONFIG = {
+  // 스프레드시트 ID (URL에서 추출)
+  SPREADSHEET_ID: '14N3JZ-9InoUoZPafSNrSsjLxg_Ik0UpLG4UC6KYalzI',
+  
+  // 텔레그램 설정 (기존 설정 사용)
+  TELEGRAM: {
+    BOT_TOKEN: '7947112373:AAEs5o3fcm0JoPewh7K5YTUwzq4poWw97pY',
+    CHAT_ID: '-1002863320782' // 그룹 채팅 ID
+  }
+};
+
+// ===== 메인 함수 - POST 요청 처리 =====
+function doPost(e) {
+  try {
+    // CORS 헤더 설정
+    const output = ContentService.createTextOutput();
+    output.setMimeType(ContentService.MimeType.JSON);
+    
+    // POST 데이터 파싱
+    const data = JSON.parse(e.postData.contents);
+    
+    // 스프레드시트에 저장
+    const rowNumber = saveToSpreadsheet(data);
+    
+    // 텔레그램으로 알림 발송
+    const telegramResult = sendTelegramNotification(data, rowNumber);
+    
+    // 성공 응답
+    return output.setContent(JSON.stringify({
+      status: 'success',
+      message: '빠른 문의가 성공적으로 접수되었습니다.',
+      row: rowNumber
+    }));
+    
+  } catch (error) {
+    console.error('Error:', error);
+    
+    // 에러 응답
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'error',
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// ===== 스프레드시트 저장 함수 =====
+function saveToSpreadsheet(data) {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+    const sheet = spreadsheet.getSheets()[0]; // 첫 번째 시트 사용
+    
+    // 헤더가 없으면 생성
+    if (sheet.getLastRow() === 0) {
+      const headers = [
+        '접수일',
+        '담당자 성함',
+        '연락처',
+        '이메일',
+        '이용희망일',
+        '예상인원',
+        '텔레그램 발송결과',
+        '문자발송 결과'
+      ];
+      
+      sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+      
+      // 헤더 스타일 설정
+      const headerRange = sheet.getRange(1, 1, 1, headers.length);
+      headerRange.setBackground('#2d5016');
+      headerRange.setFontColor('#ffffff');
+      headerRange.setFontWeight('bold');
+      headerRange.setHorizontalAlignment('center');
+      
+      // 열 너비 설정
+      sheet.setColumnWidth(1, 150); // 접수일
+      sheet.setColumnWidth(2, 100); // 담당자 성함
+      sheet.setColumnWidth(3, 120); // 연락처
+      sheet.setColumnWidth(4, 200); // 이메일
+      sheet.setColumnWidth(5, 120); // 이용희망일
+      sheet.setColumnWidth(6, 100); // 예상인원
+      sheet.setColumnWidth(7, 150); // 텔레그램 발송결과
+      sheet.setColumnWidth(8, 150); // 문자발송 결과
+      
+      // 시트 이름 설정
+      sheet.setName('빠른문의');
+    }
+    
+    // 현재 시간 (한국 시간)
+    const koreanTime = Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss');
+    
+    // 이용희망일 포맷팅
+    let desiredDate = data.desiredDate || '미정';
+    if (desiredDate && desiredDate !== '미정') {
+      try {
+        const dateObj = new Date(desiredDate);
+        desiredDate = Utilities.formatDate(dateObj, 'Asia/Seoul', 'yyyy-MM-dd');
+      } catch (e) {
+        desiredDate = data.desiredDate;
+      }
+    }
+    
+    // 데이터 행 추가
+    const newRow = sheet.getLastRow() + 1;
+    const rowData = [
+      koreanTime,                          // A: 접수일
+      data.customerName || '',             // B: 담당자 성함
+      data.customerPhone || '',            // C: 연락처
+      data.customerEmail || '',            // D: 이메일
+      desiredDate,                         // E: 이용희망일
+      data.people ? `${data.people}명` : '', // F: 예상인원
+      '대기중',                             // G: 텔레그램 발송결과 (나중에 업데이트)
+      '-'                                   // H: 문자발송 결과
+    ];
+    
+    sheet.getRange(newRow, 1, 1, rowData.length).setValues([rowData]);
+    
+    // 새로운 행 스타일 설정 (짝수 행 배경색)
+    if (newRow % 2 === 0) {
+      sheet.getRange(newRow, 1, 1, rowData.length).setBackground('#f5f5f5');
+    }
+    
+    // 텍스트 정렬
+    sheet.getRange(newRow, 1, 1, rowData.length).setHorizontalAlignment('center');
+    
+    return newRow;
+    
+  } catch (error) {
+    console.error('스프레드시트 저장 실패:', error);
+    throw error;
+  }
+}
+
+// ===== 텔레그램 알림 발송 함수 =====
+function sendTelegramNotification(data, rowNumber) {
+  try {
+    // 이용희망일 포맷팅
+    let desiredDateText = data.desiredDate || '미정';
+    if (desiredDateText && desiredDateText !== '미정') {
+      try {
+        const dateObj = new Date(desiredDateText);
+        const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+        const dayName = dayNames[dateObj.getDay()];
+        desiredDateText = Utilities.formatDate(dateObj, 'Asia/Seoul', `yyyy년 MM월 dd일 (${dayName})`);
+      } catch (e) {
+        desiredDateText = data.desiredDate;
+      }
+    }
+    
+    // 현재 시간
+    const koreanTime = Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss');
+    
+    // 메시지 구성
+    const message = `
+🚀 *빠른 견적 문의가 접수되었습니다!*
+
+━━━━━━━━━━━━━━━━━━
+📋 *고객 정보*
+• 담당자: ${data.customerName}
+• 연락처: [${data.customerPhone}](tel:${data.customerPhone.replace(/-/g, '')})
+• 이메일: ${data.customerEmail}
+
+📅 *예약 정보*
+• 희망일: ${desiredDateText}
+• 예상 인원: ${data.people}명
+
+⏰ 접수 시간: ${koreanTime}
+📍 스프레드시트 행: ${rowNumber}번
+━━━━━━━━━━━━━━━━━━
+
+⚡ *빠른 응대 부탁드립니다!*
+📞 고객에게 30분 이내 연락을 권장합니다.
+
+[📊 스프레드시트 바로가기](https://docs.google.com/spreadsheets/d/${CONFIG.SPREADSHEET_ID})
+`;
+
+    // 텔레그램 API 호출
+    const url = `https://api.telegram.org/bot${CONFIG.TELEGRAM.BOT_TOKEN}/sendMessage`;
+    
+    const options = {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({
+        chat_id: CONFIG.TELEGRAM.CHAT_ID,
+        text: message,
+        parse_mode: 'Markdown',
+        disable_web_page_preview: false // 스프레드시트 미리보기 허용
+      })
+    };
+    
+    const response = UrlFetchApp.fetch(url, options);
+    const result = JSON.parse(response.getContentText());
+    
+    // 발송 결과를 스프레드시트에 업데이트
+    updateTelegramStatus(rowNumber, result.ok ? '발송완료' : '발송실패');
+    
+    console.log('텔레그램 발송 성공:', result);
+    return result;
+    
+  } catch (error) {
+    console.error('텔레그램 발송 실패:', error);
+    
+    // 발송 실패 상태 업데이트
+    try {
+      updateTelegramStatus(rowNumber, '발송실패');
+    } catch (updateError) {
+      console.error('상태 업데이트 실패:', updateError);
+    }
+    
+    // 텔레그램 실패해도 전체 프로세스는 계속 진행
+    return { ok: false, error: error.toString() };
+  }
+}
+
+// ===== 텔레그램 발송 상태 업데이트 함수 =====
+function updateTelegramStatus(rowNumber, status) {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+    const sheet = spreadsheet.getSheets()[0];
+    
+    // G열 (7번째 열)에 발송 결과 업데이트
+    sheet.getRange(rowNumber, 7).setValue(status);
+    
+    // 상태에 따른 색상 설정
+    if (status === '발송완료') {
+      sheet.getRange(rowNumber, 7).setFontColor('#4caf50');
+    } else if (status === '발송실패') {
+      sheet.getRange(rowNumber, 7).setFontColor('#f44336');
+    }
+    
+  } catch (error) {
+    console.error('텔레그램 상태 업데이트 실패:', error);
+  }
+}
+
+// ===== CORS 처리용 GET 메서드 =====
+function doGet() {
+  return ContentService.createTextOutput(JSON.stringify({
+    status: 'ready',
+    message: '초호쉼터 CTA 빠른 문의 시스템이 준비되었습니다.',
+    timestamp: new Date().toISOString(),
+    spreadsheetUrl: `https://docs.google.com/spreadsheets/d/${CONFIG.SPREADSHEET_ID}`
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// ===== 테스트 함수 =====
+function testQuickInquiry() {
+  const testData = {
+    type: 'quick_inquiry',
+    customerName: '테스트 고객',
+    customerPhone: '010-1234-5678',
+    customerEmail: 'test@example.com',
+    desiredDate: '2025-01-20',
+    people: '50',
+    source: 'CTA Modal Test',
+    timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+  };
+  
+  try {
+    // 스프레드시트 저장 테스트
+    const rowNumber = saveToSpreadsheet(testData);
+    console.log('✅ 스프레드시트 저장 성공 - 행 번호:', rowNumber);
+    
+    // 텔레그램 발송 테스트
+    const telegramResult = sendTelegramNotification(testData, rowNumber);
+    console.log('✅ 텔레그램 발송 결과:', telegramResult.ok ? '성공' : '실패');
+    
+    console.log('🎉 테스트 완료!');
+    console.log('📊 스프레드시트 확인:', `https://docs.google.com/spreadsheets/d/${CONFIG.SPREADSHEET_ID}`);
+    
+  } catch (error) {
+    console.error('❌ 테스트 실패:', error);
+  }
+}
+
+// ===== 권한 확인 함수 =====
+function checkPermissions() {
+  try {
+    // 스프레드시트 접근 권한 확인
+    const spreadsheet = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+    console.log('✅ 스프레드시트 이름:', spreadsheet.getName());
+    console.log('✅ 스프레드시트 접근 권한: OK');
+    
+    // 시트 정보
+    const sheets = spreadsheet.getSheets();
+    console.log('✅ 시트 개수:', sheets.length);
+    sheets.forEach((sheet, index) => {
+      console.log(`  - 시트 ${index + 1}: ${sheet.getName()}`);
+    });
+    
+    // 텔레그램 봇 정보 확인
+    const botUrl = `https://api.telegram.org/bot${CONFIG.TELEGRAM.BOT_TOKEN}/getMe`;
+    const response = UrlFetchApp.fetch(botUrl);
+    const botInfo = JSON.parse(response.getContentText());
+    
+    if (botInfo.ok) {
+      console.log('✅ 텔레그램 봇 연결: OK');
+      console.log('  - 봇 이름:', botInfo.result.first_name);
+      console.log('  - 봇 username:', botInfo.result.username);
+    }
+    
+    // 현재 사용자 정보
+    const email = Session.getActiveUser().getEmail();
+    console.log('✅ 현재 사용자:', email);
+    
+    return true;
+    
+  } catch (error) {
+    console.error('❌ 권한 확인 실패:', error);
+    return false;
+  }
+}
+
+// ===== 스프레드시트 초기화 함수 (필요시 사용) =====
+function initializeSpreadsheet() {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+    const sheet = spreadsheet.getSheets()[0];
+    
+    // 기존 내용 삭제
+    sheet.clear();
+    
+    // 헤더 설정
+    const headers = [
+      '접수일',
+      '담당자 성함',
+      '연락처',
+      '이메일',
+      '이용희망일',
+      '예상인원',
+      '텔레그램 발송결과',
+      '문자발송 결과'
+    ];
+    
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    
+    // 헤더 스타일
+    const headerRange = sheet.getRange(1, 1, 1, headers.length);
+    headerRange.setBackground('#2d5016');
+    headerRange.setFontColor('#ffffff');
+    headerRange.setFontWeight('bold');
+    headerRange.setHorizontalAlignment('center');
+    headerRange.setBorder(true, true, true, true, true, true);
+    
+    // 열 너비 설정
+    sheet.setColumnWidth(1, 150); // 접수일
+    sheet.setColumnWidth(2, 100); // 담당자 성함
+    sheet.setColumnWidth(3, 120); // 연락처
+    sheet.setColumnWidth(4, 200); // 이메일
+    sheet.setColumnWidth(5, 120); // 이용희망일
+    sheet.setColumnWidth(6, 100); // 예상인원
+    sheet.setColumnWidth(7, 150); // 텔레그램 발송결과
+    sheet.setColumnWidth(8, 150); // 문자발송 결과
+    
+    // 시트 이름 변경
+    sheet.setName('빠른문의');
+    
+    console.log('✅ 스프레드시트 초기화 완료');
+    
+  } catch (error) {
+    console.error('❌ 초기화 실패:', error);
+  }
+}

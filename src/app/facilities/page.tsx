@@ -82,30 +82,30 @@ export default function FacilitiesPage() {
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-16">
           {/* 헤더 */}
           <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
-            <span className="inline-block px-5 py-2 bg-primary text-white rounded-full text-sm font-semibold mb-5 tracking-wider">
-              FACILITY GUIDE
+            <span className="inline-block px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full text-sm md:text-base font-bold mb-6 tracking-wider shadow-lg">
+              단체 전문 펜션
             </span>
-            {/* 모바일용 제목 */}
-            <h1 className="md:hidden text-2xl font-extralight text-white mb-5 leading-relaxed">
-              <span className="text-green-400 font-light">현대적인 시설</span>과 자연친화적인<br />
+            {/* 모바일용 */}
+            <h1 className="md:hidden text-2xl font-light text-white mb-5 leading-relaxed">
+              <span className="text-green-400 font-semibold">현대적인 시설</span>과 자연친화적인<br />
               공간에서 보내는<br />
-              <span className="text-green-400 font-light">초호쉼터</span>의 특별한 경험
+              <span className="text-green-400 font-semibold">초호쉼터</span>의 특별한 경험
             </h1>
-            {/* 데스크탑용 제목 */}
-            <h1 className="hidden md:block text-5xl lg:text-6xl font-extralight text-white mb-5 leading-tight">
-              <span className="text-green-400 font-light">현대적인 시설</span>과 자연친화적인 공간에서 보내는
+            {/* 데스크탑용 */}
+            <h1 className="hidden md:block text-4xl lg:text-5xl font-light text-white mb-5 leading-tight">
+              현대적인 시설과 자연친화적인 공간에서 보내는
               <br />
-              <span className="text-green-400 font-light">초호쉼터</span>의 특별한 경험
+              <span className="text-green-400 font-semibold">초호쉼터</span>의 특별한 경험
             </h1>
             {/* 모바일용 부제목 */}
-            <p className="md:hidden text-base text-gray-200 font-extralight tracking-wide leading-relaxed">
+            <p className="md:hidden text-base text-gray-300 font-light tracking-wide leading-relaxed">
               30년 전통의 노하우로<br />
               완벽한 단체 프로그램을<br />
-              제공하고 있습니다.
+              제공합니다
             </p>
             {/* 데스크탑용 부제목 */}
-            <p className="hidden md:block text-xl text-gray-200 font-extralight tracking-wide">
-              30년 전통의 노하우로 완벽한 단체 프로그램을 제공하고 있습니다.
+            <p className="hidden md:block text-lg lg:text-xl text-gray-300 font-light tracking-wide">
+              30년 전통의 노하우로 완벽한 단체 프로그램을 제공합니다
             </p>
           </div>
 

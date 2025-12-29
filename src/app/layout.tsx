@@ -4,6 +4,7 @@ import { Header, Footer } from "@/components/layout";
 import { FloatingCTA } from "@/components/FloatingCTA";
 import { InquiryModal } from "@/components/forms";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { BorawareScript } from "@/components/BorawareScript";
 import { OrganizationJsonLd, LodgingBusinessJsonLd, LocalBusinessJsonLd } from "@/components/JsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -82,6 +83,9 @@ export const metadata: Metadata = {
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
@@ -104,6 +108,7 @@ export default function RootLayout({
         <Footer />
         <FloatingCTA />
         <InquiryModal />
+        <BorawareScript />
       </body>
     </html>
   );

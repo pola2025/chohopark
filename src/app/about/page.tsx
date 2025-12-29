@@ -1,179 +1,352 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import Image from "next/image";
-import { MapPin, Phone, Mail, Users, Trees, Utensils } from "lucide-react";
-import { SITE_CONFIG, BUSINESS_INFO } from "@/lib/constants";
+import ChorigolHistorySection, { ChorigolHistory, defaultHistoryData } from "@/components/ChorigolHistorySection";
 
 export const metadata: Metadata = {
-  title: "초호쉼터 소개",
-  description: "기업 워크샵, 야유회, 단체행사 전문 펜션. 5,000평 천연잔디구장과 함께하는 특별한 단체행사를 제공합니다.",
+  title: "초호 소개 | 초호쉼터",
+  description: "1947년부터 이어온 초호의 이야기. 나누고 베푸는 마음으로 초리골에서 실천된 초호정의 기적을 만나보세요.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
-const FEATURES = [
+// 에어테이블에서 초리골 역사 데이터 가져오기
+async function getChorigolHistory(): Promise<ChorigolHistory[]> {
+  const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+  const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
+  const AIRTABLE_TABLE_ID = process.env.AIRTABLE_CHORIGOL_HISTORY_TABLE_ID;
+
+  // 환경 변수가 없으면 기본 데이터 반환
+  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID || !AIRTABLE_TABLE_ID) {
+    return defaultHistoryData;
+  }
+
+  try {
+    const filterFormula = encodeURIComponent("{isPublished}=TRUE()");
+    const response = await fetch(
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}?filterByFormula=${filterFormula}&sort[0][field]=order&sort[0][direction]=asc`,
+      {
+        headers: {
+          Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        next: { revalidate: 3600 }, // 1시간 캐시
+      }
+    );
+
+    if (!response.ok) return defaultHistoryData;
+
+    const data = await response.json();
+
+    if (!data.records || data.records.length === 0) {
+      return defaultHistoryData;
+    }
+
+    return data.records.map((record: { id: string; fields: Record<string, unknown> }) => ({
+      id: record.id,
+      year: record.fields.year || "",
+      title: record.fields.title || "",
+      content: record.fields.content || "",
+      source: record.fields.source || "",
+      sourceUrl: record.fields.sourceUrl || "",
+      category: record.fields.category || "history",
+      order: record.fields.order || 0,
+      viewCount: (record.fields.viewCount as number) || 0,
+      isPublished: record.fields.isPublished ?? true,
+    }));
+  } catch {
+    return defaultHistoryData;
+  }
+}
+
+// 타임라인 데이터 (이미지 포함)
+const timelineData = [
   {
-    icon: Users,
-    title: "10~200명 수용",
-    description: "소규모부터 대규모까지 모든 단체행사 가능",
+    year: "1947",
+    title: "맨손으로 완성된 초호정",
+    description:
+      "일제강점기 직후 어려운 상황에서 초호 우종하 선생은 마을 주민들에게 연못 공사를 의뢰하고 품삯으로 식량을 제공했습니다. 중장비 없이 맨손과 호미로 완성된 초호정은 나눔의 기적이었습니다.",
+    highlight: "나눔으로 일궈진 연못 초호정",
+    image: "/images/history/history-2-lions.webp",
   },
   {
-    icon: Trees,
-    title: "5,000평 잔디구장",
-    description: "넓은 천연잔디에서 다양한 활동 진행",
+    year: "1968",
+    title: "대대로 이어가는 초호의 가업",
+    description:
+      "우씨 일가의 집성촌이기도 했던 초리골에서 마을에서 성장한 가족들이 대대로 가업을 이어가며 초호쉼터를 정성껏 가꾸고 있습니다.",
+    highlight: "대대로 이어지는 가업",
+    image: "/images/history/history-3-chohojung.webp",
   },
   {
-    icon: Utensils,
-    title: "올인클루전 패키지",
-    description: "숙박, 식사, 주류까지 모두 포함",
+    year: "1991",
+    title: "초리골의 상징이 된 초호정",
+    description:
+      "큰 연못은 마을 사람들과 법원리 인근 주민들에게 소중한 나들이 공간으로 활용되었습니다. 날씨가 좋을 때면 소풍을 즐길 수 있었던 초호정은 지역에서 많은 사랑을 받아 왔습니다.",
+    highlight: "지역 주민들의 소중한 나들이 공간",
+    image: "/images/history/history-4-exterior.webp",
+  },
+  {
+    year: "1997",
+    title: "바쁜 현대인들을 위한 쉼터",
+    description:
+      "대대손손 이곳에 살아왔던 초리골 주민 뿐만 아니라 파주, 고양, 양주, 서울 시민들의 쉼터로 자리잡았습니다. 수많은 기업과 단체의 야유회 및 워크샵 장소로 각광받았습니다.",
+    highlight: "시민들의 쉼터로 자리잡다",
+    image: "/images/history/history-1997-exterior.webp",
+  },
+  {
+    year: "2008",
+    title: "더 많은 분들에게 나눔을 실천",
+    description:
+      "초호쉼터를 더 많은 분들이 편리하게 이용할 수 있도록 꾸준히 확장하고 시설을 정비하였습니다. 지역사회의 나눔을 실천하는 행사를 적극 후원해왔습니다.",
+    highlight: "시설 확장 및 정비",
+    image: "/images/history/history-6-cafe.webp",
+  },
+  {
+    year: "2025",
+    title: "힐링 공간으로 새롭게 태어나다",
+    description:
+      "전세계적인 팬데믹 속에서도 꾸준히 초호를 가꿔왔습니다. 초호쉼터를 이용하는 모든 고객분들에게 편안한 휴식과 쉼의 가치를 전달해드리며 보람을 느끼고 있습니다.",
+    highlight: "초호쉼터 리뉴얼",
+    image: "/images/history/history-7-current.webp",
   },
 ];
 
-export default function AboutPage() {
+function TimelineItem({
+  year,
+  title,
+  description,
+  highlight,
+  image,
+  isFirst,
+}: {
+  year: string;
+  title: string;
+  description: string;
+  highlight: string;
+  image: string;
+  isFirst?: boolean;
+}) {
   return (
-    <div className="pt-16">
-      {/* 히어로 섹션 */}
-      <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/about-hero.webp')" }}
+    <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+      {/* Background Image */}
+      <div className="relative w-full h-[400px] sm:h-[450px]">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className={`object-cover transition-transform duration-500 group-hover:scale-105 ${isFirst ? "object-[center_30%]" : "object-center"}`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 text-center text-white px-4">
-          <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold mb-6">
-            ABOUT US
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-shadow-lg">
-            초호쉼터
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+      </div>
+
+      {/* Content Overlay */}
+      <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 text-white">
+        <span className="inline-block px-2.5 py-0.5 bg-primary text-white text-xs font-bold rounded-full mb-3">
+          {year}
+        </span>
+        <h3 className="text-base sm:text-lg font-bold mb-1.5">{title}</h3>
+        <p className="text-xs text-white/85 mb-2 leading-relaxed">{description}</p>
+        <p className="text-xs text-primary font-medium">{highlight}</p>
+      </div>
+    </div>
+  );
+}
+
+export default async function AboutPage() {
+  const chorigolHistory = await getChorigolHistory();
+
+  return (
+    <main className="-mt-16">
+      {/* Hero Section */}
+      <section
+        className="relative h-[50vh] min-h-[400px] flex items-center justify-center"
+        style={{
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/hero/about-hero.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundColor: "#3d4a3d",
+        }}
+      >
+        <div className="text-center text-white px-4">
+          <p className="text-sm tracking-widest mb-2 opacity-80">ABOUT</p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+            초호의 역사
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto text-shadow">
-            기업 워크샵, 야유회, 단체행사 전문 펜션
+          <p className="text-base sm:text-lg opacity-90 max-w-xl mx-auto">
+            1947년부터 이어온 나눔과 베풂의 정신
           </p>
         </div>
       </section>
 
-      {/* 소개 섹션 */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-6">
-                CHOHO SHELTER
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                기업 워크샵의 새로운 기준을
-                <br />
-                <span className="text-primary">제시합니다</span>
-              </h2>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                초호쉼터는 기업 워크샵, 야유회, 단체행사를 위한 전문 펜션입니다.
-                5,000평 규모의 천연잔디구장과 완벽한 시설, 그리고 올인클루전 패키지로
-                잊지 못할 단체행사를 만들어 드립니다.
+      {/* Intro Section - 초호쉼터의 이야기 (반응형 최적화) */}
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-center mb-12">
+            초호쉼터의 이야기
+          </h2>
+
+          {/* 반응형 카드 그리드 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
+            {/* 1947-1997 카드 */}
+            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 border border-primary/20">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-primary">1947 - 1997</h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                1947년 완성된 초호정을 중심으로
+                편안한 휴식과 쉼을 누릴 수 있는 공간을
+                정성껏 가꿔왔습니다.
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                참나무 장작으로 6시간 훈연한 바베큐, 주류와 음료 무한리필, 편안한 숙박 시설까지.
-                추가 비용 걱정 없이 모든 것이 포함된 패키지로 편안한 워크샵을 경험하세요.
-              </p>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>마을 주민들의 손으로 일궈낸 연못</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>지역 주민들의 나들이와 소풍 명소</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>대대로 이어온 가업과 전통</span>
+                </li>
+              </ul>
             </div>
-            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-elevated">
+
+            {/* 2025 카드 */}
+            <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl p-8 border border-emerald-200">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-emerald-200 rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-emerald-600">2025</h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                초리골 숲의 기운을 담아
+                자연 속에서 온전히 쉴 수 있는
+                새로운 공간을 조성하였습니다.
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 mt-1">•</span>
+                  <span>5,000평 천연잔디구장</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 mt-1">•</span>
+                  <span>올인클루전 패키지 도입</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 mt-1">•</span>
+                  <span>기업 워크샵 전문 시설 완비</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 하단 문구 */}
+          <div className="text-center">
+            <p className="text-lg sm:text-xl text-foreground font-medium px-4 py-6 bg-muted/50 rounded-xl inline-block">
+              초호쉼터에서는 누구나 편안한 쉼을 누릴 수 있습니다.
+            </p>
+          </div>
+
+          {/* 초호쉼터 전경 이미지 */}
+          <div className="mt-8 relative rounded-2xl overflow-hidden shadow-xl">
+            <div className="relative w-full aspect-[16/9]">
               <Image
-                src="/images/about-intro.webp"
-                alt="초호쉼터 전경"
+                src="/images/history/history-intro.webp"
+                alt="초호쉼터 전경 - 숲 속에 자리한 펜션과 갈대밭"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
+                priority
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 특징 섹션 */}
-      <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              왜 <span className="text-primary">초호쉼터</span>인가요?
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {FEATURES.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-white p-8 rounded-2xl shadow-soft hover:shadow-elevated transition-shadow text-center"
-              >
-                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <feature.icon className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 연락처 섹션 */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              오시는 길
-            </h2>
-          </div>
-
-          <div className="bg-gray-50 rounded-2xl p-8">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">주소</h4>
-                  <p className="text-gray-600">{SITE_CONFIG.address}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">전화</h4>
-                  <a
-                    href={`tel:${SITE_CONFIG.phone}`}
-                    className="text-primary hover:underline"
-                  >
-                    {SITE_CONFIG.phone}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">이메일</h4>
-                  <a
-                    href={`mailto:${SITE_CONFIG.email}`}
-                    className="text-primary hover:underline"
-                  >
-                    {SITE_CONFIG.email}
-                  </a>
-                </div>
-              </div>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+              <p className="text-white text-center text-sm sm:text-base opacity-90">
+                초리골 숲 속에 자리한 초호쉼터
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* 사업자 정보 */}
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {BUSINESS_INFO.map((info) => (
-              <div
-                key={info.name}
-                className="bg-gray-50 rounded-xl p-6 text-center"
-              >
-                <h4 className="font-bold text-gray-900 mb-2">{info.name}</h4>
-                <p className="text-sm text-gray-500">
-                  사업자번호: {info.registrationNumber}
-                </p>
-                <p className="text-sm text-gray-500">대표: {info.representative}</p>
-              </div>
-            ))}
+      {/* Message Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#3d5a3d] text-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+            초호를 찾아주셔서 감사합니다
+          </h2>
+          <p className="text-sm opacity-80 mb-8">1947년부터 이어온 나눔과 베풂의 정신</p>
+
+          <div className="text-left space-y-4 text-sm sm:text-base opacity-90">
+            <p>
+              <strong>경제성장을 앞세운 현대화 물결</strong> 속에서 숲과 자연이 훼손되는 안타까움이 컸습니다.
+            </p>
+            <p>
+              <strong>대대로 물려받은 소중한 숲과 땅</strong> 위에 누구나 쉴 수 있는 휴식처를 가꾸고자
+              설계에서부터 시공까지 모든 공간에 정성을 가득 담았습니다.
+            </p>
+            <p>
+              <strong>옛날 초호정이 조성될 때 뜻을 담아</strong> 찾는 분들 모두가 일상으로 돌아가기 전까지
+              힐링이 되는 공간으로 편안하게 누리셨으면 좋겠습니다.
+            </p>
+            <p>
+              <strong>나누고 베푸는 마음</strong>으로 언제나 초호를 찾는 분들에게 감사인사를 드립니다.
+            </p>
           </div>
         </div>
       </section>
-    </div>
+
+      {/* Timeline Section - 초호의 발자취 (이미지 포함) */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              초호의 발자취
+            </h2>
+            <p className="text-muted-foreground">
+              초리골에서 실천된 초호정의 기적
+            </p>
+          </div>
+
+          {/* Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {timelineData.map((item, idx) => (
+              <TimelineItem
+                key={idx}
+                year={item.year}
+                title={item.title}
+                description={item.description}
+                highlight={item.highlight}
+                image={item.image}
+                isFirst={idx === 0}
+              />
+            ))}
+          </div>
+
+          {/* Bottom Badge */}
+          <div className="text-center mt-16 p-8 bg-white rounded-2xl shadow-sm border border-border">
+            <h3 className="text-2xl font-bold text-primary mb-2">나누고 베풀다</h3>
+            <p className="text-muted-foreground mb-4">
+              초리골에서 실천된 초호정의 기적
+            </p>
+            <p className="text-3xl font-bold text-primary">SINCE 1947</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Chorigol History Section - 초리골 역사 기록 */}
+      <ChorigolHistorySection data={chorigolHistory} />
+    </main>
   );
 }

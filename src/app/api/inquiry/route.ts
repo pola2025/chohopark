@@ -1,42 +1,72 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GOOGLE_APPS_SCRIPT_URL, TELEGRAM_CHAT_ID } from "@/lib/constants";
+import { GOOGLE_APPS_SCRIPT_URL } from "@/lib/constants";
+import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
 
-    // Google Apps Script로 전송
+    // Google Apps Script로 전송 (필드명 매핑)
+    const gasPayload = {
+      type: data.type || "quick_inquiry",
+      customerName: data.customerName || data.name,
+      customerPhone: data.customerPhone || data.phone,
+      customerEmail: data.customerEmail || data.email,
+      desiredDate: data.desiredDate || data.date || "미정",
+      people: data.people,
+      companyName: data.companyName || data.company,
+      packageType: data.packageType,
+      totalAmount: data.totalAmount,
+      requests: data.requests,
+      source: data.source || "Website",
+      timestamp: new Date().toLocaleString("ko-KR", { timeZone: "Asia/Seoul" }),
+    };
+
+    console.log("GAS로 전송할 데이터:", JSON.stringify(gasPayload));
+
     const gasResponse = await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: "POST",
-      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        ...data,
-        timestamp: new Date().toISOString(),
-        source: data.source || "Website",
-      }),
+      body: JSON.stringify(gasPayload),
+      redirect: "follow",
     });
 
-    // 텔레그램 알림 전송 (백필 메시지 채널)
-    if (process.env.TELEGRAM_BOT_TOKEN) {
-      const telegramMessage = formatTelegramMessage(data);
-      await fetch(
-        `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: telegramMessage,
-            parse_mode: "HTML",
-          }),
-        }
-      );
+    const gasResult = await gasResponse.text();
+    console.log("GAS 응답 상태:", gasResponse.status);
+    console.log("GAS 응답 내용:", gasResult);
+
+    // Supabase inquiries 테이블에 저장 (관리자 대시보드 연동)
+    try {
+      const inquiryData = {
+        product_name: data.packageType === "overnight" ? "1박2일 워크샵" :
+                      data.packageType === "training" ? "2박3일 수련회" : "당일 야유회",
+        people_count: parseInt(data.people) || 0,
+        customer_name: data.customerName || data.name || "",
+        customer_phone: data.customerPhone || data.phone || "",
+        customer_email: data.customerEmail || data.email || null,
+        customer_company: data.companyName || data.company || null,
+        customer_memo: data.requests || null,
+        total_amount: data.totalAmount ? String(data.totalAmount) : null,
+        deposit_amount: null,
+      };
+
+      const { error: supabaseError } = await supabaseAdmin
+        .from("inquiries")
+        .insert(inquiryData);
+
+      if (supabaseError) {
+        console.error("Supabase 저장 실패:", supabaseError);
+      } else {
+        console.log("Supabase 저장 완료");
+      }
+    } catch (supabaseErr) {
+      console.error("Supabase 저장 중 오류:", supabaseErr);
+      // Supabase 저장 실패해도 전체 요청은 성공 처리 (GAS는 성공했으므로)
     }
+
+    // 텔레그램 알림은 GAS에서만 발송 (중복 방지)
 
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -46,41 +76,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-function formatTelegramMessage(data: Record<string, unknown>): string {
-  const lines = [
-    `<b>🔔 새 견적 문의</b>`,
-    ``,
-    `<b>담당자:</b> ${data.customerName || data.name || "-"}`,
-    `<b>연락처:</b> ${data.customerPhone || data.phone || "-"}`,
-    `<b>이메일:</b> ${data.customerEmail || data.email || "-"}`,
-  ];
-
-  if (data.companyName || data.company) {
-    lines.push(`<b>회사명:</b> ${data.companyName || data.company}`);
-  }
-
-  if (data.desiredDate || data.date) {
-    lines.push(`<b>희망일:</b> ${data.desiredDate || data.date}`);
-  }
-
-  lines.push(`<b>인원:</b> ${data.people || "-"}명`);
-
-  if (data.packageType) {
-    lines.push(`<b>패키지:</b> ${data.packageType === "overnight" ? "1박2일" : "당일"}`);
-  }
-
-  if (data.totalAmount) {
-    lines.push(`<b>예상 금액:</b> ${Number(data.totalAmount).toLocaleString()}원`);
-  }
-
-  if (data.requests) {
-    lines.push(`<b>요청사항:</b> ${data.requests}`);
-  }
-
-  lines.push(``);
-  lines.push(`<i>출처: ${data.source || "Website"}</i>`);
-
-  return lines.join("\n");
 }

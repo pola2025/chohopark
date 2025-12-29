@@ -130,8 +130,9 @@ function WorkshopContent() {
 
       {/* 식사 메뉴 */}
       <div className="border-2 border-gray-200 rounded-xl p-6 mb-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <span>🍖</span> 저녁식사 (18:30~21:30) - 무한리필
+        <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4 flex items-center gap-2 flex-wrap">
+          <span>🍖</span> 저녁식사 (18:30~21:30)
+          <span className="text-primary">- 무한리필</span>
         </h3>
 
         {/* 폭립 강조 */}
@@ -439,62 +440,64 @@ function TrainingContent() {
 function OptionsContent() {
   return (
     <div className="animate-fade-in">
-      <h2 className="text-2xl md:text-3xl font-bold text-green-800 mb-6 flex items-center gap-2">
+      <h2 className="text-xl md:text-3xl font-bold text-green-800 mb-4 md:mb-6 flex items-center gap-2">
         <span>🎯</span> 추가옵션 서비스
       </h2>
 
       {/* 명랑운동회 */}
-      <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl mb-8 border-2 border-orange-300">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
-          <h3 className="text-xl md:text-2xl font-bold text-orange-700 flex items-center gap-2">
-            <span>🏃</span> 명랑운동회 - 체육대회 전문 진행
+      <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 md:p-6 rounded-xl mb-6 md:mb-8 border-2 border-orange-300">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-6 gap-3">
+          <h3 className="text-base md:text-2xl font-bold text-orange-700 flex items-center gap-2 flex-wrap">
+            <span>🏃</span>
+            <span className="whitespace-nowrap">명랑운동회</span>
+            <span className="text-sm md:text-xl font-medium">- 체육대회 전문 진행</span>
           </h3>
-          <a href="tel:010-6437-1863" className="bg-orange-500 text-white px-6 py-3 rounded-full font-bold text-center hover:bg-orange-600 transition-colors">
+          <a href="tel:010-6437-1863" className="bg-orange-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full font-bold text-center text-sm md:text-base hover:bg-orange-600 transition-colors shrink-0">
             📞 010-6437-1863
           </a>
         </div>
 
         {/* 가격 정보 */}
-        <div className="bg-white p-5 rounded-xl mb-6">
-          <h4 className="text-orange-700 font-bold mb-4">💰 가격 안내</h4>
-          <div className="grid gap-3">
-            <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg border-l-4 border-orange-500">
-              <span>50~59인</span>
-              <strong className="text-orange-600">66만원 (2시간/VAT포함)</strong>
+        <div className="bg-white p-3 md:p-5 rounded-xl mb-4 md:mb-6">
+          <h4 className="text-orange-700 font-bold mb-3 md:mb-4 text-sm md:text-base">💰 가격 안내</h4>
+          <div className="grid gap-2 md:gap-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-2.5 md:p-3 bg-gray-50 rounded-lg border-l-4 border-orange-500 gap-1">
+              <span className="text-sm md:text-base">50~59인</span>
+              <strong className="text-orange-600 text-sm md:text-base">66만원 (2시간/VAT포함)</strong>
             </div>
-            <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg border-l-4 border-orange-500">
-              <span>100인</span>
-              <strong className="text-orange-600">110만원 (2시간/VAT포함)</strong>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-2.5 md:p-3 bg-gray-50 rounded-lg border-l-4 border-orange-500 gap-1">
+              <span className="text-sm md:text-base">100인</span>
+              <strong className="text-orange-600 text-sm md:text-base">110만원 (2시간/VAT포함)</strong>
             </div>
-            <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg border-l-4 border-orange-500">
-              <span>최소인원</span>
-              <strong>50명</strong>
+            <div className="flex justify-between items-center p-2.5 md:p-3 bg-gray-50 rounded-lg border-l-4 border-orange-500">
+              <span className="text-sm md:text-base">최소인원</span>
+              <strong className="text-sm md:text-base">50명</strong>
             </div>
-            <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
-              <span>특전</span>
-              <strong className="text-green-600">행사현수막 무료제작 포함</strong>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-2.5 md:p-3 bg-green-50 rounded-lg border-l-4 border-green-500 gap-1">
+              <span className="text-sm md:text-base">특전</span>
+              <strong className="text-green-600 text-sm md:text-base">행사현수막 무료제작 포함</strong>
             </div>
           </div>
-          <p className="text-gray-500 text-sm mt-3">
+          <p className="text-gray-500 text-xs md:text-sm mt-2 md:mt-3">
             ※ 인원추가 및 시간추가, 진행종목 선택은 개별상담 후 안내
           </p>
         </div>
 
         {/* 프로그램 구성 */}
-        <div className="bg-white p-5 rounded-xl mb-6">
-          <h4 className="text-orange-700 font-bold mb-4">📋 프로그램 구성 (2시간)</h4>
+        <div className="bg-white p-3 md:p-5 rounded-xl mb-4 md:mb-6">
+          <h4 className="text-orange-700 font-bold mb-3 md:mb-4 text-sm md:text-base">📋 프로그램 구성 (2시간)</h4>
 
-          <div className="mb-4">
-            <div className="bg-orange-50 p-3 rounded-lg border-l-4 border-orange-500 mb-3">
-              <strong>[오프닝] 준비운동 - 10분</strong>
+          <div className="mb-3 md:mb-4">
+            <div className="bg-orange-50 p-2.5 md:p-3 rounded-lg border-l-4 border-orange-500 mb-2 md:mb-3">
+              <strong className="text-xs md:text-base">[오프닝] 준비운동 - 10분</strong>
             </div>
           </div>
 
-          <div className="mb-4">
-            <div className="bg-orange-50 p-3 rounded-lg border-l-4 border-orange-500 mb-3">
-              <strong>[메인 종목] 운동회 - 변경 가능</strong>
+          <div className="mb-3 md:mb-4">
+            <div className="bg-orange-50 p-2.5 md:p-3 rounded-lg border-l-4 border-orange-500 mb-2 md:mb-3">
+              <strong className="text-xs md:text-base">[메인 종목] 운동회 - 변경 가능</strong>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5 md:gap-2">
               {[
                 { name: "특급열차", time: "10분", desc: "단체 줄넘기, 굴렁쇠 활용" },
                 { name: "지네발", time: "10분", desc: "팀원 발 고정 릴레이" },
@@ -507,19 +510,22 @@ function OptionsContent() {
                 { name: "에어봉릴레이", time: "10분", desc: "대형봉 다리 끼고 달리기" },
                 { name: "계주", time: "10분", desc: "직급별 릴레이 경기" },
               ].map((game, idx) => (
-                <div key={idx} className="bg-gray-50 p-3 rounded-lg text-sm">
-                  <strong className="text-orange-600">{game.name}</strong> ({game.time})<br />
-                  <span className="text-gray-500 text-xs">{game.desc}</span>
+                <div key={idx} className="bg-gray-50 p-2 md:p-3 rounded-lg">
+                  <div className="text-xs md:text-sm">
+                    <strong className="text-orange-600">{game.name}</strong>
+                    <span className="text-gray-500 text-[10px] md:text-xs ml-1">({game.time})</span>
+                  </div>
+                  <span className="text-gray-500 text-[10px] md:text-xs hidden md:block">{game.desc}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div>
-            <div className="bg-orange-50 p-3 rounded-lg border-l-4 border-orange-500 mb-3">
-              <strong>[클로징] 시상식 - 10분</strong>
+            <div className="bg-orange-50 p-2.5 md:p-3 rounded-lg border-l-4 border-orange-500 mb-2 md:mb-3">
+              <strong className="text-xs md:text-base">[클로징] 시상식 - 10분</strong>
             </div>
-            <ul className="text-gray-600 text-sm space-y-1 pl-4">
+            <ul className="text-gray-600 text-xs md:text-sm space-y-1 pl-3 md:pl-4">
               <li>• 종합 1, 2위 시상</li>
               <li>• MVP 2명 시상</li>
               <li>• 개인 시상</li>
@@ -528,20 +534,20 @@ function OptionsContent() {
         </div>
 
         {/* 포함사항 */}
-        <div className="bg-white p-5 rounded-xl mb-6">
-          <h4 className="text-orange-700 font-bold mb-4">✅ 포함사항</h4>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div className="bg-green-50 p-4 rounded-lg text-center font-semibold text-sm">전문 진행자</div>
-            <div className="bg-green-50 p-4 rounded-lg text-center font-semibold text-sm">음향장비(앰프)</div>
-            <div className="bg-green-50 p-4 rounded-lg text-center font-semibold text-sm">게임용품 일체</div>
-            <div className="bg-yellow-50 p-4 rounded-lg text-center font-semibold text-sm">우천시 실내 레크레이션 대체</div>
+        <div className="bg-white p-3 md:p-5 rounded-xl mb-4 md:mb-6">
+          <h4 className="text-orange-700 font-bold mb-3 md:mb-4 text-sm md:text-base">✅ 포함사항</h4>
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
+            <div className="bg-green-50 p-2.5 md:p-4 rounded-lg text-center font-semibold text-xs md:text-sm">전문 진행자</div>
+            <div className="bg-green-50 p-2.5 md:p-4 rounded-lg text-center font-semibold text-xs md:text-sm">음향장비(앰프)</div>
+            <div className="bg-green-50 p-2.5 md:p-4 rounded-lg text-center font-semibold text-xs md:text-sm">게임용품 일체</div>
+            <div className="bg-yellow-50 p-2.5 md:p-4 rounded-lg text-center font-semibold text-xs md:text-sm col-span-2 md:col-span-1">우천시 실내 레크레이션 대체</div>
           </div>
         </div>
 
         {/* 주의사항 */}
-        <div className="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-400">
-          <h4 className="text-orange-700 font-bold mb-2">⚠️ 명랑운동회 주의사항</h4>
-          <ul className="text-gray-600 text-sm space-y-1">
+        <div className="bg-yellow-50 p-3 md:p-4 rounded-lg border-2 border-yellow-400">
+          <h4 className="text-orange-700 font-bold mb-2 text-sm md:text-base">⚠️ 명랑운동회 주의사항</h4>
+          <ul className="text-gray-600 text-xs md:text-sm space-y-1">
             <li>• 행사 진행 시 부상위험이 있으므로 안전에 유의</li>
             <li>• 외부업체 이벤트 진행 시 사전 협의 필수</li>
             <li>• 협의 없이 진행 시 운동회/체육대회 진행 불가</li>
@@ -551,47 +557,47 @@ function OptionsContent() {
       </div>
 
       {/* 기타 추가 서비스 */}
-      <div className="bg-white p-6 rounded-xl shadow-md">
-        <h3 className="text-xl font-bold text-green-800 mb-6 flex items-center gap-2">
+      <div className="bg-white p-4 md:p-6 rounded-xl shadow-md">
+        <h3 className="text-base md:text-xl font-bold text-green-800 mb-4 md:mb-6 flex items-center gap-2">
           <span>🎪</span> 기타 추가 서비스
         </h3>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
           {/* 서바이벌 게임 */}
-          <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-6 rounded-xl border-l-4 border-gray-600">
-            <h4 className="text-gray-700 font-bold mb-3 flex items-center gap-2">
+          <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-4 md:p-6 rounded-xl border-l-4 border-gray-600">
+            <h4 className="text-gray-700 font-bold mb-2 md:mb-3 flex items-center gap-2 text-sm md:text-base">
               <span>🎯</span> 단체 출장 서바이벌게임
             </h4>
-            <p className="text-gray-600 text-sm mb-3">팀워크 강화를 위한 서바이벌 게임</p>
-            <ul className="text-gray-600 text-sm space-y-1 mb-4">
+            <p className="text-gray-600 text-xs md:text-sm mb-2 md:mb-3">팀워크 강화를 위한 서바이벌 게임</p>
+            <ul className="text-gray-600 text-xs md:text-sm space-y-1 mb-3 md:mb-4">
               <li>• 전문 장비 제공</li>
               <li>• 안전 교육 포함</li>
               <li>• 팀별 대항전 가능</li>
             </ul>
-            <a href="tel:010-6437-1863" className="block bg-gray-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors">
+            <a href="tel:010-6437-1863" className="block bg-gray-600 text-white text-center py-2.5 md:py-3 rounded-lg font-semibold text-sm md:text-base hover:bg-gray-700 transition-colors">
               📞 문의: 010-6437-1863
             </a>
           </div>
 
           {/* 파주스피드파크 */}
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl border-l-4 border-amber-500">
-            <h4 className="text-amber-700 font-bold mb-3 flex items-center gap-2">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 md:p-6 rounded-xl border-l-4 border-amber-500">
+            <h4 className="text-amber-700 font-bold mb-2 md:mb-3 flex items-center gap-2 text-sm md:text-base">
               <span>🏁</span> 파주스피드파크
             </h4>
-            <p className="text-gray-600 text-sm mb-3">짜릿한 레이싱 체험</p>
-            <ul className="text-gray-600 text-sm space-y-1 mb-4">
+            <p className="text-gray-600 text-xs md:text-sm mb-2 md:mb-3">짜릿한 레이싱 체험</p>
+            <ul className="text-gray-600 text-xs md:text-sm space-y-1 mb-3 md:mb-4">
               <li>• 카트 레이싱</li>
               <li>• 단체 예약 가능</li>
               <li>• 초보자 교육 제공</li>
             </ul>
-            <a href="tel:010-6437-1863" className="block bg-amber-500 text-white text-center py-3 rounded-lg font-semibold hover:bg-amber-600 transition-colors">
+            <a href="tel:010-6437-1863" className="block bg-amber-500 text-white text-center py-2.5 md:py-3 rounded-lg font-semibold text-sm md:text-base hover:bg-amber-600 transition-colors">
               📞 문의: 010-6437-1863
             </a>
           </div>
         </div>
 
-        <div className="bg-green-50 p-4 rounded-lg mt-6 text-center">
-          <p className="text-green-700">
+        <div className="bg-green-50 p-3 md:p-4 rounded-lg mt-4 md:mt-6 text-center">
+          <p className="text-green-700 text-xs md:text-base">
             <strong>💡 TIP:</strong> 추가 서비스는 메인 상품과 함께 예약 시 더욱 알찬 행사가 가능합니다!
           </p>
         </div>
