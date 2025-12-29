@@ -9,8 +9,8 @@ import { SITE_CONFIG } from "@/lib/constants";
 
 const NAV_LINKS = [
   { name: "초호쉼터", href: "/" },
-  { name: "초호역사", href: "/about" },
   { name: "시설안내", href: "/facilities" },
+  { name: "초호역사", href: "/about" },
   { name: "단체예약", href: "/booking", highlight: true },
 ];
 
@@ -128,19 +128,6 @@ export function Header() {
               초호쉼터
             </Link>
             <Link
-              href="/about"
-              className={cn(
-                "flex-1 h-10 flex items-center justify-center rounded-lg text-[11px] font-medium transition-all",
-                "border border-[#e0e0e0] shadow-[0_1px_3px_rgba(0,0,0,0.05)]",
-                "active:scale-[0.97] active:shadow-[0_0_2px_rgba(0,0,0,0.1)]",
-                isActive("/about")
-                  ? "bg-[#2d5016] border-[#2d5016] text-white font-bold shadow-[0_2px_6px_rgba(45,80,22,0.25)]"
-                  : "bg-white text-[#666]"
-              )}
-            >
-              초호역사
-            </Link>
-            <Link
               href="/facilities"
               className={cn(
                 "flex-1 h-10 flex items-center justify-center rounded-lg text-[11px] font-medium transition-all",
@@ -152,6 +139,19 @@ export function Header() {
               )}
             >
               시설안내
+            </Link>
+            <Link
+              href="/about"
+              className={cn(
+                "flex-1 h-10 flex items-center justify-center rounded-lg text-[11px] font-medium transition-all",
+                "border border-[#e0e0e0] shadow-[0_1px_3px_rgba(0,0,0,0.05)]",
+                "active:scale-[0.97] active:shadow-[0_0_2px_rgba(0,0,0,0.1)]",
+                isActive("/about")
+                  ? "bg-[#2d5016] border-[#2d5016] text-white font-bold shadow-[0_2px_6px_rgba(45,80,22,0.25)]"
+                  : "bg-white text-[#666]"
+              )}
+            >
+              초호역사
             </Link>
             <Link
               href="/booking"
