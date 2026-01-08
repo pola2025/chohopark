@@ -17,6 +17,7 @@ import { formatPhoneNumber } from "@/lib/utils";
 const MODAL_COOKIE_KEY = "inquiry_modal_closed";
 const MODAL_SUBMITTED_KEY = "inquiry_modal_submitted";
 const MODAL_HIDE_TODAY_KEY = "inquiry_modal_hide_today";
+const MODAL_PERMANENTLY_CLOSED_KEY = "inquiry_modal_permanently_closed";
 
 export function InquiryModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,12 @@ export function InquiryModal() {
   });
 
   useEffect(() => {
+    // 영구적으로 닫았으면 (최초 X 버튼 클릭) 절대 안 뜸
+    const permanentlyClosed = localStorage.getItem(MODAL_PERMANENTLY_CLOSED_KEY);
+    if (permanentlyClosed) {
+      return;
+    }
+
     // 이미 오늘 하루 안보기 클릭했으면 실행 안함
     if (isHiddenToday) return;
 
@@ -55,27 +62,18 @@ export function InquiryModal() {
       localStorage.removeItem(MODAL_HIDE_TODAY_KEY);
     }
 
-    // 24시간 내 제출했거나 3번 닫았으면 표시하지 않음
+    // 24시간 내 제출했으면 표시하지 않음
     const submitted = localStorage.getItem(MODAL_SUBMITTED_KEY);
-    const closedCount = parseInt(localStorage.getItem(MODAL_COOKIE_KEY) || "0");
-
-    if (submitted || closedCount >= 3) {
-      const expiry = new Date(submitted || Date.now());
+    if (submitted) {
+      const expiry = new Date(submitted);
       if (Date.now() - expiry.getTime() < 24 * 60 * 60 * 1000) {
         return;
       }
       // 24시간 지났으면 초기화
       localStorage.removeItem(MODAL_SUBMITTED_KEY);
-      localStorage.removeItem(MODAL_COOKIE_KEY);
     }
 
-    setCloseCount(closedCount);
-
-    // 15초 후 또는 40% 스크롤 시 표시
-    const timer = setTimeout(() => {
-      if (!isHiddenToday) setIsOpen(true);
-    }, 15000);
-
+    // 40% 스크롤 시 표시
     const handleScroll = () => {
       const scrollPercent =
         (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
@@ -88,23 +86,14 @@ export function InquiryModal() {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isHiddenToday]);
 
   const handleClose = () => {
     setIsOpen(false);
-    const newCount = closeCount + 1;
-    setCloseCount(newCount);
-    localStorage.setItem(MODAL_COOKIE_KEY, newCount.toString());
-
-    // 3번 미만이면 15초 후 다시 표시
-    if (newCount < 3) {
-      setTimeout(() => {
-        setIsOpen(true);
-      }, 15000);
-    }
+    // 최초 닫기 시 영구적으로 안 뜨게 설정
+    localStorage.setItem(MODAL_PERMANENTLY_CLOSED_KEY, "true");
   };
 
   const handleHideToday = () => {
@@ -154,7 +143,7 @@ export function InquiryModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         {isSubmitted ? (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -179,7 +168,7 @@ export function InquiryModal() {
               </DialogDescription>
             </DialogHeader>
 
-            <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+            <form onSubmit={handleSubmit} className="space-y-3 mt-2">
               <div>
                 <Label htmlFor="modal-name">담당자 성함 *</Label>
                 <Input
@@ -282,9 +271,9 @@ export function InquiryModal() {
               <button
                 type="button"
                 onClick={handleHideToday}
-                className="w-full text-center text-sm text-gray-400 hover:text-gray-600 py-2 transition-colors"
+                className="w-full text-center text-sm font-semibold text-red-600 hover:text-red-700 py-3 bg-red-50 hover:bg-red-100 rounded-xl border-2 border-red-200 transition-colors"
               >
-                오늘 하루 안보기
+                ✕ 오늘 하루 보지 않기
               </button>
             </form>
           </>
